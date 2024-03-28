@@ -35,7 +35,7 @@ namespace Test
 
         void Start()
         {
-
+            
             cm.enemyCoinCount = UnityEngine.Random.Range(1, 5);
 
 
