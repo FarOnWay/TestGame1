@@ -42,7 +42,7 @@ public class HeroKnight : MonoBehaviour
     // public int maxHealth = 100;
     public float knockbackForce = 20f;
 
-    public int health;
+    LifeManager lifeManager;
     public int damage;
 
     // public int coinAmoint;
@@ -53,9 +53,7 @@ public class HeroKnight : MonoBehaviour
     void Start()
     {
         // health = maxHealth;
-
-
-
+        lifeManager = GetComponent<LifeManager>();
 
         // lifeBar.SetMaxHealth(maxHealth);
 
@@ -71,7 +69,6 @@ public class HeroKnight : MonoBehaviour
 
     bool ShieldUp(bool isShildUpNow)
     {
-
         if (isShildUpNow)
         {
             m_animator.SetTrigger("Block");
@@ -93,16 +90,13 @@ public class HeroKnight : MonoBehaviour
     public void TakeDamage(int damage)
     {
 
-
         if (isShildUpNow) return;
-
 
         Debug.Log("alo hero");
         m_animator.SetTrigger("Hurt");
-        health -= damage;
+        lifeManager.lifeCount -= damage;
 
-
-        if (health <= 0)
+        if (lifeManager.lifeCount <= 0)
         {
             m_animator.SetTrigger("Death");
             Destroy(gameObject, 1f);
@@ -114,7 +108,7 @@ public class HeroKnight : MonoBehaviour
         Debug.Log("dando dano");
         LayerMask layerMask = LayerMask.GetMask("Enemy");
         Vector2 hitboxSize = new Vector2(1f, 1f);
-        Vector2 hitboxCenter = transform.position + new Vector3(1f * m_facingDirection,0, 0);
+        Vector2 hitboxCenter = transform.position + new Vector3(1f * m_facingDirection, 0, 0);
 
         Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0, layerMask);
 
@@ -133,7 +127,7 @@ public class HeroKnight : MonoBehaviour
                     Debug.Log("sexo 2");
 
                     Vector2 knockbackDirection = (enemyRb.transform.position - transform.position).normalized;
-                    knockbackDirection =  (knockbackDirection + new Vector2(0, 1f)).normalized;
+                    knockbackDirection = (knockbackDirection + new Vector2(0, 1f)).normalized;
                     enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
 
                 }

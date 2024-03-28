@@ -11,8 +11,8 @@ namespace Test
         public HeroKnight heroKnight;
         public int health;
         public int maxHealth;
-        public Transform player; // Reference to the player's transform
-        public float moveSpeed = 5f; // Speed at which the enemy moves 
+         Transform player; 
+        public float moveSpeed = 5f; 
 
 
 
@@ -24,20 +24,20 @@ namespace Test
         private Animator animator;
         private bool isMoving;
 
-        public CoinManager cm;
+         CoinManager cm;
 
-        // Define a variable to track the time elapsed since the last attack
         private float timeSinceLastAttack = 0f;
-        // Define the cooldown time for the enemy's attack (in seconds)
         public float attackCooldown = 1f;
 
         public GameObject coinPrefab;
 
         void Start()
         {
+             cm = GetComponent<CoinManager>();
 
-            cm.enemyCoinCount = UnityEngine.Random.Range(1, 5);
+             player = heroKnight.GetComponent<Transform>();
 
+            cm.coinCount = UnityEngine.Random.Range(1, 5);
 
             health = maxHealth;
             rb = GetComponent<Rigidbody2D>();
@@ -48,8 +48,6 @@ namespace Test
 
         void Update()
         {
-
-
             if (player != null)
             {
 
@@ -109,7 +107,7 @@ namespace Test
         private void OnDestroy()
         {
             // Check if the object has been destroyed before instantiating coins
-            for (int i = 0; i < cm.enemyCoinCount; i++)
+            for (int i = 0; i < cm.coinCount; i++)
             {
                 Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
             }
