@@ -11,8 +11,8 @@ namespace Test
         public HeroKnight heroKnight;
         public int health;
         public int maxHealth;
-         Transform player; 
-        public float moveSpeed = 5f; 
+        Transform player;
+        public float moveSpeed = 5f;
 
 
 
@@ -24,7 +24,7 @@ namespace Test
         private Animator animator;
         private bool isMoving;
 
-         CoinManager cm;
+        CoinManager cm;
 
         private float timeSinceLastAttack = 0f;
         public float attackCooldown = 1f;
@@ -33,9 +33,11 @@ namespace Test
 
         void Start()
         {
-             cm = GetComponent<CoinManager>();
 
-             player = heroKnight.GetComponent<Transform>();
+            cm = GetComponent<CoinManager>();
+
+            player = heroKnight.GetComponent<Transform>();
+
 
             cm.coinCount = UnityEngine.Random.Range(1, 5);
 

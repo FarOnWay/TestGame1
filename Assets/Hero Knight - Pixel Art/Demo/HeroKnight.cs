@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System;
 
 public class HeroKnight : MonoBehaviour
 {
@@ -181,13 +182,19 @@ public class HeroKnight : MonoBehaviour
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
+            Transform hitBoxTransform = GetComponentInChildren<HitboxDetection>().gameObject.transform;
+
             GetComponent<SpriteRenderer>().flipX = false;
+            hitBoxTransform.localScale = new Vector3(Math.Abs(hitBoxTransform.localScale.x), hitBoxTransform.localScale.y, hitBoxTransform.localScale.z);
             m_facingDirection = 1;
         }
 
         else if (inputX < 0)
         {
+            Transform hitBoxTransform = GetComponentInChildren<HitboxDetection>().gameObject.transform;
             GetComponent<SpriteRenderer>().flipX = true;
+
+            hitBoxTransform.localScale = new Vector3(Math.Abs(hitBoxTransform.localScale.x) * -1, hitBoxTransform.localScale.y, hitBoxTransform.localScale.z);
             m_facingDirection = -1;
         }
 
@@ -219,7 +226,6 @@ public class HeroKnight : MonoBehaviour
         {
             m_animator.SetTrigger("Attack" + m_currentAttack);
 
-            DealDamage(damage);
             m_currentAttack++;
 
             // Loop back to one after third attack
