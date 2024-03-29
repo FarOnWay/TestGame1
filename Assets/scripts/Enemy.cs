@@ -65,7 +65,7 @@ namespace Test
                     Vector2 direction = (player.position - transform.position).normalized;
 
                     // Move the enemy towards the player
-                    rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
+                    // rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
 
                     // Set isMoving parameter based on movement
                     isMoving = direction.magnitude > 0.1f;
