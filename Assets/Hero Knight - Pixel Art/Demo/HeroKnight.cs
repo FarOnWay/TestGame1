@@ -41,7 +41,7 @@ public class HeroKnight : MonoBehaviour
     // public Text lifeUI;
     int velocity;
     // public int maxHealth = 100;
-    public float knockbackForce = 20f;
+    public float knockbackForce = 2f;
 
     LifeManager lifeManager;
     public int damage;
@@ -120,7 +120,7 @@ public class HeroKnight : MonoBehaviour
             if (enemy != null)
             {
                 Debug.Log("sexo");
-                // enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage);
 
                 Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
                 if (enemyRb != null)
@@ -225,6 +225,7 @@ public class HeroKnight : MonoBehaviour
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_animator.SetTrigger("Attack" + m_currentAttack);
+            DealDamage(damage);
 
             m_currentAttack++;
 
