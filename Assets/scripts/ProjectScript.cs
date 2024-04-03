@@ -5,21 +5,33 @@ using UnityEngine;
 public class ProjectScript : MonoBehaviour
 {
 
-    public HeroKnight player;
     public float speed = 10f;
 
-    
+    public GameObject owner;
+
 
     Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
+
+
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        // player = GetComponent<HeroKnight>();
+        HeroKnight player = other.GetComponent<HeroKnight>();
+        if (other.gameObject == owner) return;
+
+        if (player != null)
+        {
+            player.TakeDamage(10);
+        }
+
+
+        Destroy(gameObject);
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
+
+
+
 }

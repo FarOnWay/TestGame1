@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Threading;
+using System.Collections;
+using Unity.Jobs.LowLevel.Unsafe;
+using System;
 
 namespace Test
 {
@@ -11,9 +14,17 @@ namespace Test
         public HeroKnight heroKnight;
         public int health;
         public int maxHealth;
-        Transform player;
+        public Transform player;
         public float moveSpeed = 5f;
 
+
+        [SerializeField] EnemyHealthBar healthBar;
+
+        void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            healthBar = GetComponentInChildren<EnemyHealthBar>();
+        }
 
 
 
@@ -42,8 +53,9 @@ namespace Test
             cm.coinCount = UnityEngine.Random.Range(1, 5);
 
             health = maxHealth;
-            rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            healthBar.UpdateHealthBar(health, maxHealth);
+
         }
 
 
@@ -93,20 +105,35 @@ namespace Test
         public void TakeDamage(int damage)
         {
             health -= damage;
+            healthBar.UpdateHealthBar(health, maxHealth);
             if (health <= 0)
             {
 
                 animator.SetTrigger("Death");
-                Destroy(gameObject, 1.0f); // Destroy after 1 second
+                StartCoroutine ("scheduleDestroy", 1.5f);
+              
+
+
             }
             else
             {
                 // Trigger hurt animation
                 animator.SetTrigger("Hurt");
+
             }
         }
+        
 
-        private void OnDestroy()
+
+        IEnumerator scheduleDestroy(float timer)
+        {
+            yield return new WaitForSecondsRealtime(timer);
+             spawnCoins();
+
+            Destroy(gameObject);
+           
+        }
+        private void spawnCoins()
         {
             // Check if the object has been destroyed before instantiating coins
             for (int i = 0; i < cm.coinCount; i++)
@@ -121,12 +148,11 @@ namespace Test
 
             if (timeSinceLastAttack >= attackCooldown)
             {
-
                 if (distanceBetweenPlayerAndEnemy <= 2)
                 {
-                    Debug.Log("Attacking!");
+                    Debug.Log(" enemy Attacking!");
                     animator.SetTrigger("Attack");
-
+                    
                     if (heroKnight)
                     {
                         heroKnight.TakeDamage(damage);
