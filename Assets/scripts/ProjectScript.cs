@@ -20,7 +20,6 @@ public class ProjectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3.MoveTowards(transform.position, new Vector3(-6, -1, 0), speed * Time.deltaTime);
 
     }
 }
