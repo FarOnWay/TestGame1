@@ -18,12 +18,12 @@ namespace Test
         public float moveSpeed = 5f;
 
 
-        [SerializeField] EnemyHealthBar healthBar;
+        [SerializeField] HealthBar healthBar;
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            healthBar = GetComponentInChildren<EnemyHealthBar>();
+            healthBar = GetComponentInChildren<HealthBar>();
         }
 
 

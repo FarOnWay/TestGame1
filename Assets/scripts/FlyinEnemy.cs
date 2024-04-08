@@ -10,9 +10,6 @@ public class FlyingEnemyController : EnemyController
     public float maxY = 1.5f;
 
 
-    public float attackSpeed = 1f;
-    private float nextAttackTime = 0.0f;
-
     // void Start()
     // {
     //     player = hero.GetComponent<Transform>();

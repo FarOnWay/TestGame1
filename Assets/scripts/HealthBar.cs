@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class EnemyHealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
 
     [SerializeField] private Slider slider;
@@ -28,9 +28,6 @@ public class EnemyHealthBar : MonoBehaviour
         switchHud(timer <= 5);
 
         timer += Time.deltaTime;
-
-
-
 
         transform.rotation = camera.transform.rotation;
         transform.position = target.position + offset;

@@ -1,28 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Entity : MonoBehaviour
+
+public class Entity : HealthBar
 {
 
     LifeManager lifeManager;
+    public HeroKnight hero;
 
-   public HeroKnight hero;
-
+    EnemyController enemy;
+    public int vida;
+    public int maxLife;
 
 
 
     void Start()
     {
-
         lifeManager = GetComponent<LifeManager>();
         hero = GetComponent<HeroKnight>();
+        vida = maxLife;
 
     }
 
     public virtual void DealDamage(int damage, bool isPlayer)
     {
-
         if (isPlayer)
         {
             Debug.Log("player comendo monstros");
@@ -34,12 +37,14 @@ public class Entity : MonoBehaviour
 
             foreach (Collider2D collider in colliders)
             {
-                Debug.Log("foreach");
-                Test.Enemy enemy = collider.gameObject.GetComponent<Test.Enemy>();
+                Debug.Log(colliders);
+                Debug.Log(collider);
+                //EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
+
                 if (enemy != null)
                 {
-                    Debug.Log("sexo");
-                    enemy.TakeDamage(damage);
+                    Debug.Log("player dando dano");
+                    TakeDamage(damage);
                 }
             }
         }
@@ -48,19 +53,19 @@ public class Entity : MonoBehaviour
         {
             Debug.Log("player sendo comido");
             Debug.Log("testando sexo");
-
-            hero.TakeDamage(10);
+            hero.TakeDamage(damage);
         }
 
     }
 
-
     public virtual void TakeDamage(int damage)
     {
-        Debug.Log("alo hero");
-        lifeManager.lifeCount -= damage;
+        Debug.Log("aii pai paraa");
+        //Debug.Log(lifeManager.lifeCount);
+        vida -= damage;
+        //lifeManager.lifeCount -= damage;
 
-        if (lifeManager.lifeCount <= 0)
+        if (vida <= 0)
         {
             Destroy(gameObject, 1f);
         }

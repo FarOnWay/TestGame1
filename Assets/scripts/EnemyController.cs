@@ -34,6 +34,8 @@ public class EnemyController : Entity
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("escostando no player");
+
             base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
 
