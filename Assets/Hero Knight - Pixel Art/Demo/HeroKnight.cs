@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System;
 
-public class HeroKnight : MonoBehaviour
+public class HeroKnight : Entity
 {
 
     [SerializeField] float m_speed = 4.0f;
@@ -88,21 +88,21 @@ public class HeroKnight : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
-    {
+    // public void TakeDamage(int damage)
+    // {
 
-        if (isShildUpNow) return;
+    //     if (isShildUpNow) return;
 
-        Debug.Log("alo hero");
-        m_animator.SetTrigger("Hurt");
-        lifeManager.lifeCount -= damage;
+    //     Debug.Log("alo hero");
+    //     m_animator.SetTrigger("Hurt");
+    //     lifeManager.lifeCount -= damage;
 
-        if (lifeManager.lifeCount <= 0)
-        {
-            m_animator.SetTrigger("Death");
-            Destroy(gameObject, 1f);
-        }
-    }
+    //     if (lifeManager.lifeCount <= 0)
+    //     {
+    //         m_animator.SetTrigger("Death");
+    //         Destroy(gameObject, 1f);
+    //     }
+    // }
 
     void DealDamage(int damage)
     {
