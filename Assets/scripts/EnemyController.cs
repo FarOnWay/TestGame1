@@ -6,23 +6,17 @@ using UnityEngine.Animations;
 
 public class EnemyController : Entity
 {
-    HeroKnight player;
+
     Vector3 playerPos;
 
     public Transform playerTransform;
-    GameObject playerObject;
-
     public float knockbackDistance;
     public float knockbackDuration;
-
     public int speed;
 
 
     void Start()
     {
-
-
-
     }
 
     void Update()
@@ -40,6 +34,7 @@ public class EnemyController : Entity
     {
         if (other.CompareTag("Player"))
         {
+            base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
 
             StartCoroutine(KnockbackCoroutine(knockbackDirection));

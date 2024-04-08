@@ -21,7 +21,6 @@ public class FlyingEnemyController : EnemyController
 
     public override void Move()
     {
-        base.Move();
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position + new Vector3(0, 1), moveSpeed * Time.deltaTime);
 
     }
