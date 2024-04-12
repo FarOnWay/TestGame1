@@ -1,54 +1,59 @@
 using UnityEngine;
+using System.Collections;
 
-public class FlyingEnemyController : MonoBehaviour
+
+public class FlyingEnemyController : EnemyController
 {
-    public float moveSpeed = 1f;
 
-    float projectSpeed = 10f;
+    //Default script for EVERY ENEMY THAT FLIES
+    public float moveSpeed = 1f;
     public int damage;
     public float minY = -1f;
     public float maxY = 1.5f;
-    public GameObject objectToInstantiate;
-    public Transform player;
-    public HeroKnight hero;
 
 
+    // void Start()
+    // {
+    //     player = hero.GetComponent<Transform>();
+    // }
 
-    public float attackSpeed = 1f;
-    private float nextAttackTime = 0.0f;
 
-    void Start()
+    public override void Move()
     {
-        player = hero.GetComponent<Transform>();
+        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position + new Vector3(0, 1), moveSpeed * Time.deltaTime);
+
     }
 
-    void Update()
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         Debug.Log("escostando no player");
+
+    //         base.DealDamage(10, false);
+    //         Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+
+    //         //StartCoroutine(KnockbackCoroutine(knockbackDirection));
+
+    //     }
+    // }
+
+    public  IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
     {
-        Vector3 directionToPlayer = (player.position  - transform.position).normalized;
+        float elapsedTime = 0f;
+        
 
-        Vector3 targetPosition = player.position - directionToPlayer * 3;
-
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-        float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
-        transform.position = new Vector3(transform.position.x, clampedY, transform.position.z);
-
-        if (Time.time >= nextAttackTime)
+        while (elapsedTime < knockbackDuration)
         {
-            Attack(damage);
+            Vector2 newPosition = (Vector2)transform.position + knockbackDirection * knockbackDistance * Time.deltaTime;
 
-            nextAttackTime = Time.time + 3;
+            transform.position = newPosition;
+           // Debug.Log("tomando knockback");
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
         }
     }
 
-    void Attack(int damage)
-    {
-
-        Vector3 directionToPlayer = (player.position + new Vector3(0, 1) - transform.position).normalized;
-
-
-
-        GameObject instantiatedObject = Instantiate(objectToInstantiate, transform.position, Quaternion.identity);
-        instantiatedObject.GetComponent<ProjectScript>().owner = gameObject;
-        instantiatedObject.GetComponent<Rigidbody2D>().velocity = directionToPlayer * projectSpeed;
-    }
 }
