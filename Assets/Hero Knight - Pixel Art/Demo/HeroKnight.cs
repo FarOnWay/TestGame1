@@ -1,10 +1,12 @@
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
-public class HeroKnight : MonoBehaviour
+public class HeroKnight : Entity
 {
 
     [SerializeField] float m_speed = 4.0f;
@@ -35,13 +37,15 @@ public class HeroKnight : MonoBehaviour
     private float m_rollCurrentTime;
     bool isShildUpNow = false;
 
+    float fallDamage = 0f;
+
     // public lifeBar lifeBar;
 
     // public CoinManager cm;
     // public Text lifeUI;
     int velocity;
     // public int maxHealth = 100;
-    public float knockbackForce = 2f;
+    // public float knockbackForce = 2f;
 
     LifeManager lifeManager;
     public int damage;
@@ -104,39 +108,39 @@ public class HeroKnight : MonoBehaviour
         }
     }
 
-    void DealDamage(int damage)
-    {
-        Debug.Log("dando dano");
-        Vector2 hitboxSize = new Vector2(1f, 1f);
-        Vector2 hitboxCenter = transform.position + new Vector3(1f * m_facingDirection, 0, 0);
+    // void DealDamage(int damage)
+    // {
+    //     Debug.Log("dando dano");
+    //     Vector2 hitboxSize = new Vector2(1f, 1f);
+    //     Vector2 hitboxCenter = transform.position + new Vector3(1f * m_facingDirection, 0, 0);
 
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0);
+    //     Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0);
 
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Enemy"))
-            {
-                EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
-                if (enemy != null)
-                {
-                    Debug.Log("sexo");
-                    enemy.TakeDamage(damage);
+    //     foreach (Collider2D collider in colliders)
+    //     {
+    //         if (collider.CompareTag("Enemy"))
+    //         {
+    //             EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
+    //             if (enemy != null)
+    //             {
+    //                 Debug.Log("sexo");
+    //                 enemy.TakeDamage(damage);
 
-                    Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
-                    if (enemyRb != null)
-                    {
-                        Debug.Log("sexo 2");
+    //                 Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
+    //                 if (enemyRb != null)
+    //                 {
+    //                     Debug.Log("sexo 2");
 
-                        Vector2 knockbackDirection = (enemyRb.transform.position - transform.position).normalized;
-                        knockbackDirection = (knockbackDirection + new Vector2(0, 1f)).normalized;
-                        enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+    //                     Vector2 knockbackDirection = (enemyRb.transform.position - transform.position).normalized;
+    //                     knockbackDirection = (knockbackDirection + new Vector2(0, 1f)).normalized;
+    //                     enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
 
-                    }
-                }
-            }
+    //                 }
+    //             }
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
 
     public void OnJump()
@@ -144,10 +148,47 @@ public class HeroKnight : MonoBehaviour
         Debug.Log("sexo anal");
     }
 
+    int fallDamageCalc()
+    {
+
+        float minimumFallSpeed = 12f;
+        float damageMultiplier = 10f;
+
+
+        if (m_body2d.velocity.y < -minimumFallSpeed)
+        {
+            fallDamage = (-m_body2d.velocity.y - minimumFallSpeed) * damageMultiplier;
+
+            return (int)fallDamage;
+        }
+
+
+
+        return (int)fallDamage;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+          //  Debug.Log("escontando nessa porra de chao");
+            // Debug.Log(fallDamageCalc());
+            applyFallDamage(fallDamageCalc());
+        }
+    }
+
+    void applyFallDamage(int damage)
+    {
+        lifeManager.lifeCount -= damage;
+        if (lifeManager.lifeCount <= 0) Destroy(gameObject);
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+
+        fallDamageCalc();
         // lifeUI.text = health.ToString();
 
         // transform.localScale = new Vector3( health * 100 / maxHealth, 15,1);
@@ -227,7 +268,7 @@ public class HeroKnight : MonoBehaviour
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_animator.SetTrigger("Attack" + m_currentAttack);
-            DealDamage(damage);
+            base.DealDamage(damage, true);
 
             m_currentAttack++;
 
