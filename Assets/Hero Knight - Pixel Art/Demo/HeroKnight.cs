@@ -37,7 +37,6 @@ public class HeroKnight : Entity
     private float m_rollCurrentTime;
     bool isShildUpNow = false;
 
-    float fallDamage = 0f;
 
     // public lifeBar lifeBar;
 
@@ -48,6 +47,9 @@ public class HeroKnight : Entity
     // public float knockbackForce = 2f;
 
     LifeManager lifeManager;
+
+    int fallDamage = 0;
+
     public int damage;
 
     // public int coinAmoint;
@@ -97,15 +99,21 @@ public class HeroKnight : Entity
 
         if (isShildUpNow) return;
 
-        Debug.Log("alo hero");
-        m_animator.SetTrigger("Hurt");
-        lifeManager.lifeCount -= damage;
-
-        if (lifeManager.lifeCount <= 0)
+        if (damage >= 1)
         {
-            m_animator.SetTrigger("Death");
-            Destroy(gameObject, 1f);
+            Debug.Log("alo hero");
+            m_animator.SetTrigger("Hurt");
+            lifeManager.lifeCount -= damage;
+
+            if (lifeManager.lifeCount <= 0)
+            {
+                lifeManager.lifeCount = 0;
+                m_animator.SetTrigger("Death");
+                Destroy(gameObject, 1f);
+            }
         }
+
+
     }
 
     // void DealDamage(int damage)
@@ -143,45 +151,34 @@ public class HeroKnight : Entity
     // }
 
 
-    public void OnJump()
-    {
-        Debug.Log("sexo anal");
-    }
-
     int fallDamageCalc()
     {
+        int minimumFallSpeed = -8; //using nevative value because when falling in the Y axxis, the unity uses negative values
+        int damageMultiplier = 25;
 
-        float minimumFallSpeed = 12f;
-        float damageMultiplier = 10f;
-
-
-        if (m_body2d.velocity.y < -minimumFallSpeed)
+        if (m_body2d.velocity.y < minimumFallSpeed)
         {
-            fallDamage = (-m_body2d.velocity.y - minimumFallSpeed) * damageMultiplier;
+            Debug.Log("velocidade no y é menor que minimumFallSpeed");
+            fallDamage = ((int)-m_body2d.velocity.y - minimumFallSpeed) * damageMultiplier;
+            Debug.Log("Dano de queda " + fallDamage);
 
-            return (int)fallDamage;
+            return 0;
         }
-
-
-
-        return (int)fallDamage;
+        return fallDamage;
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-          //  Debug.Log("escontando nessa porra de chao");
+            //  Debug.Log("escontando nessa porra de chao");
             // Debug.Log(fallDamageCalc());
-            applyFallDamage(fallDamageCalc());
+            TakeDamage(fallDamageCalc());
+            fallDamage = 0;
+
         }
     }
 
-    void applyFallDamage(int damage)
-    {
-        lifeManager.lifeCount -= damage;
-        if (lifeManager.lifeCount <= 0) Destroy(gameObject);
-    }
 
 
     // Update is called once per frame
