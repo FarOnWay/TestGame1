@@ -158,9 +158,9 @@ public class HeroKnight : Entity
 
         if (m_body2d.velocity.y < minimumFallSpeed)
         {
-            Debug.Log("velocidade no y é menor que minimumFallSpeed");
+            //Debug.Log("velocidade no y é menor que minimumFallSpeed");
             fallDamage = ((int)-m_body2d.velocity.y - minimumFallSpeed) * damageMultiplier;
-            Debug.Log("Dano de queda " + fallDamage);
+           // Debug.Log("Dano de queda " + fallDamage);
 
             return 0;
         }

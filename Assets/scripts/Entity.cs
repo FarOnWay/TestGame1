@@ -11,6 +11,8 @@ public class Entity : HealthBar
 
     public float knockbackForce;
 
+   public Rigidbody2D rb;
+
     EnemyController enemy;
 
 
@@ -18,6 +20,7 @@ public class Entity : HealthBar
     {
         lifeManager = GetComponent<LifeManager>();
         hero = GetComponent<HeroKnight>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public virtual void DealDamage(int damage, bool isPlayer)

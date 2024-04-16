@@ -659,7 +659,7 @@ Transform:
   m_GameObject: {fileID: 321645685}
   serializedVersion: 2
   m_LocalRotation: {x: -0.018367216, y: -0, z: -0, w: 0.9998314}
-  m_LocalPosition: {x: -21.85, y: -0.56, z: -0.11}
+  m_LocalPosition: {x: -38.98, y: -0.26, z: -0.09}
   m_LocalScale: {x: 0.6851083, y: 1.1507839, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -684,12 +684,13 @@ MonoBehaviour:
   lifeManager: {fileID: 321645692}
   hero: {fileID: 1693460346}
   knockbackForce: 2
+  rb: {fileID: 321645693}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 2
-  speed: 0
-  fallSpeed: 0.2
-  moveSpeed: 5
+  speed: 2
+  jumpForce: 6
+  jumpCoodown: 2
 --- !u!61 &321645691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1129,7 +1130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711275772}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
@@ -1141,6 +1142,7 @@ MonoBehaviour:
   lifeManager: {fileID: 711275780}
   hero: {fileID: 1693460346}
   knockbackForce: 2
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 0.3
@@ -5487,7 +5489,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910375167}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1c1b0f85f657e34ca6f70c37065fd7e, type: 3}
   m_Name: 
@@ -5499,6 +5501,7 @@ MonoBehaviour:
   lifeManager: {fileID: 910375173}
   hero: {fileID: 1693460346}
   knockbackForce: 10
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 1
@@ -6093,7 +6096,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509398369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
@@ -6105,6 +6108,7 @@ MonoBehaviour:
   lifeManager: {fileID: 1509398385}
   hero: {fileID: 1693460346}
   knockbackForce: 0
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 1
@@ -6324,7 +6328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535936625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
@@ -6336,6 +6340,7 @@ MonoBehaviour:
   lifeManager: {fileID: 1535936630}
   hero: {fileID: 1693460346}
   knockbackForce: 2
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 0.3
@@ -6527,6 +6532,7 @@ MonoBehaviour:
   lifeManager: {fileID: 0}
   hero: {fileID: 0}
   knockbackForce: 0
+  rb: {fileID: 0}
   playerTransform: {fileID: 0}
   knockbackDistance: 0
   knockbackDuration: 0
@@ -7899,7 +7905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834305550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a1daef0603e304569bc4c81ec539a3d, type: 3}
   m_Name: 
