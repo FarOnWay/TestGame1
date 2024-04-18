@@ -14,14 +14,10 @@ public class EnemyController : Entity
     public float knockbackDuration;
     public int speed;
 
-
-    void Start()
-    {
-    }
-
     public virtual void Update()
     {
         Move();
+        Debug.Log("original update");
     }
 
     public virtual void Move()

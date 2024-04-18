@@ -11,7 +11,7 @@ public class Entity : HealthBar
 
     public float knockbackForce;
 
-   public Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     EnemyController enemy;
 
@@ -31,7 +31,7 @@ public class Entity : HealthBar
         if (isPlayer)
         {
 
-            Debug.Log("o tubarao é viado");
+           // Debug.Log("o tubarao é viado");
             hitboxSize = new Vector2(1f, 1f);
             hitboxCenter = transform.position + new Vector3(1f * 1, 0, 0);
             Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0);
@@ -44,13 +44,13 @@ public class Entity : HealthBar
                     EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
                     if (enemy != null)
                     {
-                        Debug.Log("sexo");
+                      //  Debug.Log("sexo");
                         enemy.TakeDamage(damage);
 
                         Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
                         if (enemyRb != null)
                         {
-                            Debug.Log("sexo 2");
+                           // Debug.Log("sexo 2");
 
                             Vector2 knockbackDirection = (enemyRb.transform.position - transform.position).normalized;
                             knockbackDirection = (knockbackDirection + new Vector2(0, 1f)).normalized;
@@ -87,8 +87,9 @@ public class Entity : HealthBar
         {
             //  Debug.Log("player sendo comido");
             // Debug.Log("testando sexo");
-            hero.TakeDamage(damage);
-            Debug.Log("o tubarao é viado e da o rabim");
+            // hero.TakeDamage(damage);
+            Debug.Log(hero);
+            // Debug.Log("o tubarao é viado e da o rabim");
 
 
 

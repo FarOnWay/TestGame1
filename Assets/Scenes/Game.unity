@@ -681,14 +681,14 @@ MonoBehaviour:
   camera: {fileID: 0}
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
-  lifeManager: {fileID: 321645692}
-  hero: {fileID: 1693460346}
-  knockbackForce: 2
+  lifeManager: {fileID: 0}
+  hero: {fileID: 0}
+  knockbackForce: 0
   rb: {fileID: 321645693}
   playerTransform: {fileID: 1693460341}
-  knockbackDistance: 5
-  knockbackDuration: 2
-  speed: 2
+  knockbackDistance: 0
+  knockbackDuration: 0
+  speed: 150
   jumpForce: 6
   jumpCoodown: 2
 --- !u!61 &321645691
@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353b9a527531129dab0ba8babd6b8343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeCount: 50
+  lifeCount: 500
 --- !u!50 &321645693
 Rigidbody2D:
   serializedVersion: 4
@@ -775,7 +775,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &370473898
 GameObject:
   m_ObjectHideFlags: 0
@@ -6334,13 +6334,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
-  camera: {fileID: 0}
+  camera: {fileID: 1311500582}
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   lifeManager: {fileID: 1535936630}
   hero: {fileID: 1693460346}
   knockbackForce: 2
-  rb: {fileID: 0}
+  rb: {fileID: 1535936632}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 0.3
@@ -6371,7 +6371,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!1 &1598949684
 GameObject:
   m_ObjectHideFlags: 0
@@ -8034,11 +8034,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Size.y
-      value: 1.4366745
+      value: 1.5681852
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Offset.x
@@ -8046,7 +8046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Offset.y
-      value: 0.98351365
+      value: 0.9177583
       objectReference: {fileID: 0}
     - target: {fileID: 2954181336601895002, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_FlipX
