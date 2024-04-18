@@ -7,7 +7,7 @@ public class AttackController : MonoBehaviour
 
     public void DealDamage(Collider2D enemyCollider)
     {
-        Debug.Log("DEALING DAMAGE");
+       // Debug.Log("DEALING DAMAGE");
         Rigidbody2D enemyRb = enemyCollider.GetComponent<Rigidbody2D>();
         if (enemyRb != null)
         {

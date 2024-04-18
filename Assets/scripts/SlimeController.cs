@@ -4,51 +4,73 @@ using UnityEngine;
 
 public class SlimeController : EnemyController
 {
+    public int jumpForce = 0;
+    public int jumpCoodown = 0;
 
-    LayerMask groundLayer;
+    // public Rigidbody2D slime_rb;
 
-    public float fallSpeed;
-    public float moveSpeed;
-
-    // Update is called once per frame
-    // void Update()
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            // Debug.Log("slime encostando no chao");
+            StartCoroutine("JumpCooldown", 2f);
+            // Jump();
+        }
+    }
+    // void Move()
     // {
-    //     Debug.Log("test");
-    //     Move();
+    //     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+    //     //  Debug.Log("chamando move");
+    //     // transform.position += new Vector3(1 * Time.deltaTime,0);
     // }
 
-
-    //Overriding the move method because the slime has a diferent style of move 
-    public override void Move()
+    void Jump()
     {
-        transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+        rb.velocity = new Vector2(rb.velocity.y, jumpForce);
+        // Move();
+
+        // base.Move(); this wont work
+        // to make the slime goes to the player's direction, firt we apply a force to its Y axxis(making it jump)
+        // then we apply another force, that will make it moves(left, right)
+
+    }
+
+    override public void Update()
+    {
+        // Debug.Log("overrided update");
+        //  Move();
+        // Debug.Log("overring update");
+        // rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        //  Move();
     }
 
 
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-
-    //     if (other.gameObject.CompareTag("Ground"))
-    //     {
-    //         fallSpeed = 0;
-    //         Debug.Log("slime dando o buras");
-    //     }
-    // }
-
-    void OnTriggerEnter2D(Collider2D other)
+    // fucking shit need to be overrided. Why? i dont know, unity is a fucking shit
+    //nothing works in this terrible engine
+    //   i mean it
+    override public void Move()
     {
-       // Debug.Log("slime dando o buras");
-        Debug.Log(other.name);
-
-        if (other.CompareTag("Ground"))
+        //Debug.Log("chamando o move");
+        // transform.position += new Vector3(2, 0);
+        if (transform.position.x < playerTransform.position.x)
         {
-            fallSpeed = 0;
+            Debug.Log("a");
+            rb.AddForce(Vector2.right * speed, ForceMode2D.Force);
+            // transform.position += new Vector3(2, 0);
         }
-
-        if (other.CompareTag("Player"))
+        else
         {
-            DealDamage(10, false);
+            Debug.Log("b");
+            rb.AddForce(Vector2.left * speed, ForceMode2D.Force);
         }
     }
 
+    IEnumerator JumpCooldown(float timer)
+    {
+        yield return new WaitForSecondsRealtime(timer);
+        Debug.Log("chamando co rotina");
+        Jump();
+        Move();
+    }
 }

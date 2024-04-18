@@ -569,6 +569,7 @@ GameObject:
   - component: {fileID: 321645689}
   - component: {fileID: 321645691}
   - component: {fileID: 321645692}
+  - component: {fileID: 321645693}
   m_Layer: 7
   m_Name: Sprite Sheet - Blue Idle_0
   m_TagString: Enemy
@@ -658,7 +659,7 @@ Transform:
   m_GameObject: {fileID: 321645685}
   serializedVersion: 2
   m_LocalRotation: {x: -0.018367216, y: -0, z: -0, w: 0.9998314}
-  m_LocalPosition: {x: -21.85, y: -0.56, z: -0.11}
+  m_LocalPosition: {x: -38.98, y: -0.26, z: -0.09}
   m_LocalScale: {x: 0.6851083, y: 1.1507839, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -681,14 +682,15 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   lifeManager: {fileID: 0}
-  hero: {fileID: 1693460346}
+  hero: {fileID: 0}
   knockbackForce: 0
+  rb: {fileID: 321645693}
   playerTransform: {fileID: 1693460341}
-  knockbackDistance: 5
-  knockbackDuration: 2
-  speed: 0
-  fallSpeed: 0.2
-  moveSpeed: 5
+  knockbackDistance: 0
+  knockbackDuration: 0
+  speed: 150
+  jumpForce: 6
+  jumpCoodown: 2
 --- !u!61 &321645691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -718,7 +720,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.009119689, y: -0.17019755}
@@ -746,7 +748,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353b9a527531129dab0ba8babd6b8343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeCount: 50
+  lifeCount: 500
+--- !u!50 &321645693
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321645685}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &370473898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,7 +1130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711275772}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
@@ -1113,6 +1142,7 @@ MonoBehaviour:
   lifeManager: {fileID: 711275780}
   hero: {fileID: 1693460346}
   knockbackForce: 2
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 0.3
@@ -1156,7 +1186,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!1 &717772123
 GameObject:
   m_ObjectHideFlags: 0
@@ -5459,7 +5489,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910375167}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1c1b0f85f657e34ca6f70c37065fd7e, type: 3}
   m_Name: 
@@ -5470,13 +5500,14 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   lifeManager: {fileID: 910375173}
   hero: {fileID: 1693460346}
-  knockbackForce: 0
+  knockbackForce: 10
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 1
   speed: 2
   moveSpeed: 2
-  damage: 0
+  damage: 10
   minY: -1
   maxY: 1.5
 --- !u!61 &910375172
@@ -5508,7 +5539,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.043999396, y: 0.0041944236}
@@ -5549,10 +5580,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5563,7 +5594,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!1 &979878179
 GameObject:
   m_ObjectHideFlags: 0
@@ -5842,7 +5873,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5867,8 +5898,8 @@ Transform:
   m_GameObject: {fileID: 1311500580}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.88, y: 2.45, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.72, y: 2.44, z: -10}
+  m_LocalScale: {x: 2.0997, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1693460341}
@@ -6065,7 +6096,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509398369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
@@ -6077,6 +6108,7 @@ MonoBehaviour:
   lifeManager: {fileID: 1509398385}
   hero: {fileID: 1693460346}
   knockbackForce: 0
+  rb: {fileID: 0}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 1
@@ -6106,7 +6138,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -6120,7 +6152,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!1 &1535936625
 GameObject:
   m_ObjectHideFlags: 0
@@ -6296,18 +6328,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535936625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 0}
-  camera: {fileID: 0}
+  camera: {fileID: 1311500582}
   target: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   lifeManager: {fileID: 1535936630}
   hero: {fileID: 1693460346}
   knockbackForce: 2
+  rb: {fileID: 1535936632}
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 5
   knockbackDuration: 0.3
@@ -6338,7 +6371,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!1 &1598949684
 GameObject:
   m_ObjectHideFlags: 0
@@ -6474,7 +6507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353b9a527531129dab0ba8babd6b8343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeCount: 500
+  lifeCount: 100
 --- !u!95 &1693460352 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2655505060201611074, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
@@ -6499,6 +6532,7 @@ MonoBehaviour:
   lifeManager: {fileID: 0}
   hero: {fileID: 0}
   knockbackForce: 0
+  rb: {fileID: 0}
   playerTransform: {fileID: 0}
   knockbackDistance: 0
   knockbackDuration: 0
@@ -6682,7 +6716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 61346583712760016, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 50959880312528810, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
@@ -7871,7 +7905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834305550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a1daef0603e304569bc4c81ec539a3d, type: 3}
   m_Name: 
@@ -8000,11 +8034,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Size.y
-      value: 1.4366745
+      value: 1.5681852
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Offset.x
@@ -8012,7 +8046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318815152294059511, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Offset.y
-      value: 0.98351365
+      value: 0.9177583
       objectReference: {fileID: 0}
     - target: {fileID: 2954181336601895002, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_FlipX
@@ -8056,11 +8090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.95
+      value: -43.15
       objectReference: {fileID: 0}
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.59
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 8413529789942519730, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_LocalPosition.z

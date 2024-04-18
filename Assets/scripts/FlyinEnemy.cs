@@ -24,6 +24,7 @@ public class FlyingEnemyController : EnemyController
 
     }
 
+
     // void OnTriggerEnter2D(Collider2D other)
     // {
     //     if (other.CompareTag("Player"))
@@ -38,22 +39,22 @@ public class FlyingEnemyController : EnemyController
     //     }
     // }
 
-    public  IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
-    {
-        float elapsedTime = 0f;
+    // public  IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
+    // {
+    //     float elapsedTime = 0f;
         
 
-        while (elapsedTime < knockbackDuration)
-        {
-            Vector2 newPosition = (Vector2)transform.position + knockbackDirection * knockbackDistance * Time.deltaTime;
+    //     while (elapsedTime < knockbackDuration)
+    //     {
+    //         Vector2 newPosition = (Vector2)transform.position + knockbackDirection * knockbackDistance * Time.deltaTime;
 
-            transform.position = newPosition;
-           // Debug.Log("tomando knockback");
+    //         transform.position = newPosition;
+    //        // Debug.Log("tomando knockback");
 
-            elapsedTime += Time.deltaTime;
+    //         elapsedTime += Time.deltaTime;
 
-            yield return null;
-        }
-    }
+    //         yield return null;
+    //     }
+    // }
 
 }

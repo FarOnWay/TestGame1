@@ -7,29 +7,21 @@ using UnityEngine.Animations;
 public class EnemyController : Entity
 {
 
-    Vector3 playerPos;
 
     public Transform playerTransform;
     public float knockbackDistance;
-
     HeroKnight hero;
     public float knockbackDuration;
-
     public int speed;
 
-
-    void Start()
-    {
-    }
-
-    void Update()
+    public virtual void Update()
     {
         Move();
+        Debug.Log("original update");
     }
 
     public virtual void Move()
     {
-        playerPos = playerTransform.position;
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
     }
 
@@ -47,12 +39,12 @@ public class EnemyController : Entity
 
     //     }
     // }
-    
-    void  OnCollisionEnter2D(Collision2D other)
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("escostando no player");
+           // Debug.Log("escostando no player");
 
             base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
@@ -65,7 +57,7 @@ public class EnemyController : Entity
 
     IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
     {
-        
+
         float elapsedTime = 0f;
 
         while (elapsedTime < knockbackDuration)

@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         if (player == null)
         {
-            Debug.LogError("Player not found. Make sure player object has the 'Player' tag assigned.");
+          //  Debug.LogError("Player not found. Make sure player object has the 'Player' tag assigned.");
         }
     }
 
@@ -35,6 +35,6 @@ public class EnemyAI : MonoBehaviour
     private void Attack()
     {
         // Implement attack logic here
-        Debug.Log("Attacking Player!");
+       // Debug.Log("Attacking Player!");
     }
 }
