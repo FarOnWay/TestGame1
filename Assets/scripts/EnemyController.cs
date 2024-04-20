@@ -17,7 +17,6 @@ public class EnemyController : Entity
     public virtual void Update()
     {
         Move();
-        Debug.Log("original update");
     }
 
     public virtual void Move()
@@ -48,14 +47,14 @@ public class EnemyController : Entity
 
             base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-            Debug.Log(knockbackDirection);
+           // Debug.Log(knockbackDirection);
 
             StartCoroutine(KnockbackCoroutine(knockbackDirection));
 
         }
     }
 
-    IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
+   public IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
     {
 
         float elapsedTime = 0f;

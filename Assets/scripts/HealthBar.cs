@@ -6,23 +6,24 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-
-    [SerializeField] private Slider slider;
-
-
     float timer = 0;
     bool _HudOn = true;
     [SerializeField] private Camera camera;
+    [SerializeField] private Slider slider;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
-    // Start is called before the first frame update
+
     public void UpdateHealthBar(float currentLife, float maxLife)
     {
+        // Debug.Log(currentLife);
+        // Debug.Log(maxLife);
+        Debug.Log("atualizando barra de vida");
+        Debug.Log(slider.value);
+
         slider.value = currentLife / maxLife;
         timer = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         switchHud(timer <= 5);
@@ -43,7 +44,5 @@ public class HealthBar : MonoBehaviour
         {
             image.enabled = enable;
         }
-
-
     }
 }
