@@ -13,6 +13,15 @@ public class SlimeController : EnemyController
         {
             StartCoroutine("JumpCooldown", 2f);
         }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            base.DealDamage(10, false);
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            Debug.Log(knockbackDirection);
+            StartCoroutine(KnockbackCoroutine(knockbackDirection));
+        }
+
     }
 
     void Jump()
@@ -27,7 +36,6 @@ public class SlimeController : EnemyController
         // follow the player while on ground
     }
 
-
     // fucking shit need to be overrided. Why? i dont know, unisty is a fucking shit
     //nothing works in this terrible engine
     // i mean it
@@ -35,13 +43,11 @@ public class SlimeController : EnemyController
     {
         if (transform.position.x < playerTransform.position.x)
         {
-            Debug.Log("a");
             rb.AddForce(Vector2.right * speed, ForceMode2D.Force);
             // transform.position += new Vector3(2, 0);
         }
         else
         {
-            Debug.Log("b");
             rb.AddForce(Vector2.left * speed, ForceMode2D.Force);
         }
     }

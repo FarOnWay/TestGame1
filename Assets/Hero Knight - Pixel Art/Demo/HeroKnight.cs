@@ -15,6 +15,8 @@ public class HeroKnight : Entity
     [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
 
+    RespawnController respawn;
+
 
 
 
@@ -52,6 +54,8 @@ public class HeroKnight : Entity
 
     public int damage;
 
+    Vector2 startPos;
+
     // public int coinAmoint;
 
     // public enemy enemy;
@@ -61,6 +65,8 @@ public class HeroKnight : Entity
     {
         // health = maxHealth;
         lifeManager = GetComponent<LifeManager>();
+        respawn = GetComponent<RespawnController>();
+        startPos = transform.position;
 
         // lifeBar.SetMaxHealth(maxHealth);
 
@@ -101,7 +107,6 @@ public class HeroKnight : Entity
 
         if (damage >= 1)
         {
-            Debug.Log("alo hero");
             m_animator.SetTrigger("Hurt");
             lifeManager.lifeCount -= damage;
 
@@ -109,11 +114,18 @@ public class HeroKnight : Entity
             {
                 lifeManager.lifeCount = 0;
                 m_animator.SetTrigger("Death");
-                Destroy(gameObject, 1f);
+                Respawn();
+                
+
+
+              //  Destroy(gameObject, 1f);
             }
         }
+    }
 
-
+    void Respawn()
+    {
+        transform.position = startPos;
     }
 
     // void DealDamage(int damage)
@@ -160,7 +172,7 @@ public class HeroKnight : Entity
         {
             //Debug.Log("velocidade no y é menor que minimumFallSpeed");
             fallDamage = ((int)-m_body2d.velocity.y - minimumFallSpeed) * damageMultiplier;
-           // Debug.Log("Dano de queda " + fallDamage);
+            // Debug.Log("Dano de queda " + fallDamage);
 
             return 0;
         }
