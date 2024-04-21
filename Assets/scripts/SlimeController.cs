@@ -5,13 +5,20 @@ using UnityEngine;
 public class SlimeController : EnemyController
 {
     public int jumpForce = 0;
-    public int jumpCoodown = 0;
+    public int jumpCoodown;
+
+    // randomizing the jumpCoodown 
+    int randJumpCoolDown()
+    {
+        jumpCoodown = Random.Range(4, 12);
+        return jumpCoodown;
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            StartCoroutine("JumpCooldown", 2f);
+            StartCoroutine(JumpCooldown(randJumpCoolDown()));
         }
 
         if (other.gameObject.CompareTag("Player"))
@@ -21,8 +28,9 @@ public class SlimeController : EnemyController
             Debug.Log(knockbackDirection);
             StartCoroutine(KnockbackCoroutine(knockbackDirection));
         }
-
     }
+
+
 
     void Jump()
     {
@@ -36,15 +44,11 @@ public class SlimeController : EnemyController
         // follow the player while on ground
     }
 
-    // fucking shit need to be overrided. Why? i dont know, unisty is a fucking shit
-    //nothing works in this terrible engine
-    // i mean it
     override public void Move()
     {
         if (transform.position.x < playerTransform.position.x)
         {
             rb.AddForce(Vector2.right * speed, ForceMode2D.Force);
-            // transform.position += new Vector3(2, 0);
         }
         else
         {

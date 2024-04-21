@@ -197,7 +197,6 @@ GameObject:
   - component: {fileID: 4728374359019456090}
   - component: {fileID: 2725673025375871844}
   - component: {fileID: 6211798154111858760}
-  - component: {fileID: 1533451421489818516}
   m_Layer: 7
   m_Name: BlueSlime
   m_TagString: Enemy
@@ -263,7 +262,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
-  m_Color: {r: 0.85289264, g: 0.85289264, b: 0.85289264, a: 1}
+  m_Color: {r: 0.84643495, g: 0.84643495, b: 0.84643495, a: 0.1764706}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -415,61 +414,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4470e98a21a791b60ae82b3a6125cff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1533451421489818516}
+  camera: {fileID: 0}
   slider: {fileID: 5726108676246218698}
   target: {fileID: 4315908536075383135}
   offset: {x: 0, y: 0, z: 0}
---- !u!20 &1533451421489818516
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673553099544133407}
-  m_Enabled: 0
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &3660611179303839133
 GameObject:
   m_ObjectHideFlags: 0
