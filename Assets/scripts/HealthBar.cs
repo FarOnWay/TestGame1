@@ -17,8 +17,8 @@ public class HealthBar : MonoBehaviour
     {
         // Debug.Log(currentLife);
         // Debug.Log(maxLife);
-        Debug.Log("atualizando barra de vida");
-        Debug.Log(slider.value);
+        //  Debug.Log("atualizando barra de vida");
+       // Debug.Log(slider.value);
 
         slider.value = currentLife / maxLife;
         timer = 0;

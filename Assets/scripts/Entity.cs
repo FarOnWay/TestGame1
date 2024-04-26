@@ -6,15 +6,20 @@ using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
     [SerializeField] HealthBar healthBar;
+
+   public LootSystem loot;
     public LifeManager lifeManager;
     public HeroKnight hero;
+    public ItemController Item;
     public float knockbackForce;
     public Rigidbody2D rb;
-    EnemyController enemy;
+    EnemyController<Slime> enemy;
 
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
+        loot = GetComponent<LootSystem>();
+        Item = GetComponent<ItemController>();
     }
 
 
@@ -42,12 +47,10 @@ public class Entity : MonoBehaviour
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
+                    EnemyController<Slime> enemy = collider.gameObject.GetComponent<EnemyController<Slime>>();
                     if (enemy != null)
                     {
-                        //  Debug.Log("sexo");
                         enemy.TakeDamage(damage);
-
                         Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
                         if (enemyRb != null)
                         {
@@ -59,38 +62,11 @@ public class Entity : MonoBehaviour
                     }
                 }
             }
-            //Debug.Log("player comendo monstros");
-            // LayerMask layerMask = LayerMask.GetMask("Enemy");
-            // Vector2 hitboxSize = new Vector2(1f, 1f);
-            // Vector2 hitboxCenter = transform.position + new Vector3(1f * 1, 0, 0);
-
-            // Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0, layerMask);
-
-            // foreach (Collider2D collider in colliders)
-            // {
-            //     Debug.Log(colliders);
-            //     Debug.Log(collider);
-            //     //EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
-
-            //     if (enemy != null)
-            //     {
-            //          Debug.Log("player dando dano");
-            //         TakeDamage(damage);
-            //     }
-            // }
         }
 
         else
         {
-            //  Debug.Log("player sendo comido");
-            // Debug.Log("testando sexo");
-            // Debug.Log("hero" + hero);
-
-            // string message = hero == null ? "null" : "nao";
-            // Debug.Log(message);
-
             hero.TakeDamage(damage);
-            // Debug.Log("o tubarao é viado e da o rabim");
         }
     }
 
@@ -106,6 +82,7 @@ public class Entity : MonoBehaviour
         if (lifeManager.lifeCount <= 0)
         {
             Destroy(gameObject);
+            loot.lootChance();
         }
     }
 }

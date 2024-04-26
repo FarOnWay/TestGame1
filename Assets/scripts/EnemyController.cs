@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class EnemyController : Entity
+public class EnemyController<T> : Entity where T : EnemyController<T>
 {
 
 
@@ -43,18 +43,18 @@ public class EnemyController : Entity
     {
         if (other.gameObject.CompareTag("Player"))
         {
-           // Debug.Log("escostando no player");
+            // Debug.Log("escostando no player");
 
             base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-           // Debug.Log(knockbackDirection);
+            // Debug.Log(knockbackDirection);
 
             StartCoroutine(KnockbackCoroutine(knockbackDirection));
 
         }
     }
 
-   public IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
+    public IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
     {
 
         float elapsedTime = 0f;
@@ -76,4 +76,12 @@ public class EnemyController : Entity
             yield return null;
         }
     }
+
+    #region Loot
+  
+
+
+
+
+    #endregion
 }
