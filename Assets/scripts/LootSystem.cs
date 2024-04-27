@@ -15,8 +15,8 @@ public class LootSystem : ItemController
 
        foreach(var i in itemsToDrop)
        {
-              Debug.Log("items to drop in LOOT SYSTEM " + i);
-              Debug.Log("SEXO ANALLLLLLLLLLLLLLL");
+            //  Debug.Log("items to drop in LOOT SYSTEM " + i);
+             // Debug.Log("SEXO ANALLLLLLLLLLLLLLL");
          
        }
      //   Debug.Log(itemsToDrop);

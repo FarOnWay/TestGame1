@@ -6,20 +6,32 @@ public class InventoryController : MonoBehaviour
 {
     ItemController item;
     // has_many items
-    // belongs_to player and enemy's
+    // belongs_to player
 
     // enemys can ONLY dropItems
 
     public string test() => "test";
 
     //  public List<GameObject> Inventory = new();
-    public List<ItemData> Inventory = new();
+    // public List<GameObject> Inventory = new();
+    public Dictionary<string, int> Inventory = new();
 
-
+    public void CollectItem(GameObject item)
+    {
+        string itemName = item.name;
+        if (Inventory.ContainsKey(itemName))
+        {
+            Inventory[itemName]++;
+        }
+        else
+        {
+            Inventory.Add(itemName, 1);
+        }
+    }
 
     public void seeInventory()
     {
-        if (Inventory == null)
+        if (Inventory.Count == 0)
         {
             Debug.Log("Seu inventario esta vazio!");
         }
@@ -28,21 +40,14 @@ public class InventoryController : MonoBehaviour
             Debug.Log("Seu items sao: ");
             foreach (var i in Inventory)
             {
-                Debug.Log($"{i}\n");
+                Debug.Log($"{i.Key} (x{i.Value})\n");
             }
         }
-
     }
-
 
     void DragItem(ItemController item)
     {
 
-    }
-
-    public void CollectItem(ItemData item)
-    {
-        Inventory.Add(item);
     }
 
     // void OnCollisionEnter2D(Collision2D other)

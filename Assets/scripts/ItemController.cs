@@ -10,14 +10,14 @@ public class ItemController : MonoBehaviour
         // CreateItems();
         int j = 0;
 
-        foreach (var i in itemsToDrop)
-        {
-            Debug.Log("essa bosta aqui mostrou " + j);
-            j++;
-            Debug.Log("\n");
-            Debug.Log("items to drop in items controllr to test (awake)" + i);
-            Debug.Log("\n");
-        }
+        // foreach (var i in itemsToDrop)
+        // {
+        //     Debug.Log("essa bosta aqui mostrou " + j);
+        //     j++;
+        //     Debug.Log("\n");
+        //     Debug.Log("items to drop in items controllr to test (awake)" + i);
+        //     Debug.Log("\n");
+        // }
     }
 
     public static string Name { get; set; }
