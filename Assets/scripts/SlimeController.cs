@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeController : EnemyController
+public class Slime : EnemyController<Slime>
 {
     public int jumpForce = 0;
+
     public int jumpCoodown;
 
     // randomizing the jumpCoodown 
@@ -13,6 +14,13 @@ public class SlimeController : EnemyController
         jumpCoodown = Random.Range(4, 12);
         return jumpCoodown;
     }
+
+    #region Loot
+    // public Slime()
+    // {
+
+    // }
+    #endregion
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -25,15 +33,14 @@ public class SlimeController : EnemyController
         {
             base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-            Debug.Log(knockbackDirection);
+            //  Debug.Log(knockbackDirection);
             StartCoroutine(KnockbackCoroutine(knockbackDirection));
         }
     }
 
-
-
     void Jump()
     {
+      //  Debug.Log("items to drop " + Item.itemsToDrop[0]);
         rb.velocity = new Vector2(rb.velocity.y, jumpForce);
     }
 

@@ -10,6 +10,8 @@ public class HeroKnight : Entity
 {
 
     [SerializeField] float m_speed = 4.0f;
+
+    public InventoryController inventory;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] float m_rollForce = 6.0f;
     [SerializeField] bool m_noBlood = false;
@@ -65,6 +67,7 @@ public class HeroKnight : Entity
     {
         // health = maxHealth;
         lifeManager = GetComponent<LifeManager>();
+        inventory = GetComponent<InventoryController>();
         respawn = GetComponent<RespawnController>();
         startPos = transform.position;
 
@@ -115,10 +118,10 @@ public class HeroKnight : Entity
                 lifeManager.lifeCount = 0;
                 m_animator.SetTrigger("Death");
                 Respawn();
-                
 
 
-              //  Destroy(gameObject, 1f);
+
+                //  Destroy(gameObject, 1f);
             }
         }
     }
@@ -179,6 +182,8 @@ public class HeroKnight : Entity
         return fallDamage;
     }
 
+
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -189,7 +194,20 @@ public class HeroKnight : Entity
             fallDamage = 0;
 
         }
+        if (other.gameObject.CompareTag("Item"))
+        {
+            ItemData itemData = new ItemData
+            {
+                Name = other.gameObject.name,
+            };
+
+            inventory.CollectItem(itemData);
+            Destroy(other.gameObject);
+        }
     }
+
+
+    // write a method to open the inventoru by clicking tab
 
 
 
@@ -201,6 +219,12 @@ public class HeroKnight : Entity
         // lifeUI.text = health.ToString();
 
         // transform.localScale = new Vector3( health * 100 / maxHealth, 15,1);
+
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            inventory.seeInventory();
+        }
 
 
         // Increase timer that controls attack combo
