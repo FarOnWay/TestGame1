@@ -1,31 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ItemController : MonoBehaviour
 {
+    public string Name;
 
-    void Awake()
-    {
-        // CreateItems();
-        int j = 0;
-
-        // foreach (var i in itemsToDrop)
-        // {
-        //     Debug.Log("essa bosta aqui mostrou " + j);
-        //     j++;
-        //     Debug.Log("\n");
-        //     Debug.Log("items to drop in items controllr to test (awake)" + i);
-        //     Debug.Log("\n");
-        // }
-    }
-
-    public static string Name { get; set; }
-    public ItemController(string name)
-    {
-        Name = name;
-    }
-
+    public Sprite Icon;
+    public int Quantity;
     public List<GameObject> itemsToDrop = new();
 
 
@@ -33,7 +16,6 @@ public class ItemController : MonoBehaviour
     public void ItemsToDrop(GameObject item)
     {
         itemsToDrop.Add(item);
-        //  itemsToDrop.Add(new("Gel"));
     }
     // method that will store the items that en enemy can drop
     // magic, melee, ranged, throwable, defense

@@ -4,31 +4,74 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    ItemController item;
+
     // has_many items
     // belongs_to player
 
     // enemys can ONLY dropItems
 
-    public string test() => "test";
-
     //  public List<GameObject> Inventory = new();
     // public List<GameObject> Inventory = new();
-    public Dictionary<string, int> Inventory = new();
+    ItemController item;
+    public InventorySlotController[] inventorySlots;
+    public Transform playerPosition;
+    public GameObject itemPrefab;
 
-    public void CollectItem(GameObject item)
+
+
+    public Dictionary<string, ItemController> Inventory = new();
+    public void CollectItem(ItemController item)
     {
-        string itemName = item.name;
+        if (item == null)
+        {
+            Debug.LogError("Tried to collect a null item.");
+            return;
+        }
+
+        string itemName = item.Name;
+        if (string.IsNullOrEmpty(itemName))
+        {
+            Debug.LogError("Tried to collect an item with a null or empty name.");
+            return;
+        }
+
         if (Inventory.ContainsKey(itemName))
         {
-            Inventory[itemName]++;
+            Inventory[itemName].Quantity++;
+            UpdateInventorySlots();
+
         }
         else
         {
-            Inventory.Add(itemName, 1);
+            Inventory.Add(itemName, item);
+            UpdateInventorySlots();
+
+        }
+
+    }
+    void UpdateInventorySlots()
+    {
+        // Clear all slots
+        foreach (var slot in inventorySlots)
+        {
+            slot.ClearSlot();
+        }
+
+        // Fill slots with items from the inventory
+        int index = 0;
+        foreach (var item in Inventory.Values)
+        {
+            if (index < inventorySlots.Length)
+            {
+                inventorySlots[index].SetItem(item);
+                index++;
+            }
+            else
+            {
+                break; // If there are more items than slots, stop adding items
+            }
         }
     }
-
     public void seeInventory()
     {
         if (Inventory.Count == 0)
@@ -59,13 +102,46 @@ public class InventoryController : MonoBehaviour
     //     }
     // }
 
-    void DropItem(ItemController item)
+    public void DropItem(string itemName)
     {
+        if (Inventory.ContainsKey(itemName))
+        {
+            Inventory[itemName].Quantity--;
+            if (Inventory[itemName].Quantity == 0)
+            {
+                Inventory.Remove(itemName);
+            }
 
+            // Instantiate a new GameObject at the player's position.
+            // You'll need a reference to the player's position and the item prefab.
+            //  GameObject item = Instantiate(itemPrefab, playerPosition, Quaternion.identity);
+            //   item.name = itemName;
+        }
+        else
+        {
+            Debug.Log("Item not found in inventory.");
+        }
     }
-    void Trash(ItemController item)
+    public void Trash(ItemController item)
     {
+        string itemName = item.Name;
+        if (Inventory.ContainsKey(itemName))
+        {
+            Inventory[itemName].Quantity--;
+            if (Inventory[itemName].Quantity == 0)
+            {
+                Inventory.Remove(itemName);
+            }
 
+            GameObject droppedItem = Instantiate(itemPrefab, playerPosition.position, Quaternion.identity);
+            droppedItem.name = itemName;
+        }
+        else
+        {
+            Debug.Log("Item not found in inventory.");
+        }
+
+        UpdateInventorySlots();
     }
 
 

@@ -23,11 +23,6 @@ public class LootSystem : ItemController
       //  Debug.Log(itemsToDrop[selectLoot()]);
     }
 
-    public LootSystem() : base("SomeName")
-    {
-        // ...
-    }
-
     public void lootChance()
     {
         int rnd = UnityEngine.Random.Range(1, 101);

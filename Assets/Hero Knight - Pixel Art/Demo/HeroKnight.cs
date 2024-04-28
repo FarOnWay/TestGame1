@@ -190,8 +190,12 @@ public class HeroKnight : Entity
         {
             Debug.Log("Tocando em um item dropado");
             GameObject itemCopy = Instantiate(other.gameObject);
-            itemCopy.SetActive(false); // Optionally deactivate the copy so it's not visible in the scene.
-            inventory.CollectItem(itemCopy);
+            itemCopy.SetActive(false); 
+            ItemController itemController = itemCopy.GetComponent<ItemController>();
+            if (itemController != null)
+            {
+                inventory.CollectItem(itemController);
+            }
             Destroy(other.gameObject);
         }
     }
