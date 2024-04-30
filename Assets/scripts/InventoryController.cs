@@ -5,6 +5,9 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     ItemController item;
+    public InventoryUIController inventoryUIController; // Set this in the Unity editor
+
+
     // has_many items
     // belongs_to player
 
@@ -14,19 +17,28 @@ public class InventoryController : MonoBehaviour
 
     //  public List<GameObject> Inventory = new();
     // public List<GameObject> Inventory = new();
-    public Dictionary<string, int> Inventory = new();
+    public Dictionary<string, InventoryItem> Inventory = new();
 
-    public void CollectItem(GameObject item)
+    public void CollectItem(ItemController item)
     {
-        string itemName = item.name;
+        string itemName = item.Name;
         if (Inventory.ContainsKey(itemName))
         {
-            Inventory[itemName]++;
+            Inventory[item.Name].Quantity++;
+            // inventoryUIController.updateInventoryHUD(item);
+            inventoryUIController.updateInventoryHUD(item, false);
+
+
         }
         else
         {
-            Inventory.Add(itemName, 1);
+            // Debug.Log($"Adicionando item ao inventario {item.Name} {item.Icon}");
+            InventoryItem inventoryItem = new InventoryItem(item.Name, item.Icon);
+            Inventory.Add(item.Name, inventoryItem);
+            inventoryUIController.updateInventoryHUD(item, true);
+
         }
+
     }
 
     public void seeInventory()
@@ -40,7 +52,7 @@ public class InventoryController : MonoBehaviour
             Debug.Log("Seu items sao: ");
             foreach (var i in Inventory)
             {
-                Debug.Log($"{i.Key} (x{i.Value})\n");
+                Debug.Log($"{i.Key} (x{i.Value.Quantity})\n");
             }
         }
     }

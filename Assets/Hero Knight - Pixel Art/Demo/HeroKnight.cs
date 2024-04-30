@@ -189,9 +189,18 @@ public class HeroKnight : Entity
         if (other.gameObject.CompareTag("Item"))
         {
             Debug.Log("Tocando em um item dropado");
-            GameObject itemCopy = Instantiate(other.gameObject);
-            itemCopy.SetActive(false); // Optionally deactivate the copy so it's not visible in the scene.
-            inventory.CollectItem(itemCopy);
+            GameObject itemCopy = other.gameObject;
+            //  Instantiate(other.gameObject);
+            // itemCopy.SetActive(false);
+            if (itemCopy.TryGetComponent<ItemController>(out var itemController))
+            {
+                Debug.Log("Item has ItemController component.");
+                inventory.CollectItem(itemController);
+            }
+            else
+            {
+                Debug.LogError("The item does not have an ItemController component.");
+            }
             Destroy(other.gameObject);
         }
     }

@@ -20,10 +20,15 @@ public class ItemController : MonoBehaviour
         // }
     }
 
-    public static string Name { get; set; }
-    public ItemController(string name)
+    public string Name;
+  //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
+    public Sprite Icon;
+
+
+    public ItemController(string name, Sprite icon)
     {
         Name = name;
+        Icon = icon;
     }
 
     public List<GameObject> itemsToDrop = new();
