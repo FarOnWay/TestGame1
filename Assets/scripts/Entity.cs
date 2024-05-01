@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
     }
 
 
-    public void Start()
+    public virtual void Start()
     {
         lifeManager = GetComponent<LifeManager>();
         rb = GetComponent<Rigidbody2D>();

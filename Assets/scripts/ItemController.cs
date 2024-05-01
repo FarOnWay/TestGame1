@@ -10,20 +10,28 @@ public class ItemController : MonoBehaviour
         // CreateItems();
         int j = 0;
 
-        foreach (var i in itemsToDrop)
-        {
-            Debug.Log("essa bosta aqui mostrou " + j);
-            j++;
-            Debug.Log("\n");
-            Debug.Log("items to drop in items controllr to test (awake)" + i);
-            Debug.Log("\n");
-        }
+        // foreach (var i in itemsToDrop)
+        // {
+        //     Debug.Log("essa bosta aqui mostrou " + j);
+        //     j++;
+        //     Debug.Log("\n");
+        //     Debug.Log("items to drop in items controllr to test (awake)" + i);
+        //     Debug.Log("\n");
+        // }
     }
 
-    public static string Name { get; set; }
-    public ItemController(string name)
+    public string Name;
+  //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
+    public Sprite Icon;
+    public GameObject Prefab; // Reference to the item prefab
+
+
+    public ItemController(string name, Sprite icon, GameObject prefab)
+    
     {
         Name = name;
+        Icon = icon;
+        Prefab = prefab;
     }
 
     public List<GameObject> itemsToDrop = new();

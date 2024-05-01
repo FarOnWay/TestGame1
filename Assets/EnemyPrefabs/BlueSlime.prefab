@@ -214,7 +214,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.018368537, y: 0, z: 0, w: 0.9998313}
   m_LocalPosition: {x: -39.2, y: 0.53, z: -0.12}
-  m_LocalScale: {x: 0.6851083, y: 1.1507839, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8426891975111094964}
@@ -306,8 +306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3998296552199192656}
+  loot: {fileID: 0}
   lifeManager: {fileID: 4728374359019456090}
-  hero: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+  hero: {fileID: 0}
+  Item: {fileID: 0}
   knockbackForce: 5
   rb: {fileID: 2725673025375871844}
   playerTransform: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}

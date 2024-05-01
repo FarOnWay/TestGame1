@@ -19,9 +19,6 @@ public class HeroKnight : Entity
 
     RespawnController respawn;
 
-
-
-
     private Animator m_animator;
 
     private Rigidbody2D m_body2d;
@@ -82,7 +79,6 @@ public class HeroKnight : Entity
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
     }
 
-
     bool ShieldUp(bool isShildUpNow)
     {
         if (isShildUpNow)
@@ -100,7 +96,6 @@ public class HeroKnight : Entity
             // cm.coinCount++;
             Destroy(other.gameObject);
         }
-
     }
 
     public void TakeDamage(int damage)
@@ -118,9 +113,6 @@ public class HeroKnight : Entity
                 lifeManager.lifeCount = 0;
                 m_animator.SetTrigger("Death");
                 Respawn();
-
-
-
                 //  Destroy(gameObject, 1f);
             }
         }
@@ -196,12 +188,19 @@ public class HeroKnight : Entity
         }
         if (other.gameObject.CompareTag("Item"))
         {
-            ItemData itemData = new ItemData
+            Debug.Log("Tocando em um item dropado");
+            GameObject itemCopy = other.gameObject;
+            //  Instantiate(other.gameObject);
+            // itemCopy.SetActive(false);
+            if (itemCopy.TryGetComponent<ItemController>(out var itemController))
             {
-                Name = other.gameObject.name,
-            };
-
-            inventory.CollectItem(itemData);
+                Debug.Log("Item has ItemController component.");
+                inventory.CollectItem(itemController);
+            }
+            else
+            {
+                Debug.LogError("The item does not have an ItemController component.");
+            }
             Destroy(other.gameObject);
         }
     }
