@@ -64441,6 +64441,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUIController: {fileID: 1929915393}
+--- !u!50 &1693460360 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1808379499492292354, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+  m_PrefabInstance: {fileID: 6590891908230414897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1721474333
 GameObject:
   m_ObjectHideFlags: 0
@@ -66518,6 +66523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: SomeName
   Icon: {fileID: 0}
+  Prefab: {fileID: 0}
   itemsToDrop:
   - {fileID: 5904422519501585627, guid: bb129503b42c6905e8a96213750e6da9, type: 3}
   - {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
@@ -66535,6 +66541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   Icon: {fileID: 0}
+  Prefab: {fileID: 0}
   itemsToDrop:
   - {fileID: 3156240825120315721, guid: 1db21390346ddb4558347654f486d38e, type: 3}
   - {fileID: 5069638394778475986, guid: 7c3b21464e13d20388e5da54c4864fed, type: 3}
@@ -66590,6 +66597,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1693460360}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: damage
       value: 50
