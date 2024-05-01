@@ -295,7 +295,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!222 &211508469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -66719,6 +66719,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7658115483143937643, guid: 671bf5d9ac9875b7bb0c99280cce375a, type: 3}
+      propertyPath: slot
+      value: 
+      objectReference: {fileID: 1092118104}
     - target: {fileID: 7658115483143937643, guid: 671bf5d9ac9875b7bb0c99280cce375a, type: 3}
       propertyPath: inventoryUIController
       value: 

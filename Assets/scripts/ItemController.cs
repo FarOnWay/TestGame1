@@ -23,12 +23,15 @@ public class ItemController : MonoBehaviour
     public string Name;
   //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
     public Sprite Icon;
+    public GameObject Prefab; // Reference to the item prefab
 
 
-    public ItemController(string name, Sprite icon)
+    public ItemController(string name, Sprite icon, GameObject prefab)
+    
     {
         Name = name;
         Icon = icon;
+        Prefab = prefab;
     }
 
     public List<GameObject> itemsToDrop = new();
