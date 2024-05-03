@@ -7,6 +7,7 @@ public class DayNightCycle : MonoBehaviour
     public Color dayColor; // Color during the day
     public Color duskColor; // Color at dusk
     public Color nightColor; // Color during the night
+    bool isDay = true;
 
     private float currentTime; // Current time in minutes
 
@@ -35,6 +36,8 @@ public class DayNightCycle : MonoBehaviour
         else if (fraction < 7f / 24f)
         {
             // Dawn
+            Debug.Log("Its day, nigga");
+            isDay = true;
             color = Color.Lerp(nightColor, dawnColor, (fraction - 5f / 24f) / (2f / 24f));
         }
         else if (fraction < 17f / 24f)
@@ -45,6 +48,8 @@ public class DayNightCycle : MonoBehaviour
         else
         {
             // Dusk
+            Debug.Log("Its night, nigga");
+            isDay = false;
             color = Color.Lerp(dayColor, duskColor, (fraction - 17f / 24f) / (4f / 24f));
         }
 
@@ -54,6 +59,14 @@ public class DayNightCycle : MonoBehaviour
         // Display the current time
         int hours = (int)(currentTime / cycleDuration * 24f);
         int minutes = (int)(currentTime / cycleDuration * 1440f) % 60;
-        Debug.Log(string.Format("{0:D2}:{1:D2}", hours, minutes));
+        //  Debug.Log(string.Format("{0:D2}:{1:D2}", hours, minutes));
+        if (isDay)
+        {
+            Debug.Log("dia");
+        }
+        else
+        {
+            Debug.Log("noite");
+        }
     }
 }
