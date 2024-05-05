@@ -223,6 +223,7 @@ public class HeroKnight : Entity
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             inventory.seeInventory();
+            
         }
 
 
