@@ -11,6 +11,7 @@ public class InventoryController : MonoBehaviour
     public GameObject extendedInventory;
 
 
+
     // has_many items
     // belongs_to player
 
@@ -21,6 +22,11 @@ public class InventoryController : MonoBehaviour
     //  public List<GameObject> Inventory = new();
     // public List<GameObject> Inventory = new();
     public Dictionary<string, InventoryItem> Inventory = new();
+
+    void Start()
+    {
+        extendedInventory.SetActive(false);
+    }
 
     public void CollectItem(ItemController item)
     {
@@ -43,7 +49,8 @@ public class InventoryController : MonoBehaviour
 
     public void seeInventory()
     {
-            extendedInventory.SetActive(!extendedInventory.activeSelf);
+        extendedInventory.SetActive(!extendedInventory.activeSelf);
+
         if (Inventory.Count == 0)
         {
             Debug.Log("Seu inventario esta vazio!");
