@@ -1,30 +1,18 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEditor.Search;
-// using UnityEngine;
+using UnityEngine;
 
-// public class AttackItemsController : ItemController
-// {
-//     #region Attributes
+public class AttackItemsController : ItemController
+{
+    public int Damage;
+    public int CriticalChance;
+    public int Knockback;
+    public int AttackSpeed;
 
-//     private int Damage, CriticalChance, Knockback, AttackSpeed;
-//     private string Name;
-
-//     #endregion
-
-//     #region Items
-
-//     // AttackItemsController PrimalSword = new AttackItemsController("Primal Sword", 10, 10, 3, 2);
-
-//     // #endregion
-
-//     // public AttackItemsController(string Name, int Damage, int CriticalChance, int Knockback, int AttackSpeed)
-//     // {
-
-//     //     this.Name = Name;
-//     //     this.Damage = Damage;
-//     //     this.CriticalChance = CriticalChance;
-//     //     this.Knockback = Knockback;
-//     //     this.AttackSpeed = AttackSpeed;
-//     // }
-// }
+    public AttackItemsController(string name, Sprite icon, GameObject prefab, int rarity, int damage, int criticalChance, int knockback, int attackSpeed) 
+        : base(name, icon, prefab, rarity)
+    {
+        Damage = damage;
+        CriticalChance = criticalChance;
+        Knockback = knockback;
+        AttackSpeed = attackSpeed;
+    }
+}

@@ -75175,79 +75175,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 826159156}
   m_SourcePrefab: {fileID: 100100000, guid: 671bf5d9ac9875b7bb0c99280cce375a, type: 3}
---- !u!1001 &1666529434
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -65.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.16099998
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217216, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217217, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_Color.b
-      value: 0.69803923
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217217, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_Color.g
-      value: 0.69803923
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217217, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_Color.r
-      value: 0.69803923
-      objectReference: {fileID: 0}
-    - target: {fileID: 880520027387217217, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: c7aafc4158c026d7388918a8ac871be2, type: 2}
-    - target: {fileID: 880520027387217230, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
-      propertyPath: m_Name
-      value: PF Village Props - Bush 03
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: de570bfbf1a49ba4c9575930f7db6bae, type: 3}
 --- !u!1001 &1670487735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81704,6 +81631,7 @@ MonoBehaviour:
   Name: SomeName
   Icon: {fileID: 0}
   Prefab: {fileID: 0}
+  Rarity: 1
   itemsToDrop:
   - {fileID: 5904422519501585627, guid: bb129503b42c6905e8a96213750e6da9, type: 3}
   - {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
@@ -81722,6 +81650,7 @@ MonoBehaviour:
   Name: 
   Icon: {fileID: 0}
   Prefab: {fileID: 0}
+  Rarity: 0
   itemsToDrop:
   - {fileID: 3156240825120315721, guid: 1db21390346ddb4558347654f486d38e, type: 3}
   - {fileID: 5069638394778475986, guid: 7c3b21464e13d20388e5da54c4864fed, type: 3}
@@ -82102,4 +82031,3 @@ SceneRoots:
   - {fileID: 728937715}
   - {fileID: 1837939088}
   - {fileID: 347348952}
-  - {fileID: 1666529434}

@@ -25,7 +25,7 @@ public class LootSystem : ItemController
         //  Debug.Log(itemsToDrop[selectLoot()]);
     }
 
-    public LootSystem() : base("SomeName", null, null)
+    public LootSystem() : base("SomeName", null, null, 1)
     {
         // ...
     }

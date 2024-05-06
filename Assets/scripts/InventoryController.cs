@@ -21,7 +21,7 @@ public class InventoryController : MonoBehaviour
 
     //  public List<GameObject> Inventory = new();
     // public List<GameObject> Inventory = new();
-    public Dictionary<string, InventoryItem> Inventory = new();
+    public Dictionary<ItemController, int> Inventory = new Dictionary<ItemController, int>();
 
     void Start()
     {
@@ -30,21 +30,15 @@ public class InventoryController : MonoBehaviour
 
     public void CollectItem(ItemController item)
     {
-        string itemName = item.gameObject.name;
-        if (Inventory.ContainsKey(itemName))
+        if (Inventory.ContainsKey(item))
         {
-            Inventory[itemName].Quantity++;
-            // inventoryUIController.updateInventoryHUD(item);
-            inventoryUIController.updateInventoryHUD(item, false);
+            Inventory[item]++;
         }
         else
         {
-            // Debug.Log($"Adicionando item ao inventario {item.Name} {item.Icon}");
-            InventoryItem inventoryItem = new InventoryItem(itemName, item.Icon, item.Prefab);
-            Inventory.Add(itemName, inventoryItem);
-            inventoryUIController.updateInventoryHUD(item, true);
+            Inventory.Add(item, 1);
         }
-
+        inventoryUIController.updateInventoryHUD(item, Inventory.ContainsKey(item));
     }
 
     public void seeInventory()
@@ -57,14 +51,13 @@ public class InventoryController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Seu items sao: ");
+            Debug.Log("Seus itens são: ");
             foreach (var i in Inventory)
             {
-                Debug.Log($"{i.Key} (x{i.Value.Quantity})\n");
+                Debug.Log($"{i.Key.Name} (x{i.Value})");
             }
         }
     }
-
     void DragItem(ItemController item)
     {
 
@@ -80,43 +73,44 @@ public class InventoryController : MonoBehaviour
     // }
 
 
-    public void DropItem()
-    {
-        // Check if the inventory is not empty
-        if (Inventory.Count > 0)
-        {
-            // Get the first item in the inventory
-            var firstItem = Inventory.ElementAt(0);
-            string itemName = firstItem.Key;
-            InventoryItem inventoryItem = firstItem.Value;
+    // public void DropItem()
+    // {
+    //     // Check if the inventory is not empty
+    //     if (Inventory.Count > 0)
+    //     {
+    //         // Get the first item in the inventory
+    //         var firstItem = Inventory.ElementAt(0);
+    //         string itemName = firstItem.Key;
+    //         InventoryItem inventoryItem = firstItem.Value;
 
-            // Decrease the quantity of the item in the inventory
-            inventoryItem.Quantity--;
+    //         // Decrease the quantity of the item in the inventory
+    //         inventoryItem.Quantity--;
 
-            // If the quantity of the item in the inventory is 0, remove the item from the inventory
-            if (inventoryItem.Quantity == 0)
-            {
-                Inventory.Remove(itemName);
-            }
+    //         // If the quantity of the item in the inventory is 0, remove the item from the inventory
+    //         if (inventoryItem.Quantity == 0)
+    //         {
+    //             Inventory.Remove(itemName);
+    //         }
 
-            // Get the item prefab from the inventory item
-            GameObject itemPrefab = inventoryItem.Prefab;
+    //         // Get the item prefab from the inventory item
+    //         GameObject itemPrefab = inventoryItem.Prefab;
 
-            // Define the drop position and rotation
-            Vector3 dropPosition = transform.position;
-            Quaternion dropRotation = Quaternion.identity;
+    //         // Define the drop position and rotation
+    //         Vector3 dropPosition = transform.position;
+    //         Quaternion dropRotation = Quaternion.identity;
 
-            // Instantiate the item at the drop position with the drop rotation
-            GameObject droppedItem = Instantiate(itemPrefab, dropPosition, dropRotation);
+    //         // Instantiate the item at the drop position with the drop rotation
+    //         GameObject droppedItem = Instantiate(itemPrefab, dropPosition, dropRotation);
 
-            // Set the name of the dropped item
-            droppedItem.name = itemName;
-        }
-        else
-        {
-            Debug.LogError("The inventory is empty.");
-        }
-    }
+    //         // Set the name of the dropped item
+    //         droppedItem.name = itemName;
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("The inventory is empty.");
+    //     }
+    // }
+
     void Trash(ItemController item)
     {
 

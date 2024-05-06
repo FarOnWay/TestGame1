@@ -5,6 +5,8 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
 
+    // rarity in numbers: 1 - 6 (commum, uncommum, rare, very rare, epic, legendary)
+
     void Awake()
     {
         // CreateItems();
@@ -23,15 +25,17 @@ public class ItemController : MonoBehaviour
     public string Name;
   //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
     public Sprite Icon;
-    public GameObject Prefab; // Reference to the item prefab
+    public GameObject Prefab; 
+
+    public int Rarity;
 
 
-    public ItemController(string name, Sprite icon, GameObject prefab)
-    
+    public ItemController(string name, Sprite icon, GameObject prefab, int rarity)
     {
         Name = name;
         Icon = icon;
         Prefab = prefab;
+        Rarity = rarity;
     }
 
     public List<GameObject> itemsToDrop = new();
