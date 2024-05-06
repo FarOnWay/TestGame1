@@ -75623,13 +75623,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6465855ba3f57894c80598d9e4c2ce09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   inventoryUIController: {fileID: 1929915393}
+  Slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   extendedInventory: {fileID: 1546362713}
 --- !u!50 &1693460360 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1808379499492292354, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
   m_PrefabInstance: {fileID: 6590891908230414897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1693460369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693460327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494716cf60c243222888b725184228b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Icon: {fileID: 0}
+  Prefab: {fileID: 0}
+  Rarity: 0
+  itemsToDrop: []
 --- !u!1001 &1698358995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79060,7 +79089,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6465855ba3f57894c80598d9e4c2ce09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   inventoryUIController: {fileID: 1929915393}
+  Slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   extendedInventory: {fileID: 0}
 --- !u!114 &1929915393
 MonoBehaviour:
@@ -81634,7 +81675,7 @@ MonoBehaviour:
   Rarity: 1
   itemsToDrop:
   - {fileID: 5904422519501585627, guid: bb129503b42c6905e8a96213750e6da9, type: 3}
-  - {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
+  - {fileID: 7727569015009522643, guid: 97aed212a3c849e04bebd7218e1d8803, type: 3}
 --- !u!114 &2838773300963729339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81766,6 +81807,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3657306644071599671, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1693460356}
+    - targetCorrespondingSourceObject: {fileID: 3657306644071599671, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1693460369}
   m_SourcePrefab: {fileID: 100100000, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
 --- !u!1001 &6971915656528405538
 PrefabInstance:

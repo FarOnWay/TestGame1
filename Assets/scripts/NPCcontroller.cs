@@ -35,7 +35,7 @@ public class NPCcontroller : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= timeWalking)
             {
-                Debug.Log("tempo estou");
+              //  Debug.Log("tempo estou");
                 timeWalking = Random.Range(5, 10);
                 facingDirection = Random.Range(0, 3);
                 timer = 0f;

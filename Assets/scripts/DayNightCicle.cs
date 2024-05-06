@@ -36,7 +36,7 @@ public class DayNightCycle : MonoBehaviour
         else if (fraction < 7f / 24f)
         {
             // Dawn
-            Debug.Log("Its day, nigga");
+           // Debug.Log("Its day, nigga");
             isDay = true;
             color = Color.Lerp(nightColor, dawnColor, (fraction - 5f / 24f) / (2f / 24f));
         }
@@ -48,7 +48,7 @@ public class DayNightCycle : MonoBehaviour
         else
         {
             // Dusk
-            Debug.Log("Its night, nigga");
+           // Debug.Log("Its night, nigga");
             isDay = false;
             color = Color.Lerp(dayColor, duskColor, (fraction - 17f / 24f) / (4f / 24f));
         }
@@ -62,11 +62,11 @@ public class DayNightCycle : MonoBehaviour
         //  Debug.Log(string.Format("{0:D2}:{1:D2}", hours, minutes));
         if (isDay)
         {
-            Debug.Log("dia");
+         //   Debug.Log("dia");
         }
         else
         {
-            Debug.Log("noite");
+           // Debug.Log("noite");
         }
     }
 }

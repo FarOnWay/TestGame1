@@ -23,9 +23,9 @@ public class ItemController : MonoBehaviour
     }
 
     public string Name;
-  //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
+    //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
     public Sprite Icon;
-    public GameObject Prefab; 
+    public GameObject Prefab;
 
     public int Rarity;
 
@@ -37,6 +37,12 @@ public class ItemController : MonoBehaviour
         Prefab = prefab;
         Rarity = rarity;
     }
+
+    public virtual void Use()
+    {
+
+    }
+
 
     public List<GameObject> itemsToDrop = new();
 
