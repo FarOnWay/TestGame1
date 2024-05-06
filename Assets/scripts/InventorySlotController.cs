@@ -22,4 +22,14 @@ public class InventorySlotController : MonoBehaviour
         icon.sprite = null;
         itemAmount.text = "";
     }
+
+      public void SetHighlight()
+    {
+        GetComponent<Image>().color = Color.yellow;
+    }
+
+    public void ClearHighlight()
+    {
+        GetComponent<Image>().color = Color.white;
+    }
 }
