@@ -25,13 +25,12 @@ public class ItemController : MonoBehaviour
     public string Name;
   //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
     public Sprite Icon;
-    public GameObject Prefab; // Reference to the item prefab
+    public GameObject Prefab; 
 
     public int Rarity;
 
 
     public ItemController(string name, Sprite icon, GameObject prefab, int rarity)
-    
     {
         Name = name;
         Icon = icon;
