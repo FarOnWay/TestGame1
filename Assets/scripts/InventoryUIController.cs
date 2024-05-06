@@ -25,28 +25,27 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public void updateInventoryHUD(ItemController item, bool isNewItem)
+   public void updateInventoryHUD(ItemController item, bool isNewItem)
+{
+    Debug.Log("Updating inventory HUD");
+    Debug.Log("nome do item: " + item.Name);
+
+    // If the item is new, increment the current slot index
+    if (isNewItem)
     {
-        Debug.Log("Updating inventory HUD");
-        Debug.Log("nome do item: " + item.Name);
-    //    Debug.Log( "item do inventário: " + inventoryController.Inventory.Keys[item.Name]);
-
-        // If the item is new, increment the current slot index
-        if (isNewItem)
-        {
-            currentSlotIndex++;
-        }
-
-        // Get the current slot
-        InventorySlotController slotController = transform.GetChild(currentSlotIndex).GetComponent<InventorySlotController>();
-
-        // Update the current slot with the collected item
-        slotController.SetItem(item.Icon);
-
-        // Set the quantity of the item in the current slot
-        if (inventoryController.Inventory.ContainsKey(item.gameObject.name))
-        {
-            //  slotController.SetQuantity(inventoryController.Inventory[item.Name].Quantity);
-        }
+        currentSlotIndex++;
     }
+
+    // Get the current slot
+    InventorySlotController slotController = transform.GetChild(currentSlotIndex).GetComponent<InventorySlotController>();
+
+    // Update the current slot with the collected item
+    slotController.SetItem(item.Icon);
+
+    // Set the quantity of the item in the current slot
+    if (inventoryController.Inventory.ContainsKey(item))
+    {
+        slotController.SetQuantity(inventoryController.Inventory[item]);
+    }
+}
 }
