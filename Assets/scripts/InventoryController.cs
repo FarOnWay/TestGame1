@@ -4,7 +4,7 @@ using System.Linq;
 
 public class InventoryController : MonoBehaviour
 {
-    public ItemController item;
+    // public ItemController item;
     public InventoryUIController inventoryUIController;
     public ItemController[] Slots = new ItemController[10];
     public Dictionary<ItemController, int> Inventory = new();
@@ -24,19 +24,12 @@ public class InventoryController : MonoBehaviour
     private void Start()
     {
         extendedInventory.SetActive(false);
-        item = GetComponent<ItemController>();
+        // item = GetComponent<ItemController>();
     }
 
     public void CollectItem(ItemController item)
     {
-
-        foreach (var i in Inventory)
-        {
-            Debug.Log("item na posiçao: " + i);
-            Debug.Log(i.Value);
-            Debug.Log(i.Key.Name);
-
-        }
+        // Debug.Log("CollectItem called with item " + item.Name);
 
         if (Inventory.ContainsKey(item))
         {
@@ -48,37 +41,53 @@ public class InventoryController : MonoBehaviour
         }
 
         inventoryUIController.updateInventoryHUD(item, Inventory.ContainsKey(item));
+        // Debug.Log("Inventory count after collecting item: " + Inventory.Count);
+
     }
 
     public void UseItem(int index)
     {
-      //  Debug.Log("ALOOOO");
+        //  Debug.Log("ALOOOO");
+        //  Debug.Log("UseItem called with index " + index);
+        // Debug.Log("Inventory count before using item: " + Inventory.Count);
 
-        if (index < 0 || index >= Inventory.Count)
+
+
+        // Debug.Log("tentado usar item nessa buceta");
+        //  Debug.Log("tamanho do inventário: " + Inventory.Count);
+
+        if (Inventory.Count == 0)
         {
-           // Debug.Log("Invalid slot index");
+            // Debug.Log("Invalid slot index");
+            Debug.Log("ai é foda meu patral");
             return;
         }
 
-        var item = Inventory.Keys.ElementAt(index);
-
-        if (item != null)
+        else
         {
-           // Debug.Log("Using item " + item.Name);
-            item.Use();
-            if (Inventory[item] > 1)
+            var item = Inventory.ElementAt(index).Key;
+            // Debug.Log("agua coca latao agua coca latao" + item);
+            if (item != null)
             {
-                Inventory[item]--;
+                // Debug.Log("Using item " + item.Name);
+                item.Use();
+                if (Inventory[item] > 1)
+                {
+                    Inventory[item]--;
+                }
+                else
+                {
+                    Inventory.Remove(item);
+                }
             }
             else
             {
-                Inventory.Remove(item);
+                // Debug.Log("No item in slot");
             }
         }
-        else
-        {
-           // Debug.Log("No item in slot");
-        }
+
+        //  var item = Inventory.Keys.ElementAt(index);
+
     }
 
     public void seeInventory()
@@ -87,10 +96,30 @@ public class InventoryController : MonoBehaviour
 
         if (Inventory.Count == 0)
         {
-           // Debug.Log("Seu inventario esta vazio!");
+            // Debug.Log("Seu inventario esta vazio!");
         }
         else
         {
+            var item = Inventory.ElementAt(2).Key;
+            Debug.Log("Item na posiçao 2: " + Inventory.ElementAt(2).Key);
+            // Debug.Log("agua coca latao agua coca latao" + item);
+            if (item != null)
+            {
+                // Debug.Log("Using item " + item.Name);
+                item.Use();
+                if (Inventory[item] > 1)
+                {
+                    Inventory[item]--;
+                }
+                else
+                {
+                    Inventory.Remove(item);
+                }
+            }
+            else
+            {
+                // Debug.Log("No item in slot");
+            }
             Debug.Log("Seus itens são: ");
             foreach (KeyValuePair<ItemController, int> i in Inventory)
             {
