@@ -7,6 +7,8 @@ public class DayNightCycle : MonoBehaviour
     public Color dayColor; // Color during the day
     public Color duskColor; // Color at dusk
     public Color nightColor; // Color during the night
+    public GameObject moon; // Reference to the moon object
+
     bool isDay = true;
 
     private float currentTime; // Current time in minutes
@@ -32,23 +34,33 @@ public class DayNightCycle : MonoBehaviour
         {
             // Night
             color = nightColor;
+            if (!moon.activeInHierarchy)
+            {
+                moon.SetActive(true);
+                moon.GetComponent<MoonScript>().RiseMoon(); 
+               // MoonScript.activeCount++;
+                Debug.Log("A lua apareceu: " + MoonScript.activeCount);
+            }
+
         }
         else if (fraction < 7f / 24f)
         {
             // Dawn
-           // Debug.Log("Its day, nigga");
+            // Debug.Log("Its day, nigga");
             isDay = true;
             color = Color.Lerp(nightColor, dawnColor, (fraction - 5f / 24f) / (2f / 24f));
         }
         else if (fraction < 17f / 24f)
         {
             // Day
+            moon.SetActive(false);
+
             color = Color.Lerp(dawnColor, dayColor, (fraction - 7f / 24f) / (10f / 24f));
         }
         else
         {
             // Dusk
-           // Debug.Log("Its night, nigga");
+            // Debug.Log("Its night, nigga");
             isDay = false;
             color = Color.Lerp(dayColor, duskColor, (fraction - 17f / 24f) / (4f / 24f));
         }
@@ -62,11 +74,11 @@ public class DayNightCycle : MonoBehaviour
         //  Debug.Log(string.Format("{0:D2}:{1:D2}", hours, minutes));
         if (isDay)
         {
-         //   Debug.Log("dia");
+            //   Debug.Log("dia");
         }
         else
         {
-           // Debug.Log("noite");
+            // Debug.Log("noite");
         }
     }
 }
