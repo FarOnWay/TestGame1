@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoonScript : MonoBehaviour
 {
@@ -8,6 +9,13 @@ public class MoonScript : MonoBehaviour
     public float bloodMoonChance = 0.1f;
     public GameObject nightColor, bloodMoon;
     public bool isBloodMoon = false;
+
+    //    bloodMoonColor = new Color(0.5f, 0, 0);
+
+    public Text gameMessages;
+    public GameObject inGameMessages;
+
+
 
     public Color bloodMoonColor;
     void Update()
@@ -41,14 +49,23 @@ public class MoonScript : MonoBehaviour
         }
     }
 
+
     public void RiseBloodMoon()
     {
         isBloodMoon = true;
+        inGameMessages.GetComponentInChildren<InGameMessages>().PrintMessage("A blood moon is rising!", Color.red);
+
+        // if (inGameMessages != null)
+        // {
+
+        //     // gameMessages.text = "A blood moon is rising!";
+        // }
+        // else
+        // {
+        //     Debug.LogError("No Text component found on this GameObject.");
+        // }
+
         GetComponent<SpriteRenderer>().sprite = moonPhasesSprites[8];
         nightColor.GetComponent<DayNightCycle>().nightColor = bloodMoonColor;
-        // bloodMoon.GetComponent<SpriteRenderer>().enabled = true;
-        // Instantiate(bloodMoon, new Vector3(-65, 5.2f, 1), Quaternion.identity);
-        // bloodMoon.transform.Translate(speed * Time.deltaTime * Vector3.right);
-
     }
 }
