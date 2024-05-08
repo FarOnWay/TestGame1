@@ -3194,16 +3194,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   moonPhasesSprites:
-  - {fileID: 21300000, guid: c422ea3069a3dc784b4966aca734a978, type: 3}
+  - {fileID: 21300000, guid: d6294e3591da68e42a14228f40129cbb, type: 3}
   - {fileID: 21300000, guid: a0b6c37814d29e17a901f80b08d7d5a9, type: 3}
   - {fileID: 21300000, guid: 7a213b0b8cc95fbaa8ffc6c5f415305c, type: 3}
   - {fileID: 21300000, guid: af13d5ef55886e6c39d532e0a2093ef7, type: 3}
-  - {fileID: 21300000, guid: c422ea3069a3dc784b4966aca734a978, type: 3}
+  - {fileID: 21300000, guid: d6294e3591da68e42a14228f40129cbb, type: 3}
   - {fileID: 21300000, guid: c43979d0d6ec00d8db748388a908981a, type: 3}
   - {fileID: 21300000, guid: dcca6286cb5207a94a83fae8b1b8eade, type: 3}
   - {fileID: 21300000, guid: 41a653019ddbdcb92b40281d843c2ec3, type: 3}
-  bloodMoon: {fileID: 8301589701639746114, guid: 4e6225d9200605501a95b0c33ee036a8, type: 3}
   bloodMoonChance: 1
+  nightColor: {fileID: 569263582}
+  bloodMoon: {fileID: 8301589701639746114, guid: 4e6225d9200605501a95b0c33ee036a8, type: 3}
+  bloodMoonColor: {r: 0.24798328, g: 0, b: 0, a: 0}
 --- !u!212 &419121638
 SpriteRenderer:
   m_ObjectHideFlags: 0
