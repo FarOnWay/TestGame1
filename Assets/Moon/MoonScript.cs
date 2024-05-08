@@ -4,46 +4,51 @@ public class MoonScript : MonoBehaviour
 {
     public float speed = 1.0f;
     public Sprite[] moonPhasesSprites;
-
-    public GameObject bloodMoon;
     public static int activeCount = 0;
     public float bloodMoonChance = 0.1f;
+    public GameObject nightColor, bloodMoon;
+    public bool isBloodMoon = false;
 
-
-
-
-
+    public Color bloodMoonColor;
     void Update()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        transform.Translate(speed * Time.deltaTime * Vector3.right);
     }
 
-
-
-public void RiseMoon()
-{
-    transform.position = new Vector3(-65, 5.2f, 1);
-    activeCount++;
-
-    // Calculate the index of the sprite to display
-    int spriteIndex = activeCount % moonPhasesSprites.Length;
-
-    // Get the SpriteRenderer component
-    SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-
-    // Generate a random number between 0 and 1
-    float randomNumber = Random.value;
-
-    if (randomNumber < bloodMoonChance)
+    public void RiseMoon()
     {
-        // If the random number is less than the blood moon chance, activate the blood moon
-        bloodMoon.SetActive(true);
+        int rnd = Random.Range(1, 101);
+        transform.position = new Vector3(-65, 5.2f, 1);
+        activeCount++;
+
+        if (rnd <= 90)
+        {
+            Debug.Log("lua sangrenta");
+            RiseBloodMoon();
+            //   GetComponent<SpriteRenderer>().sprite = moonPhasesSprites[8];
+            return;
+        }
+
+        else
+        {
+            Debug.Log("lua normal");
+            int spriteIndex = activeCount % moonPhasesSprites.Length;
+            if (spriteIndex == 8)
+            {
+                spriteIndex = 0;
+            }
+            GetComponent<SpriteRenderer>().sprite = moonPhasesSprites[spriteIndex];
+        }
     }
-    else
+
+    public void RiseBloodMoon()
     {
-        // Otherwise, set the sprite to the regular moon sprite and deactivate the blood moon
-        spriteRenderer.sprite = moonPhasesSprites[spriteIndex];
-        bloodMoon.SetActive(false);
+        isBloodMoon = true;
+        GetComponent<SpriteRenderer>().sprite = moonPhasesSprites[8];
+        nightColor.GetComponent<DayNightCycle>().nightColor = bloodMoonColor;
+        // bloodMoon.GetComponent<SpriteRenderer>().enabled = true;
+        // Instantiate(bloodMoon, new Vector3(-65, 5.2f, 1), Quaternion.identity);
+        // bloodMoon.transform.Translate(speed * Time.deltaTime * Vector3.right);
+
     }
-}
 }
