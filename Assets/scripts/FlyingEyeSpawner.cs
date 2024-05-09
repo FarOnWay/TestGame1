@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeSpawner : MonoBehaviour
+public class FlyingEyeSpawner : MonoBehaviour
 {
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private GameObject enemyPrefab;
@@ -23,7 +23,7 @@ public class SlimeSpawner : MonoBehaviour
         while (true)
         {
             canSpawn = dayNight.isDay;
-            if (canSpawn)
+            if (!canSpawn)
             {
                 yield return wait;
                 Instantiate(enemyPrefab, transform.position, Quaternion.identity);
