@@ -9,7 +9,7 @@ public class DayNightCycle : MonoBehaviour
     public Color nightColor; // Color during the night
     public GameObject moon; // Reference to the moon object
 
-    bool isDay = true;
+    public bool isDay = true;
 
     private float currentTime; // Current time in minutes
 
@@ -37,8 +37,8 @@ public class DayNightCycle : MonoBehaviour
             if (!moon.activeInHierarchy)
             {
                 moon.SetActive(true);
-                moon.GetComponent<MoonScript>().RiseMoon(); 
-               // MoonScript.activeCount++;
+                moon.GetComponent<MoonScript>().RiseMoon();
+                // MoonScript.activeCount++;
                 Debug.Log("A lua apareceu: " + MoonScript.activeCount);
             }
 

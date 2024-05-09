@@ -29,7 +29,7 @@ public class MoonScript : MonoBehaviour
         transform.position = new Vector3(-65, 5.2f, 1);
         activeCount++;
 
-        if (rnd <= 90)
+        if (rnd <= 1)
         {
             Debug.Log("lua sangrenta");
             RiseBloodMoon();
