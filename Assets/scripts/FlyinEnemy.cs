@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 
-public class FlyingEnemyController : EnemyController<FlyingEnemyController>
+public class FlyingEnemyController : EnemyController
 {
 
     //Default script for EVERY ENEMY THAT FLIES

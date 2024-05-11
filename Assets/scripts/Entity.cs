@@ -13,7 +13,7 @@ public class Entity : MonoBehaviour
     public ItemController Item;
     public float knockbackForce;
     public Rigidbody2D rb;
-    EnemyController<Slime> enemy;
+    EnemyController enemy;
 
     void Awake()
     {
@@ -47,7 +47,7 @@ public class Entity : MonoBehaviour
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    EnemyController<Slime> enemy = collider.gameObject.GetComponent<EnemyController<Slime>>();
+                    EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
                     if (enemy != null)
                     {
                         enemy.TakeDamage(damage);

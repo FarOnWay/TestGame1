@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : EnemyController<Slime>
+public class Slime : EnemyController
 {
     public int jumpForce = 0;
 
@@ -11,7 +11,7 @@ public class Slime : EnemyController<Slime>
     // randomizing the jumpCoodown 
     int randJumpCoolDown()
     {
-        jumpCoodown = Random.Range(4, 12);
+        jumpCoodown = Random.Range(2, 5);
         return jumpCoodown;
     }
 
