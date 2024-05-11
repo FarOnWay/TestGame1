@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class EnemyController<T> : Entity where T : EnemyController<T>
+public class EnemyController : Entity 
 {
 
 
