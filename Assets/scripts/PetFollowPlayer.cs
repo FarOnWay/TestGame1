@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PetFollowPlayer : MonoBehaviour
@@ -10,7 +8,7 @@ public class PetFollowPlayer : MonoBehaviour
     public float heightOffset; // Add this field
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Move();
     }
