@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee320939173bd46cba71338eaed86f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleDuration: 10
+  cycleDuration: 1
   dawnColor: {r: 0.68215716, g: 0.68215716, b: 0.68215716, a: 0}
   dayColor: {r: 0.8364091, g: 0.8364091, b: 0.8364091, a: 0}
   duskColor: {r: 0.2053361, g: 0.2053361, b: 0.2053361, a: 0}
@@ -1503,6 +1503,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  loot: {fileID: 0}
+  lifeManager: {fileID: 0}
+  hero: {fileID: 0}
+  Item: {fileID: 0}
+  knockbackForce: 0
+  rb: {fileID: 0}
+  playerTransform: {fileID: 0}
+  knockbackDistance: 0
+  knockbackDuration: 0
+  speed: 0
 --- !u!114 &711275780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65051,6 +65062,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  loot: {fileID: 0}
+  lifeManager: {fileID: 0}
+  hero: {fileID: 0}
+  Item: {fileID: 0}
+  knockbackForce: 0
+  rb: {fileID: 0}
+  playerTransform: {fileID: 0}
+  knockbackDistance: 0
+  knockbackDuration: 0
+  speed: 0
 --- !u!114 &1509398385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65273,6 +65295,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bff4f63e43fca633b867557be4f8d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  loot: {fileID: 0}
+  lifeManager: {fileID: 0}
+  hero: {fileID: 0}
+  Item: {fileID: 0}
+  knockbackForce: 0
+  rb: {fileID: 0}
+  playerTransform: {fileID: 0}
+  knockbackDistance: 0
+  knockbackDuration: 0
+  speed: 0
 --- !u!50 &1535936632
 Rigidbody2D:
   serializedVersion: 4
