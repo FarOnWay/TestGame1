@@ -26,7 +26,7 @@ public class MoonScript : MonoBehaviour
     public void RiseMoon()
     {
         int rnd = Random.Range(1, 101);
-        transform.position = new Vector3(-65, 5.2f, 1);
+        transform.position = new Vector3(-65, 5.2f, 0);
         activeCount++;
 
         if (rnd <= 1)
