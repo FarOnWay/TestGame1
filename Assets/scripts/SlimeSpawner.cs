@@ -19,6 +19,7 @@ public class SlimeSpawner : MonoBehaviour
 
     private IEnumerator Spawner()
     {
+        canSpawn = dayNight.isDay;
         WaitForSeconds wait = new WaitForSeconds(spawnRate);
         while (true)
         {
@@ -30,7 +31,7 @@ public class SlimeSpawner : MonoBehaviour
             }
             else
             {
-                yield return null; // Wait for the next frame if it's not day
+                yield return null; 
             }
         }
     }
