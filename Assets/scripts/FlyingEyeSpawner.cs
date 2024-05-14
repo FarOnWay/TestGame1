@@ -9,6 +9,8 @@ public class FlyingEyeSpawner : MonoBehaviour
     [SerializeField] public bool canSpawn = true;
 
     public DayNightCycle dayNight;
+    private List<GameObject> enemyInstances = new List<GameObject>();
+
 
 
     void Start()
@@ -20,18 +22,30 @@ public class FlyingEyeSpawner : MonoBehaviour
     private IEnumerator Spawner()
     {
         WaitForSeconds wait = new WaitForSeconds(spawnRate);
-        while (true)
-        {
+        // while (true)
+        //{
             canSpawn = dayNight.isDay;
             if (!canSpawn)
             {
                 yield return wait;
-                Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+                GameObject enemyInstance = Instantiate(enemyPrefab);
+                enemyInstances.Add(enemyInstance);
+
             }
-            else
-            {
-                yield return null; // Wait for the next frame if it's not day
-            }
-        }
+            // else
+            // {
+            //     foreach (GameObject enemyInstance in enemyInstances)
+            //     {
+            //         Destroy(enemyInstance);
+            //     }
+            //     enemyInstances.Clear();
+            // }
+      //  }
+    }
+
+    // destroy the enemies that spawns at night if its day
+    void DestroyIfItsDay()
+    {
+
     }
 }

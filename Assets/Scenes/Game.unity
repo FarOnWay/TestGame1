@@ -69216,6 +69216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946840629}
   - component: {fileID: 946840627}
+  - component: {fileID: 946840630}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -69254,6 +69255,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946840630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946840626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 300820e7b248213a7981b9502e2eb8bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 30
+  enemyPrefab: {fileID: 910375167}
+  canSpawn: 1
+  dayNight: {fileID: 569263583}
 --- !u!1 &979878179
 GameObject:
   m_ObjectHideFlags: 0
