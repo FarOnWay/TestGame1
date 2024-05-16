@@ -29,7 +29,6 @@ public class HealthBar : MonoBehaviour
         switchHud(timer <= 5);
 
         timer += Time.deltaTime;
-
         transform.rotation = camera.transform.rotation;
         transform.position = target.position + offset;
     }

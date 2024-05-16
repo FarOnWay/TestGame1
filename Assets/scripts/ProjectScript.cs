@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ProjectScript : MonoBehaviour
 {
-
     public float speed = 10f;
-
     public GameObject owner;
-
-
     Rigidbody2D rb;
-
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,15 +17,6 @@ public class ProjectScript : MonoBehaviour
         {
             player.TakeDamage(10);
         }
-
-
         Destroy(gameObject);
-
-
     }
-
-
-
-
-
 }

@@ -7,8 +7,7 @@ public class Firefly : MonoBehaviour
     public float directionChangeInterval = 1f;
     public float maxDistanceFromPlayer = 5f;
     public Transform player;
-    public GameObject lightPrefab; // Add this field
-
+    public GameObject lightPrefab; 
     private Vector3 direction;
 
     void Start()

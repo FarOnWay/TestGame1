@@ -3,13 +3,11 @@ using UnityEngine;
 
 public class NPCcontroller : MonoBehaviour
 {
-
-    //Generic script to move the passive npcs
+    //generic script to move the passive npcs
     public float speed;
     private int direction = 1;
 
-    public SpriteRenderer spriteRenderer; 
-
+    public SpriteRenderer spriteRenderer;
 
     float timeWalking;
 
@@ -25,8 +23,6 @@ public class NPCcontroller : MonoBehaviour
 
     }
 
-
-
     void Update()
     {
         if (timer < timeWalking)
@@ -35,7 +31,7 @@ public class NPCcontroller : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= timeWalking)
             {
-              //  Debug.Log("tempo estou");
+                //  Debug.Log("tempo estou");
                 timeWalking = Random.Range(5, 10);
                 facingDirection = Random.Range(0, 3);
                 timer = 0f;
@@ -45,37 +41,24 @@ public class NPCcontroller : MonoBehaviour
         }
     }
 
-
     void Move(int facingDirection, float timeWalking)
     {
-
         if (this.facingDirection == 0)
         {
             transform.Translate(Vector3.left * speed * timeWalking * Time.deltaTime);
             Debug.Log("andando pra esquerda");
             spriteRenderer.flipX = true;
-
-
         }
 
         else if (facingDirection == 1)
         {
             transform.Translate(Vector3.right * speed * timeWalking * Time.deltaTime);
             Debug.Log("andando pra direita");
-
-
         }
         else
         {
             //idle
             Debug.Log("parado");
-
-
         }
-
-
     }
-
-
-
 }

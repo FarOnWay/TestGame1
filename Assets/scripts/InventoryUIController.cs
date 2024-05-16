@@ -6,9 +6,11 @@ public class InventoryUIController : MonoBehaviour
     public InventoryController inventoryController;
     public GameObject inventorySlotPrefab;
 
-    private int currentSlotIndex = 0; // The index of the current slot where the next item should be added
+    // the index of the current slot where the next item should be added
+    // starts at 0 and goes up to INVENTORY_SIZE - 1
+    private int currentSlotIndex = 0;
 
-    const int INVENTORY_SIZE = 10; // amount of slots we have in our inventory
+    const int INVENTORY_SIZE = 10; // amount of slots we have in our inventory (in the hotbar)
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class InventoryUIController : MonoBehaviour
 
     public void SelectSlot(int index)
     {
-      //  Debug.Log("SelectSlot called with index " + index);
+        //  Debug.Log("SelectSlot called with index " + index);
         inventoryController.UseItem(index);
 
 
@@ -55,22 +57,21 @@ public class InventoryUIController : MonoBehaviour
 
     public void updateInventoryHUD(ItemController item, bool isNewItem)
     {
-       // Debug.Log("Updating inventory HUD");
+        // Debug.Log("Updating inventory HUD");
         Debug.Log("nome do item: " + item.Name);
 
-        // If the item is new, increment the current slot index
         if (isNewItem)
         {
             currentSlotIndex++;
         }
 
-        // Get the current slot
+        // get the current slot
         InventorySlotController slotController = transform.GetChild(currentSlotIndex).GetComponent<InventorySlotController>();
 
-        // Update the current slot with the collected item
+        // update the current slot with 
         slotController.SetItem(item.Icon);
 
-        // Set the quantity of the item in the current slot
+        // set the quantity of the item in the current slot (not workin)
         if (inventoryController.Inventory.ContainsKey(item))
         {
             slotController.SetQuantity(inventoryController.Inventory[item]);

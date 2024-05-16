@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Slime : EnemyController
 {
-    public int jumpForce = 0;
-
-    public int jumpCoodown;
+    public int jumpForce = 0, jumpCoodown = 0;
 
     // randomizing the jumpCoodown 
     int randJumpCoolDown()

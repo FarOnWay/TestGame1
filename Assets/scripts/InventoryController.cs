@@ -10,9 +10,6 @@ public class InventoryController : MonoBehaviour
     public Dictionary<ItemController, int> Inventory = new();
 
     public GameObject extendedInventory;
-
-
-
     // has_many items
     // belongs_to player
 
@@ -51,8 +48,6 @@ public class InventoryController : MonoBehaviour
         //  Debug.Log("UseItem called with index " + index);
         // Debug.Log("Inventory count before using item: " + Inventory.Count);
 
-
-
         // Debug.Log("tentado usar item nessa buceta");
         //  Debug.Log("tamanho do inventário: " + Inventory.Count);
 
@@ -87,7 +82,6 @@ public class InventoryController : MonoBehaviour
         }
 
         //  var item = Inventory.Keys.ElementAt(index);
-
     }
 
     public void seeInventory()

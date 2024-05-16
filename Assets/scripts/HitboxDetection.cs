@@ -7,14 +7,12 @@ public class HitboxDetection : MonoBehaviour
     AttackController attackController;
     public LayerMask enemyLayer;
     int enemyLayerInt;
-    // Start is called before the first frame update
     void Start()
     {
         attackController = GetComponentInParent<AttackController>();
         enemyLayerInt = (int) Mathf.Log(enemyLayer.value, 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

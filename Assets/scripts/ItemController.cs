@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-
     // rarity in numbers: 1 - 6 (commum, uncommum, rare, very rare, epic, legendary)
 
     void Awake()
     {
         // CreateItems();
         int j = 0;
-
         // foreach (var i in itemsToDrop)
         // {
         //     Debug.Log("essa bosta aqui mostrou " + j);
@@ -26,9 +24,7 @@ public class ItemController : MonoBehaviour
     //  public int Quantity { get; set; } the inventory that will store the quantity of the items, not the item itself
     public Sprite Icon;
     public GameObject Prefab;
-
     public int Rarity;
-
 
     public ItemController(string name, Sprite icon, GameObject prefab, int rarity)
     {
@@ -43,10 +39,7 @@ public class ItemController : MonoBehaviour
 
     }
 
-
     public List<GameObject> itemsToDrop = new();
-
-
 
     public void ItemsToDrop(GameObject item)
     {
@@ -63,7 +56,6 @@ public class ItemController : MonoBehaviour
 
     // void CreateItems() => ItemsToDrop(new ("Gel"));
 
-
     /**
     This reagion is for create MATERIALS for craftable items
     So, this reagion stores the materials to create an item, like a sword, a shield, a potion, a key, etc.
@@ -74,18 +66,13 @@ public class ItemController : MonoBehaviour
     So, we want to create the item 'Gel', that is a drop of the enemy @Slime, right? So, we go to the Slime class
     and in the method, we create a new instance of the class ItemController, and pass the name of the item as a parameter  
   
-
-
     So, the attributes to create a craftable item are:
 
     @Name
     @Rarity       
     **/
 
-
     #endregion
-
-
 
     #region Attack
 

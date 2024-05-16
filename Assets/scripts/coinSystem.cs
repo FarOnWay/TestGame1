@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class CoinSystem : MonoBehaviour
 {
-
     public int coinAmount;
     public GameObject coinPrefab; 
-
 
     void OnTriggerEnter2D(Collider2D other)
     {

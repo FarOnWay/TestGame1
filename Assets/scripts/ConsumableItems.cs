@@ -20,6 +20,5 @@ public class ConsumableItems : ItemController
     public override void Use()
     {
         Debug.Log("Consumed " + Name);
-        // Add code here to apply the effects of the consumable item
     }
 }

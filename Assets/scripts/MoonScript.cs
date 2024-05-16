@@ -11,11 +11,8 @@ public class MoonScript : MonoBehaviour
     public bool isBloodMoon = false;
 
     //    bloodMoonColor = new Color(0.5f, 0, 0);
-
     public Text gameMessages;
     public GameObject inGameMessages;
-
-
 
     public Color bloodMoonColor;
     void Update()

@@ -5,7 +5,6 @@ public class FlickeringLight : MonoBehaviour
 {
     public float minIntensity = 0.5f;
     public float maxIntensity = 2f;
-
     private Light light;
 
     void Start()
