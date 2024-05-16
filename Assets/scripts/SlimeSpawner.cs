@@ -10,7 +10,6 @@ public class SlimeSpawner : MonoBehaviour
 
     public DayNightCycle dayNight;
 
-
     void Start()
     {
         StartCoroutine(Spawner());
@@ -30,7 +29,7 @@ public class SlimeSpawner : MonoBehaviour
             }
             else
             {
-                yield return null; // Wait for the next frame if it's not day
+                yield return null;
             }
         }
     }

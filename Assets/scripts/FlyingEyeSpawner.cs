@@ -7,11 +7,8 @@ public class FlyingEyeSpawner : MonoBehaviour
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] public bool canSpawn = true;
-
     public DayNightCycle dayNight;
     private List<GameObject> enemyInstances = new List<GameObject>();
-
-
 
     void Start()
     {

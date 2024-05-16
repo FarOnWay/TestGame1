@@ -6,8 +6,6 @@ using System;
 
 namespace Test
 {
-
-
     public class Enemy : MonoBehaviour
     {
         public int damage;
@@ -16,8 +14,6 @@ namespace Test
         public int maxHealth;
         public Transform player;
         public float moveSpeed = 5f;
-
-
         [SerializeField] HealthBar healthBar;
 
         void Awake()
@@ -25,12 +21,7 @@ namespace Test
             rb = GetComponent<Rigidbody2D>();
             healthBar = GetComponentInChildren<HealthBar>();
         }
-
-
-
-
         // CoinSystem coinSystem;
-
         private Rigidbody2D rb;
         private Animator animator;
         private bool isMoving;
@@ -58,18 +49,13 @@ namespace Test
 
         }
 
-
-
         void Update()
         {
             if (player != null)
             {
-
                 float enemyPos = transform.position.x;
                 float playerPos = player.transform.position.x;
-
                 float distanceBetweenPlayerAndEnemy = Mathf.Abs(enemyPos - playerPos);
-
                 // Debug.Log("Distance between player and enemy: " + distanceBetweenPlayerAndEnemy);
 
                 if (distanceBetweenPlayerAndEnemy <= 20)
@@ -83,14 +69,10 @@ namespace Test
                     isMoving = direction.magnitude > 0.1f;
                     animator.SetBool("IsMoving", isMoving);
                 }
-
                 // Calculate direction towards the player
-
                 Attack(distanceBetweenPlayerAndEnemy);
-
             }
         }
-
         // void OnTriggerEnter2D(Collider2D other)
         // {
         //     if (other.gameObject.CompareTag("Coin"))
@@ -101,37 +83,28 @@ namespace Test
 
         // }
 
-
         public void TakeDamage(int damage)
         {
             health -= damage;
             healthBar.UpdateHealthBar(health, maxHealth);
             if (health <= 0)
             {
-
                 animator.SetTrigger("Death");
-                StartCoroutine ("scheduleDestroy", 1.5f);
-              
-
-
+                StartCoroutine("scheduleDestroy", 1.5f);
             }
             else
             {
                 // Trigger hurt animation
                 animator.SetTrigger("Hurt");
-
             }
         }
-        
-
 
         IEnumerator scheduleDestroy(float timer)
         {
             yield return new WaitForSecondsRealtime(timer);
-             spawnCoins();
+            spawnCoins();
 
             Destroy(gameObject);
-           
         }
         private void spawnCoins()
         {
@@ -152,7 +125,7 @@ namespace Test
                 {
                     Debug.Log(" enemy Attacking!");
                     animator.SetTrigger("Attack");
-                    
+
                     if (heroKnight)
                     {
                         heroKnight.TakeDamage(damage);

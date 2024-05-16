@@ -4626,7 +4626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee320939173bd46cba71338eaed86f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleDuration: 0.5
+  cycleDuration: 1
   dawnColor: {r: 0.64015746, g: 0.64015746, b: 0.64015746, a: 0}
   dayColor: {r: 0.8364091, g: 0.8364091, b: 0.8364091, a: 0}
   duskColor: {r: 0.19226998, g: 0.19226998, b: 0.19226998, a: 0}

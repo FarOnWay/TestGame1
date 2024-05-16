@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class CoinUI : MonoBehaviour
 {
-
     public GameObject player;
     public Text coinText;
-
     CoinManager manager;
-    // Start is called before the first frame update
+
     void Start()
     {
         manager = player.GetComponent<CoinManager>();
@@ -20,5 +18,4 @@ public class CoinUI : MonoBehaviour
     {
         coinText.text = manager.coinCount.ToString();
     }
-
 }

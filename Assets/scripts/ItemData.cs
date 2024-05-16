@@ -5,5 +5,4 @@ using UnityEngine;
 public class ItemData : MonoBehaviour
 {
       public string Name { get; set; }
-
 }

@@ -6,8 +6,6 @@ using UnityEngine.Animations;
 
 public class EnemyController : Entity 
 {
-
-
     public Transform playerTransform;
     public float knockbackDistance;
     HeroKnight hero;
@@ -44,33 +42,24 @@ public class EnemyController : Entity
         if (other.gameObject.CompareTag("Player"))
         {
             // Debug.Log("escostando no player");
-
             base.DealDamage(10, false);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
             // Debug.Log(knockbackDirection);
-
             StartCoroutine(KnockbackCoroutine(knockbackDirection));
-
         }
     }
 
     public IEnumerator KnockbackCoroutine(Vector2 knockbackDirection)
     {
-
         float elapsedTime = 0f;
 
         while (elapsedTime < knockbackDuration)
         {
-
             if (knockbackDirection.x < 0) playerTransform.position += Vector3.left * knockbackDistance * Time.deltaTime;
-
             else playerTransform.position += Vector3.right * knockbackDistance * Time.deltaTime;
-
             // Vector2 newPosition = (Vector2)transform.position + knockbackDirection * knockbackDistance * Time.deltaTime;
-
             // transform.position = newPosition;
             // Debug.Log("tomando knockback");
-
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -78,8 +67,6 @@ public class EnemyController : Entity
     }
 
     #region Loot
-  
-
 
 
 

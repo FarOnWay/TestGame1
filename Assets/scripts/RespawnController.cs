@@ -5,7 +5,6 @@ using UnityEngine;
 public class RespawnController : MonoBehaviour
 {
     public Transform playerPos;
-
     public void TeleportToSpawnPoint()
     {
         Debug.Log("respawning");

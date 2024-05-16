@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
     [SerializeField] HealthBar healthBar;
-
-   public LootSystem loot;
+    public LootSystem loot;
     public LifeManager lifeManager;
     public HeroKnight hero;
     public ItemController Item;
@@ -22,13 +21,11 @@ public class Entity : MonoBehaviour
         Item = GetComponent<ItemController>();
     }
 
-
     public virtual void Start()
     {
         lifeManager = GetComponent<LifeManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.UpdateHealthBar(lifeManager.lifeCount, lifeManager.maxLife);
-
     }
 
     public virtual void DealDamage(int damage, bool isPlayer)
@@ -76,7 +73,6 @@ public class Entity : MonoBehaviour
         //Debug.Log(lifeManager.lifeCount);
         lifeManager.lifeCount -= damage;
         healthBar.UpdateHealthBar(lifeManager.lifeCount, lifeManager.maxLife);
-
         //lifeManager.lifeCount -= damage;
 
         if (lifeManager.lifeCount <= 0)

@@ -2,33 +2,30 @@ using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
 {
-    public float cycleDuration = 24f; // Duration of the whole cycle in minutes
-    public Color dawnColor; // Color at dawn
-    public Color dayColor; // Color during the day
-    public Color duskColor; // Color at dusk
-    public Color nightColor; // Color during the night
-    public GameObject moon; // Reference to the moon object
-
+    // duration of the cycle in minutes, means that a full cycle (day/night)will take 24 minutes
+    public float cycleDuration = 24f; 
+    public Color dawnColor; // color at dawn
+    public Color dayColor; // color during the day
+    public Color duskColor; // color at dusk
+    public Color nightColor; // color during the night
+    public GameObject moon; 
     public bool isDay = true;
-
-    private float currentTime; // Current time in minutes
+    private float currentTime; 
 
     void Start()
     {
-        // Set the initial time to 7 AM
+        // the game starts at 7am
         currentTime = cycleDuration * (7f / 24f);
     }
 
     void Update()
     {
-        // Increment the current time
-        currentTime += Time.deltaTime / 60f; // Convert seconds to minutes
-        if (currentTime > cycleDuration) currentTime -= cycleDuration; // Wrap time
-
-        // Calculate the fraction of the cycle that has passed
+        // increment the current time
+        currentTime += Time.deltaTime / 60f; 
+        if (currentTime > cycleDuration) currentTime -= cycleDuration; 
+        // calculate the fraction of the cycle that has passed
         float fraction = currentTime / cycleDuration;
-
-        // Determine the current phase of the cycle (dawn, day, dusk, or night)
+        // determine the current phase of the cycle (dawn, day, dusk, or night)
         Color color;
         if (fraction < 5f / 24f || fraction >= 21f / 24f)
         {
@@ -41,7 +38,6 @@ public class DayNightCycle : MonoBehaviour
                 // MoonScript.activeCount++;
                 Debug.Log("A lua apareceu: " + MoonScript.activeCount);
             }
-
         }
         else if (fraction < 7f / 24f)
         {
@@ -54,7 +50,6 @@ public class DayNightCycle : MonoBehaviour
         {
             // Day
             moon.SetActive(false);
-
             color = Color.Lerp(dawnColor, dayColor, (fraction - 7f / 24f) / (10f / 24f));
         }
         else
@@ -64,21 +59,11 @@ public class DayNightCycle : MonoBehaviour
             isDay = false;
             color = Color.Lerp(dayColor, duskColor, (fraction - 17f / 24f) / (4f / 24f));
         }
-
-        // Set the ambient light color
+        // light
         RenderSettings.ambientLight = color;
-
-        // Display the current time
+        // display the current time
         int hours = (int)(currentTime / cycleDuration * 24f);
         int minutes = (int)(currentTime / cycleDuration * 1440f) % 60;
         //  Debug.Log(string.Format("{0:D2}:{1:D2}", hours, minutes));
-        if (isDay)
-        {
-            //   Debug.Log("dia");
-        }
-        else
-        {
-            // Debug.Log("noite");
-        }
     }
 }
