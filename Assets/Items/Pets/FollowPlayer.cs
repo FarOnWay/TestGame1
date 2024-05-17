@@ -15,7 +15,7 @@ public class FollowPlayer : MonoBehaviour
     public virtual void Move()
     {
         Debug.Log("Moving towards player");
-        Vector3 targetPos = playerPos.position + new Vector3(0, heightOffset, 0);
+        Vector3 targetPos = playerPos.position + new Vector3(0, heightOffset, -1);
         float distance = Vector3.Distance(transform.position, targetPos);
         if (distance > stoppingDistance)
         {
