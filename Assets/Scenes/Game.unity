@@ -69107,7 +69107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca5c12f20680162e8affbdbd391930a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minIntensity: 0.5
+  minIntensity: 2
   maxIntensity: 2
 --- !u!108 &933370299
 Light:
@@ -73122,8 +73122,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.77116656, g: 0.76332504, b: 0.5712081, a: 1}
-  m_Intensity: 4
-  m_Range: 7
+  m_Intensity: 2.5
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
