@@ -2397,7 +2397,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c7aafc4158c026d7388918a8ac871be2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83478,6 +83478,7 @@ MonoBehaviour:
   itemsToDrop:
   - {fileID: 5904422519501585627, guid: bb129503b42c6905e8a96213750e6da9, type: 3}
   - {fileID: 7727569015009522643, guid: 97aed212a3c849e04bebd7218e1d8803, type: 3}
+  - {fileID: 3857825046804330005}
 --- !u!114 &2838773300963729339
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,8 +9,10 @@ public class LootSystem : ItemController
     // public int dropProbability = 70;
     public void DropPrefab()
     {
-        Instantiate(itemsToDrop[1], transform.position, Quaternion.identity);
         Instantiate(itemsToDrop[0], transform.position, Quaternion.identity);
+        Instantiate(itemsToDrop[1], transform.position, Quaternion.identity);
+        Instantiate(itemsToDrop[2], transform.position, Quaternion.identity);
+
 
         //Debug.Log("supossed to drop this: " + itemsToDrop[selectLoot()]);
         // Debug.Log(selectLoot());

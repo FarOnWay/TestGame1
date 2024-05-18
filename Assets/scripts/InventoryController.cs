@@ -90,30 +90,30 @@ public class InventoryController : MonoBehaviour
 
         if (Inventory.Count == 0)
         {
-            // Debug.Log("Seu inventario esta vazio!");
+             Debug.Log("Seu inventario esta vazio!");
         }
         else
         {
-            var item = Inventory.ElementAt(2).Key;
-            Debug.Log("Item na posiçao 2: " + Inventory.ElementAt(2).Key);
-            // Debug.Log("agua coca latao agua coca latao" + item);
-            if (item != null)
-            {
-                // Debug.Log("Using item " + item.Name);
-                item.Use();
-                if (Inventory[item] > 1)
-                {
-                    Inventory[item]--;
-                }
-                else
-                {
-                    Inventory.Remove(item);
-                }
-            }
-            else
-            {
-                // Debug.Log("No item in slot");
-            }
+            // var item = Inventory.ElementAt(2).Key;
+            // Debug.Log("Item na posiçao 2: " + Inventory.ElementAt(2).Key);
+            // // Debug.Log("agua coca latao agua coca latao" + item);
+            // if (item != null)
+            // {
+            //     // Debug.Log("Using item " + item.Name);
+            //     item.Use();
+            //     if (Inventory[item] > 1)
+            //     {
+            //         Inventory[item]--;
+            //     }
+            //     else
+            //     {
+            //         Inventory.Remove(item);
+            //     }
+            // }
+            // else
+            // {
+            //     // Debug.Log("No item in slot");
+            // }
             Debug.Log("Seus itens são: ");
             foreach (KeyValuePair<ItemController, int> i in Inventory)
             {
