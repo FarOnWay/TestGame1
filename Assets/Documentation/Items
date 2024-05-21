@@ -1,0 +1,18 @@
+### Item is the scriptableObject itself
+```mermaid
+classDiagram
+    Item : +string itemName
+    Item : +string itemType
+    Item : +string itemRarity
+    Item : +MonoBehaviour itemScript
+    ItemInstance : +Item itemData
+    GameObject : +ItemInstance itemInstance
+    GameObject : +Transform transform
+    GameObject : +SpriteRenderer spriteRenderer
+    Player : +ItemInstance equippedItem
+    Enemy : +ItemInstance lootItem
+    ItemInstance --|> Item : Uses
+    GameObject --|> ItemInstance : Has
+    Player --|> ItemInstance : Uses
+    Enemy --|> ItemInstance : Drops
+    ```

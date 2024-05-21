@@ -19,11 +19,17 @@ public class InventoryUIController : MonoBehaviour
 
     void Update()
     {
+       GetPressedKey();
+    }
+
+    public void GetPressedKey()
+    {
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
             if (Input.GetKeyDown(i.ToString()))
             {
                 Debug.Log("Key " + i + " pressed");
+                inventoryController.UseItem(i);
                 SelectSlot(i);
             }
         }
@@ -31,7 +37,7 @@ public class InventoryUIController : MonoBehaviour
 
     public void SelectSlot(int index)
     {
-        //  Debug.Log("SelectSlot called with index " + index);
+          Debug.Log("test");
         inventoryController.UseItem(index);
 
 
@@ -47,7 +53,7 @@ public class InventoryUIController : MonoBehaviour
 
     void createSlots()
     {
-        for (int i = 1; i < INVENTORY_SIZE; i++)
+        for (int i = 0; i < INVENTORY_SIZE -1; i++)
         {
             GameObject slot = Instantiate(inventorySlotPrefab, transform);
             Text slotPositionText = slot.GetComponentInChildren<Text>(); // Replace this with the correct way to access the Text component
@@ -55,10 +61,10 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public void updateInventoryHUD(ItemController item, bool isNewItem)
+    public void updateInventoryHUD(Item item, bool isNewItem)
     {
         // Debug.Log("Updating inventory HUD");
-        Debug.Log("nome do item: " + item.Name);
+        Debug.Log("nome do item: " + item.name);
 
         if (isNewItem)
         {
@@ -69,12 +75,12 @@ public class InventoryUIController : MonoBehaviour
         InventorySlotController slotController = transform.GetChild(currentSlotIndex).GetComponent<InventorySlotController>();
 
         // update the current slot with 
-        slotController.SetItem(item.Icon);
+        slotController.SetItem(item.icon);
 
         // set the quantity of the item in the current slot (not workin)
-        if (inventoryController.Inventory.ContainsKey(item))
+        if (InventoryController.Inventory.ContainsKey(item))
         {
-            slotController.SetQuantity(inventoryController.Inventory[item]);
+            slotController.SetQuantity(InventoryController.Inventory[item]);
         }
     }
 }

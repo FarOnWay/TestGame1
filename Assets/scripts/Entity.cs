@@ -78,7 +78,7 @@ public class Entity : MonoBehaviour
         if (lifeManager.lifeCount <= 0)
         {
             Destroy(gameObject);
-            loot.lootChance();
+            loot.DropPrefab();
         }
     }
 }

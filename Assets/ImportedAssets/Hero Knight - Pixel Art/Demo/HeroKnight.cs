@@ -11,6 +11,10 @@ public class HeroKnight : Entity
 
     [SerializeField] float m_speed = 4.0f;
 
+    public ItemNameDisplay itemNameDisplay;
+
+    public Item equippedItem;
+
     public InventoryController inventory;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] float m_rollForce = 6.0f;
@@ -77,6 +81,17 @@ public class HeroKnight : Entity
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
+    }
+
+   public void EquipItem(Item item)
+    {
+        equippedItem = item;
+        Debug.Log("you equipped " + item.name);
+
+        // Update the player's sprite or model to show the equipped item
+        // This will depend on how your sprites or models are set up
+        // For example, if you have a separate sprite for each item, you could do something like this:
+        //  spriteRenderer.sprite = item.sprite;
     }
 
     bool ShieldUp(bool isShildUpNow)
@@ -180,31 +195,28 @@ public class HeroKnight : Entity
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            //  Debug.Log("escontando nessa porra de chao");
-            // Debug.Log(fallDamageCalc());
             TakeDamage(fallDamageCalc());
             fallDamage = 0;
-
         }
         if (other.gameObject.CompareTag("Item"))
         {
-           // Debug.Log("Tocando em um item dropado");
-            GameObject itemCopy = other.gameObject;
-            //  Instantiate(other.gameObject);
-            // itemCopy.SetActive(false);
-            if (itemCopy.TryGetComponent<ItemController>(out var itemController))
+            // Get the ItemInstance component of the GameObject
+            ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
+
+            if (itemInstance != null && itemInstance.item != null)
             {
-               // Debug.Log("Item has ItemController component.");
-                inventory.CollectItem(itemController);
+                inventory.CollectItem(itemInstance.item);
+                itemNameDisplay.DisplayItemName(itemInstance.item);
+
             }
             else
             {
-                Debug.LogError("The item does not have an ItemController component.");
+                Debug.LogError("The item does not have an ItemInstance component or the item is null.");
             }
             Destroy(other.gameObject);
         }
-    }
 
+    }
 
     // write a method to open the inventoru by clicking tab
 
@@ -213,7 +225,6 @@ public class HeroKnight : Entity
     // Update is called once per frame
     void Update()
     {
-
         fallDamageCalc();
         // lifeUI.text = health.ToString();
 
@@ -222,8 +233,8 @@ public class HeroKnight : Entity
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            inventory.seeInventory();
-            
+            inventory.SeeInventory();
+
         }
 
 

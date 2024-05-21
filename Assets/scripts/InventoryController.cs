@@ -1,18 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class InventoryController : MonoBehaviour
 {
     // public ItemController item;
     public InventoryUIController inventoryUIController;
-    public ItemController[] Slots = new ItemController[10];
-    public Dictionary<ItemController, int> Inventory = new();
+
+    public HeroKnight player;
+    public GameObject playerHand;
+    // public ItemController[] Slots = new ItemController[10];
+    public static Dictionary<Item, int> Inventory = new();
 
     public GameObject extendedInventory;
     // has_many items
     // belongs_to player
-
     // enemys can ONLY dropItems
 
     //  public List<GameObject> Inventory = new();
@@ -21,10 +24,23 @@ public class InventoryController : MonoBehaviour
     private void Start()
     {
         extendedInventory.SetActive(false);
+
+        if (playerHand == null)
+        {
+            Debug.Log("começando sem mao SEM MAO NAO TEM MAO PQ É NULL");
+        }
+        else Debug.Log("COMEÇANDO COM A PORRA DA MAO NESSE CARALHO");
+        player = GetComponent<HeroKnight>();
         // item = GetComponent<ItemController>();
     }
 
-    public void CollectItem(ItemController item)
+    void Update()
+    {
+        Debug.Log("Player Hand in Update: " + playerHand);
+        // UseItem(0);
+    }
+
+    public void CollectItem(Item item)
     {
         // Debug.Log("CollectItem called with item " + item.Name);
 
@@ -41,84 +57,43 @@ public class InventoryController : MonoBehaviour
         // Debug.Log("Inventory count after collecting item: " + Inventory.Count);
 
     }
-
     public void UseItem(int index)
     {
-        //  Debug.Log("ALOOOO");
-        //  Debug.Log("UseItem called with index " + index);
-        // Debug.Log("Inventory count before using item: " + Inventory.Count);
+        List<Item> items = new List<Item>(Inventory.Keys);
 
-        // Debug.Log("tentado usar item nessa buceta");
-        //  Debug.Log("tamanho do inventário: " + Inventory.Count);
-
-        if (Inventory.Count == 0)
+        if (index >= 0 && index < items.Count)
         {
-            // Debug.Log("Invalid slot index");
-            Debug.Log("ai é foda meu patral");
-            return;
-        }
+            Item item = items[index];
 
-        else
-        {
-            var item = Inventory.ElementAt(index).Key;
-            // Debug.Log("agua coca latao agua coca latao" + item);
-            if (item != null)
+            if (item != null && item.icon != null)
             {
-                // Debug.Log("Using item " + item.Name);
-                item.Use();
-                if (Inventory[item] > 1)
-                {
-                    Inventory[item]--;
-                }
-                else
-                {
-                    Inventory.Remove(item);
-                }
+                Debug.Log("Equipping item");
+                SpriteRenderer handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
+                handSpriteRenderer.sprite = item.icon;
             }
             else
             {
-                // Debug.Log("No item in slot");
+                Debug.Log("Unselecting item");
+                SpriteRenderer handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
+                handSpriteRenderer.sprite = null;
             }
-        }
-
-        //  var item = Inventory.Keys.ElementAt(index);
-    }
-
-    public void seeInventory()
-    {
-        extendedInventory.SetActive(!extendedInventory.activeSelf);
-
-        if (Inventory.Count == 0)
-        {
-             Debug.Log("Seu inventario esta vazio!");
         }
         else
         {
-            // var item = Inventory.ElementAt(2).Key;
-            // Debug.Log("Item na posiçao 2: " + Inventory.ElementAt(2).Key);
-            // // Debug.Log("agua coca latao agua coca latao" + item);
-            // if (item != null)
-            // {
-            //     // Debug.Log("Using item " + item.Name);
-            //     item.Use();
-            //     if (Inventory[item] > 1)
-            //     {
-            //         Inventory[item]--;
-            //     }
-            //     else
-            //     {
-            //         Inventory.Remove(item);
-            //     }
-            // }
-            // else
-            // {
-            //     // Debug.Log("No item in slot");
-            // }
-            Debug.Log("Seus itens são: ");
-            foreach (KeyValuePair<ItemController, int> i in Inventory)
-            {
-                Debug.Log($"{i.Key.Name} (x{i.Value})");
-            }
+            Debug.Log("Unselecting item");
+            SpriteRenderer handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
+            handSpriteRenderer.sprite = null;
+        }
+    }
+
+    public void SeeInventory()
+    {
+        // Iterate over each item in the inventory
+        foreach (KeyValuePair<Item, int> entry in Inventory)
+        {
+            // Print the item and its count to the console
+            Debug.Log(entry.Key.ItemName + ": " + entry.Value);
         }
     }
 }
+
