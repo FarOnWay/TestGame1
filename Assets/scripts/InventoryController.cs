@@ -27,16 +27,16 @@ public class InventoryController : MonoBehaviour
 
         if (playerHand == null)
         {
-            Debug.Log("começando sem mao SEM MAO NAO TEM MAO PQ É NULL");
+         //   Debug.Log("começando sem mao SEM MAO NAO TEM MAO PQ É NULL");
         }
-        else Debug.Log("COMEÇANDO COM A PORRA DA MAO NESSE CARALHO");
+       // else Debug.Log("COMEÇANDO COM A PORRA DA MAO NESSE CARALHO");
         player = GetComponent<HeroKnight>();
         // item = GetComponent<ItemController>();
     }
 
     void Update()
     {
-        Debug.Log("Player Hand in Update: " + playerHand);
+       // Debug.Log("Player Hand in Update: " + playerHand);
         // UseItem(0);
     }
 
@@ -67,20 +67,20 @@ public class InventoryController : MonoBehaviour
 
             if (item != null && item.icon != null)
             {
-                Debug.Log("Equipping item");
+               // Debug.Log("Equipping item");
                 SpriteRenderer handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
                 handSpriteRenderer.sprite = item.icon;
             }
             else
             {
-                Debug.Log("Unselecting item");
+               // Debug.Log("Unselecting item");
                 SpriteRenderer handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
                 handSpriteRenderer.sprite = null;
             }
         }
         else
         {
-            Debug.Log("Unselecting item");
+           // Debug.Log("Unselecting item");
             SpriteRenderer handSpriteRenderer = playerHand.GetComponent<SpriteRenderer>();
             handSpriteRenderer.sprite = null;
         }
