@@ -2,15 +2,38 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
-    private Animator handAnimator;
+    public SpriteRenderer sprite;
 
     void Start()
     {
-        handAnimator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
-    public void SetAttack(bool isAttacking)
+    public Item equippedItem;
+
+    void setSprite()
     {
-        handAnimator.SetBool("test", isAttacking);
+        if (equippedItem == null) sprite.sprite = null;
+
+        else sprite.sprite = equippedItem.icon;
     }
+
+    void Update()
+    {
+        setSprite();
+        float inputX = Input.GetAxis("Horizontal");
+        if (inputX > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else if (inputX < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+
+    }
+
+
+
 }

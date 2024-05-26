@@ -302,7 +302,7 @@ public class HeroKnight : Entity
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_animator.SetTrigger("Attack" + m_currentAttack);
-            handAnimator.SetTrigger("Attack" + m_currentAttack);
+            handAnimator.SetTrigger("Attack");
 
             base.DealDamage(damage, true);
 
