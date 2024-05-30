@@ -80893,7 +80893,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -5576168233181342510, guid: 26219afe650eca349a89f642aec6aaf2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -80901,7 +80901,7 @@ SpriteRenderer:
   m_Size: {x: 0.46875, y: 1.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1934307136
@@ -83596,23 +83596,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8951721543182763799, guid: 931f1db092f69b38791a041dc57fdfb5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.91311
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8951721543182763799, guid: 931f1db092f69b38791a041dc57fdfb5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.91311
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8951721543182763799, guid: 931f1db092f69b38791a041dc57fdfb5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.91311
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8951721543182763799, guid: 931f1db092f69b38791a041dc57fdfb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.77
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 8951721543182763799, guid: 931f1db092f69b38791a041dc57fdfb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 0.297
       objectReference: {fileID: 0}
     - target: {fileID: 8951721543182763799, guid: 931f1db092f69b38791a041dc57fdfb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83988,15 +83988,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.99999994
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.03
+      value: -52.48
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.72
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalPosition.z
@@ -84030,6 +84034,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: rb
       value: 
@@ -84051,6 +84059,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1934307136}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 1934307134}
+    - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: itemNameDisplay
       value: 
       objectReference: {fileID: 1872918601}
@@ -84058,6 +84070,10 @@ PrefabInstance:
       propertyPath: handSpriteRenderer
       value: 
       objectReference: {fileID: 1693460364}
+    - target: {fileID: 1808379499492292354, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3657306644071599671, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_Name
       value: HeroKnight

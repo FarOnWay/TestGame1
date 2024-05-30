@@ -42,7 +42,7 @@ public class EnemyController : Entity
         if (other.gameObject.CompareTag("Player"))
         {
             // Debug.Log("escostando no player");
-            base.DealDamage(10, false);
+            base.DealDamage(10, false, true);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
             // Debug.Log(knockbackDirection);
             StartCoroutine(KnockbackCoroutine(knockbackDirection));

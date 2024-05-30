@@ -6,7 +6,7 @@ public class MoonScript : MonoBehaviour
     public float speed = 1.0f;
     public Sprite[] moonPhasesSprites;
     public static int activeCount = 0;
-    public float bloodMoonChance = 0.1f;
+    public float bloodMoonChance;
     public GameObject nightColor, bloodMoon;
     public bool isBloodMoon = false;
 
@@ -26,7 +26,7 @@ public class MoonScript : MonoBehaviour
         transform.position = new Vector3(-65, 5.2f, 0);
         activeCount++;
 
-        if (rnd <= 1)
+        if (rnd <= bloodMoonChance)
         {
             Debug.Log("lua sangrenta");
             RiseBloodMoon();
@@ -45,7 +45,6 @@ public class MoonScript : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = moonPhasesSprites[spriteIndex];
         }
     }
-
 
     public void RiseBloodMoon()
     {

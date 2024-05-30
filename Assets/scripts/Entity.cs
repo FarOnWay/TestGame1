@@ -28,16 +28,22 @@ public class Entity : MonoBehaviour
         healthBar.UpdateHealthBar(lifeManager.lifeCount, lifeManager.maxLife);
     }
 
-    public virtual void DealDamage(int damage, bool isPlayer)
+    public virtual void DealDamage(int damage, bool isPlayer, bool isLookLeft)
     {
-        Vector2 hitboxSize;
+        Vector2 hitboxSize = new Vector2(1f, 1f); // Hitbox size is constant
         Vector2 hitboxCenter;
 
         if (isPlayer)
         {
-            // Debug.Log("o tubarao é viado");
-            hitboxSize = new Vector2(1f, 1f);
-            hitboxCenter = transform.position + new Vector3(1f * 1, 0, 0);
+            if (isLookLeft)
+            {
+                hitboxCenter = transform.position + new Vector3(-1f, 0, 0);
+            }
+            else
+            {
+                hitboxCenter = transform.position + new Vector3(1f, 0, 0);
+            }
+
             Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0);
 
             foreach (Collider2D collider in colliders)
@@ -51,7 +57,6 @@ public class Entity : MonoBehaviour
                         Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
                         if (enemyRb != null)
                         {
-                            // Debug.Log("sexo 2");
                             Vector2 knockbackDirection = (enemyRb.transform.position - transform.position).normalized;
                             knockbackDirection = (knockbackDirection + new Vector2(0, 1f)).normalized;
                             enemyRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
@@ -60,7 +65,6 @@ public class Entity : MonoBehaviour
                 }
             }
         }
-
         else
         {
             hero.TakeDamage(damage);

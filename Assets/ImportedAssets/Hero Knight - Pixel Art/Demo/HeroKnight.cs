@@ -279,6 +279,7 @@ public class HeroKnight : Entity
         else if (inputX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
+            //   transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             m_facingDirection = -1;
         }
 
@@ -304,7 +305,9 @@ public class HeroKnight : Entity
             m_animator.SetTrigger("Attack" + m_currentAttack);
             handAnimator.SetTrigger("Attack");
 
-            base.DealDamage(damage, true);
+            if (m_facingDirection > 0) base.DealDamage(damage, true, false);
+
+            else base.DealDamage(damage, true, true);
 
             m_currentAttack++;
             if (m_currentAttack > 3)
