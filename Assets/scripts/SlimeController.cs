@@ -29,7 +29,7 @@ public class Slime : EnemyController
 
         if (other.gameObject.CompareTag("Player"))
         {
-            base.DealDamage(10, false);
+            base.DealDamage(10, false, true);
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
             //  Debug.Log(knockbackDirection);
             StartCoroutine(KnockbackCoroutine(knockbackDirection));
