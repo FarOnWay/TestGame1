@@ -30,18 +30,18 @@ public class Entity : MonoBehaviour
 
     public virtual void DealDamage(int damage, bool isPlayer, bool isLookLeft)
     {
-        Vector2 hitboxSize = new Vector2(1f, 1f); // Hitbox size is constant
+        Vector2 hitboxSize = new Vector2(1.5f, 1.5f); // Hitbox size is constant
         Vector2 hitboxCenter;
 
         if (isPlayer)
         {
             if (isLookLeft)
             {
-                hitboxCenter = transform.position + new Vector3(-1f, 0, 0);
+                hitboxCenter = transform.position + new Vector3(-0.5f, 0, 0);
             }
             else
             {
-                hitboxCenter = transform.position + new Vector3(1f, 0, 0);
+                hitboxCenter = transform.position + new Vector3(0.5f, 0, 0);
             }
 
             Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0);
