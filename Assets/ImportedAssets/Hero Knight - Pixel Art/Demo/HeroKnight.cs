@@ -206,8 +206,6 @@ public class HeroKnight : Entity
         return fallDamage;
     }
 
-
-
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -305,16 +303,17 @@ public class HeroKnight : Entity
             m_animator.SetTrigger("Attack" + m_currentAttack);
             handAnimator.SetTrigger("Attack");
 
+
             if (m_facingDirection > 0) base.DealDamage(damage, true, false);
 
             else base.DealDamage(damage, true, true);
 
             m_currentAttack++;
-            if (m_currentAttack > 3)
-                m_currentAttack = 1;
 
-            if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1;
+            if (m_currentAttack > 3) m_currentAttack = 1;
+
+            if (m_timeSinceAttack > 1.0f) m_currentAttack = 1;
+
 
             m_timeSinceAttack = 0.0f;
 
@@ -352,12 +351,14 @@ public class HeroKnight : Entity
         {
             m_delayToIdle = 0.05f;
             m_animator.SetInteger("AnimState", 1);
+              handAnimator.SetBool("test", false);
         }
         else
         {
             m_delayToIdle -= Time.deltaTime;
             if (m_delayToIdle < 0)
                 m_animator.SetInteger("AnimState", 0);
+              handAnimator.SetBool("test", false);
         }
     }
 
