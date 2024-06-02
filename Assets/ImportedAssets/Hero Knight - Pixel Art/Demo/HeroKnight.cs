@@ -240,7 +240,14 @@ public class HeroKnight : Entity
     // Update is called once per frame
     void Update()
     {
-        fallDamageCalc();
+        fallDamageCalc();dada
+        equippedItem = hand.GetComponent<HandController>().equippedItem;
+        if (equippedItem != null && equippedItem is Attack.AttackItem attackItem)
+        {
+            damage = attackItem.damage;
+            Debug.Log("Damage: " + damage);
+        }
+        else Debug.Log("sexo");
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -351,14 +358,14 @@ public class HeroKnight : Entity
         {
             m_delayToIdle = 0.05f;
             m_animator.SetInteger("AnimState", 1);
-              handAnimator.SetBool("test", false);
+            handAnimator.SetBool("test", false);
         }
         else
         {
             m_delayToIdle -= Time.deltaTime;
             if (m_delayToIdle < 0)
                 m_animator.SetInteger("AnimState", 0);
-              handAnimator.SetBool("test", false);
+            handAnimator.SetBool("test", false);
         }
     }
 
