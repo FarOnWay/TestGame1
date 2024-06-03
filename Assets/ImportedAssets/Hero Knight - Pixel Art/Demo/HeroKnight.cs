@@ -28,10 +28,7 @@ public class HeroKnight : Entity
     public GameObject hand;
     private Animator handAnimator;
 
-
-
     // public GameObject hand;
-
 
     private Rigidbody2D m_body2d;
     private Sensor_HeroKnight m_groundSensor;
@@ -132,7 +129,6 @@ public class HeroKnight : Entity
 
     public void TakeDamage(int damage)
     {
-
         if (isShildUpNow) return;
 
         if (damage >= 1)
@@ -189,7 +185,6 @@ public class HeroKnight : Entity
     //     }
     // }
 
-
     int fallDamageCalc()
     {
         int minimumFallSpeed = -8; //using nevative value because when falling in the Y axxis, the unity uses negative values
@@ -200,7 +195,6 @@ public class HeroKnight : Entity
             //Debug.Log("velocidade no y é menor que minimumFallSpeed");
             fallDamage = ((int)-m_body2d.velocity.y - minimumFallSpeed) * damageMultiplier;
             // Debug.Log("Dano de queda " + fallDamage);
-
             return 0;
         }
         return fallDamage;
@@ -230,24 +224,26 @@ public class HeroKnight : Entity
             }
             Destroy(other.gameObject);
         }
-
     }
-
-    // write a method to open the inventoru by clicking tab
-
-
 
     // Update is called once per frame
     void Update()
     {
-        fallDamageCalc();dada
+        fallDamageCalc();
+
         equippedItem = hand.GetComponent<HandController>().equippedItem;
-        if (equippedItem != null && equippedItem is Attack.AttackItem attackItem)
+
+        if (equippedItem != null)
         {
-            damage = attackItem.damage;
-            Debug.Log("Damage: " + damage);
+            if (equippedItem is Attack.AttackItem attackItem)
+            {
+                // calls here the animation to attack item 
+
+                damage = attackItem.damage;
+               // Debug.Log("Damage: " + damage);
+            }
+            else Debug.Log("sexo");
         }
-        else Debug.Log("sexo");
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {

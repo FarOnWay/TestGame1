@@ -20,11 +20,8 @@ public class HandController : MonoBehaviour
         else
         {
             sprite.sprite = equippedItem.icon;
-
-
         }
     }
-
 
     void getInfoFromEquippedItem()
     {
