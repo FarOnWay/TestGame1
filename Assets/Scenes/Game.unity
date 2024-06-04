@@ -84050,7 +84050,7 @@ PrefabInstance:
       objectReference: {fileID: 1934307133}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: damage
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: inventory

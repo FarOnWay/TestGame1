@@ -26,6 +26,7 @@ public class HeroKnight : Entity
     private Animator m_animator;
 
     public GameObject hand;
+
     private Animator handAnimator;
 
     // public GameObject hand;
@@ -47,6 +48,7 @@ public class HeroKnight : Entity
     private float m_rollCurrentTime;
     bool isShildUpNow = false;
 
+    public float attackSpeed = 0f;
 
     // public lifeBar lifeBar;
 
@@ -60,7 +62,7 @@ public class HeroKnight : Entity
 
     int fallDamage = 0;
 
-    public int damage;
+    public int damage = 0;
 
     Vector2 startPos;
 
@@ -230,8 +232,9 @@ public class HeroKnight : Entity
     void Update()
     {
         fallDamageCalc();
-
         equippedItem = hand.GetComponent<HandController>().equippedItem;
+
+        #region Item Usage
 
         if (equippedItem != null)
         {
@@ -240,10 +243,14 @@ public class HeroKnight : Entity
                 // calls here the animation to attack item 
 
                 damage = attackItem.damage;
-               // Debug.Log("Damage: " + damage);
+                attackSpeed = attackItem.attackSpeed;
+                // Debug.Log("Damage: " + damage);
             }
             else Debug.Log("sexo");
         }
+
+        #endregion
+
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -301,7 +308,10 @@ public class HeroKnight : Entity
         {
             m_animator.SetTrigger("Hurt");
         }
-        else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+
+        #region Attack
+
+        else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling)
         {
             m_animator.SetTrigger("Attack" + m_currentAttack);
             handAnimator.SetTrigger("Attack");
@@ -326,6 +336,9 @@ public class HeroKnight : Entity
             //     handAnimator.ResetTrigger("Attack");
             // }
         }
+
+        #endregion
+
         else if (Input.GetMouseButtonDown(1) && !m_rolling)
         {
             isShildUpNow = true;

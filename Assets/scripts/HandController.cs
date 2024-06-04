@@ -4,55 +4,70 @@ using System.Collections;
 public class HandController : MonoBehaviour
 {
     public SpriteRenderer sprite;
-    public Transform player; // Reference to the player's transform
+    public Transform player;
     public Item equippedItem;
-    public float rotationSpeed = 0; // Speed of the rotation
+    public float rotationSpeed = 0;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
     }
 
+
+    // makes a method that returns if the sword touches an enemy
+    // then call it in the player's script to check if the enemy is hit
+    // if so, calls the dealDamage method 
+    public bool isTouchingEnemy()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 0.5f);
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     void setSprite()
     {
         if (equippedItem == null)
             sprite.sprite = null;
-        else
+        else if (isAttacking == true)
         {
             sprite.sprite = equippedItem.icon;
         }
+        else sprite.sprite = null;
     }
 
     void getInfoFromEquippedItem()
     {
         if (equippedItem != null)
         {
-            // Get the item type of the equipped item
             ItemType itemType = equippedItem.itemType;
 
-            // Handle different item types
             switch (itemType)
             {
                 case ItemType.Consumable:
-                    // Do something for consumable items
                     Debug.Log("Equipped item is a consumable.");
                     break;
                 case ItemType.Attack:
-                    // Cast the equipped item to AttackItem and get the attack speed
+                    // cast the equipped item to an AttackItem
                     Attack.AttackItem attackItem = equippedItem as Attack.AttackItem;
                     if (attackItem != null)
                     {
                         float attackSpeed = attackItem.attackSpeed;
-                        rotationSpeed = attackSpeed * 360f;
+                        rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees
                         Debug.Log("Attack speed: " + attackSpeed);
                     }
                     break;
+
                 case ItemType.Defense:
-                    // Do something for defense items
                     Debug.Log("Equipped item is a defense item.");
                     break;
+
                 case ItemType.Material:
-                    // Do something for material items
                     Debug.Log("Equipped item is a material.");
                     break;
             }
@@ -76,7 +91,6 @@ public class HandController : MonoBehaviour
             sprite.flipX = true;
         }
 
-        // If the attack button is initially pressed
         if (Input.GetButtonDown("Fire1") && !isAttacking)
         {
             StartCoroutine(Attack());
@@ -86,20 +100,18 @@ public class HandController : MonoBehaviour
     {
         isAttacking = true;
 
-        // Determine the rotation direction based on the player's facing direction
         Vector3 rotationDirection = sprite.flipX ? Vector3.forward : Vector3.back;
 
-        // Set the sword's local rotation to 4.4 degrees in the z-axis
-        transform.localRotation = Quaternion.Euler(0, 0, 4.4f);
+        transform.localRotation = Quaternion.Euler(0, 0, 0.4f);
 
-        // Perform a full rotation
+        // perform a full rotation
         for (float t = 0; t < 1; t += Time.deltaTime)
         {
             transform.RotateAround(player.position, rotationDirection, rotationSpeed * Time.deltaTime);
             yield return null;
         }
 
-        // Continue rotating while the attack button is held down
+        // continue rotating while the attack button is held down
         while (Input.GetButton("Fire1"))
         {
             transform.RotateAround(player.position, rotationDirection, rotationSpeed * Time.deltaTime);
