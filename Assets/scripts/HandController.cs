@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HandController : MonoBehaviour
+public class HandController : Entity
 {
     public SpriteRenderer sprite;
     public Transform player;
@@ -14,22 +14,25 @@ public class HandController : MonoBehaviour
     }
 
 
-    // makes a method that returns if the sword touches an enemy
     // then call it in the player's script to check if the enemy is hit
-    // if so, calls the dealDamage method 
+    // if so, calls the dealDamage method +
     public bool isTouchingEnemy()
     {
+        // WRONG, NEEDS TO THE IF THE ITEMHITBOX IS TOUCHING THE ENEMY EITHER IS IN THE LEFT OR RIGHT
+        // THIS IS GETTING IF THE TRANSFORM.POSITION IS TOUCHING THE ENEMY, WHICH IS NOT WHAT WE WANT
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 0.5f);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag("Enemy"))
             {
+              //  base.DealDamage(1, true, true);
+                Debug.Log("quero comer bunda");
                 return true;
             }
         }
         return false;
     }
-    
+
     void setSprite()
     {
         if (equippedItem == null)
@@ -77,6 +80,7 @@ public class HandController : MonoBehaviour
 
     void Update()
     {
+        isTouchingEnemy();
         setSprite();
         getInfoFromEquippedItem();
 
