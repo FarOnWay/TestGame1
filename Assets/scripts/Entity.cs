@@ -79,7 +79,7 @@ public class Entity : MonoBehaviour
         healthBar.UpdateHealthBar(lifeManager.lifeCount, lifeManager.maxLife);
         //lifeManager.lifeCount -= damage;
 
-        if (lifeManager.lifeCount <= 0)
+        if (lifeManager.lifeCount < 1)
         {
             Destroy(gameObject);
             loot.DropPrefab();

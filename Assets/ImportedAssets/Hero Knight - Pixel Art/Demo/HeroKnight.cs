@@ -15,6 +15,8 @@ public class HeroKnight : Entity
 
     public Item equippedItem;
 
+    bool isTouchingEnemy;
+
     public InventoryController inventory;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] float m_rollForce = 6.0f;
@@ -127,6 +129,25 @@ public class HeroKnight : Entity
             // cm.coinCount++;
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.ClearDeveloperConsole();
+            Debug.Log("AOOOOBA");
+            ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
+
+            if (itemInstance != null && itemInstance.item != null)
+            {
+                inventory.CollectItem(itemInstance.item);
+                itemNameDisplay.DisplayItemName(itemInstance.item);
+
+            }
+            else
+            {
+                Debug.LogError("The item does not have an ItemInstance component or the item is null.");
+            }
+            Destroy(other.gameObject);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -208,31 +229,37 @@ public class HeroKnight : Entity
         {
             TakeDamage(fallDamageCalc());
             fallDamage = 0;
+            return;
         }
-        if (other.gameObject.CompareTag("Item"))
-        {
-            // Get the ItemInstance component of the GameObject
-            ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
 
-            if (itemInstance != null && itemInstance.item != null)
-            {
-                inventory.CollectItem(itemInstance.item);
-                itemNameDisplay.DisplayItemName(itemInstance.item);
+        // if (other.gameObject.CompareTag("Item"))
+        // {
+        //     // Get the ItemInstance component of the GameObject
+        //     ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
 
-            }
-            else
-            {
-                Debug.LogError("The item does not have an ItemInstance component or the item is null.");
-            }
-            Destroy(other.gameObject);
-        }
+        //     if (itemInstance != null && itemInstance.item != null)
+        //     {
+        //         inventory.CollectItem(itemInstance.item);
+        //         itemNameDisplay.DisplayItemName(itemInstance.item);
+
+        //     }
+        //     else
+        //     {
+        //         Debug.LogError("The item does not have an ItemInstance component or the item is null.");
+        //     }
+        //     Destroy(other.gameObject);
+        // }
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
         fallDamageCalc();
         equippedItem = hand.GetComponent<HandController>().equippedItem;
+        isTouchingEnemy = hand.GetComponent<HandController>().isTouchingEnemy();
+
 
         #region Item Usage
 
@@ -247,6 +274,11 @@ public class HeroKnight : Entity
                 // Debug.Log("Damage: " + damage);
             }
             else Debug.Log("sexo");
+        }
+        else
+        {
+            damage = 0;
+            attackSpeed = 0;
         }
 
         #endregion
@@ -311,15 +343,14 @@ public class HeroKnight : Entity
 
         #region Attack
 
-        else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling)
+        else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling && attackSpeed != 0)
         {
             m_animator.SetTrigger("Attack" + m_currentAttack);
             handAnimator.SetTrigger("Attack");
 
+            if (m_facingDirection > 0 && isTouchingEnemy) base.DealDamage(damage, true, false);
 
-            if (m_facingDirection > 0) base.DealDamage(damage, true, false);
-
-            else base.DealDamage(damage, true, true);
+            else if (isTouchingEnemy) base.DealDamage(damage, true, true);
 
             m_currentAttack++;
 
