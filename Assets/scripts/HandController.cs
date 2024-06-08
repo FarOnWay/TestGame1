@@ -7,10 +7,12 @@ public class HandController : Entity
     public Transform player;
     public Item equippedItem;
     public float rotationSpeed = 0;
+    public Collider2D itemHitbox;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        //  itemHitbox = GetComponent<Collider2D>();
     }
 
 
@@ -18,16 +20,23 @@ public class HandController : Entity
     // if so, calls the dealDamage method +
     public bool isTouchingEnemy()
     {
-        // WRONG, NEEDS TO THE IF THE ITEMHITBOX IS TOUCHING THE ENEMY EITHER IS IN THE LEFT OR RIGHT
-        // THIS IS GETTING IF THE TRANSFORM.POSITION IS TOUCHING THE ENEMY, WHICH IS NOT WHAT WE WANT
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 0.5f);
-        if (hit.collider != null)
+        if (itemHitbox != null)
         {
-            if (hit.collider.CompareTag("Enemy"))
+            // Get the bounds of the itemHitbox
+            Bounds itemBounds = itemHitbox.bounds;
+
+            // Get all colliders overlapping with the itemHitbox
+            Collider2D[] hits = Physics2D.OverlapBoxAll(itemBounds.center, itemBounds.size, 0);
+
+            // Check if any of the overlapping colliders have the "Enemy" tag
+            foreach (Collider2D hit in hits)
             {
-              //  base.DealDamage(1, true, true);
-                Debug.Log("quero comer bunda");
-                return true;
+                if (hit.CompareTag("Enemy"))
+                {
+                    Debug.Log("aiaiai beebe toma ai pode escolher");
+                    Debug.Log("Item is touching enemy");
+                    return true;
+                }
             }
         }
         return false;
@@ -80,6 +89,12 @@ public class HandController : Entity
 
     void Update()
     {
+        if (equippedItem != null && equippedItem.itemPrefab != null)
+        {
+            itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
+        }
+        else itemHitbox = null;
+
         isTouchingEnemy();
         setSprite();
         getInfoFromEquippedItem();
