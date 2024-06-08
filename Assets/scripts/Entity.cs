@@ -30,6 +30,7 @@ public class Entity : MonoBehaviour
 
     public virtual void DealDamage(int damage, bool isPlayer, bool isLookLeft)
     {
+        Debug.Log("DealDamage");
         Vector2 hitboxSize = new Vector2(1.5f, 1.5f); // Hitbox size is constant
         Vector2 hitboxCenter;
 

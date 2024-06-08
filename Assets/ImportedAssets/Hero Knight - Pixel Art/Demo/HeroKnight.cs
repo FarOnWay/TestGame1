@@ -361,7 +361,6 @@ public class HeroKnight : Entity
 
             m_timeSinceAttack = 0.0f;
 
-            // Ensure to reset triggers to avoid continuous triggering
             // if (handAnimator.GetCurrentAnimatorStateInfo(0).IsName("Atk_HandAnim"))
             // {
             //     handAnimator.ResetTrigger("Attack");
