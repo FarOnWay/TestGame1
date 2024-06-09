@@ -8,6 +8,7 @@ public class HandController : Entity
     public Item equippedItem;
     public float rotationSpeed = 0;
     public Collider2D itemHitbox;
+    public bool isHittingEnemy = false;
 
     void Start()
     {
@@ -18,28 +19,48 @@ public class HandController : Entity
 
     // then call it in the player's script to check if the enemy is hit
     // if so, calls the dealDamage method +
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            isHittingEnemy = true;
+        }
+       // Debug.Log("AIAIA BEEBE TOMA AI PODE ESCOLHER");
+
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        isHittingEnemy = false;
+    }
     public bool isTouchingEnemy()
     {
-        if (itemHitbox != null)
-        {
-            // Get the bounds of the itemHitbox
-            Bounds itemBounds = itemHitbox.bounds;
+        Debug.Log("isHittingEnemy: " + isHittingEnemy);
+        return isHittingEnemy;
+        // if (itemHitbox != null)
+        // {
+        //     // Calculate the world space position of the itemHitbox
+        //     Vector2 itemPosition = transform.position + (Vector3)itemHitbox.offset;
+        //     Vector2 itemSize = itemHitbox.bounds.size;
+        //     // Debug.Log("itemPosition: " + itemPosition);
+        //     // Debug.Log("itemSize: " + itemSize);
 
-            // Get all colliders overlapping with the itemHitbox
-            Collider2D[] hits = Physics2D.OverlapBoxAll(itemBounds.center, itemBounds.size, 0);
+        //     // Get all colliders overlapping with the itemHitbox
+        //     Collider2D[] hits = Physics2D.OverlapBoxAll(itemPosition, itemSize, 0);
+        //     // Debug.Log("hits: " + hits.Length);
 
-            // Check if any of the overlapping colliders have the "Enemy" tag
-            foreach (Collider2D hit in hits)
-            {
-                if (hit.CompareTag("Enemy"))
-                {
-                    Debug.Log("aiaiai beebe toma ai pode escolher");
-                    Debug.Log("Item is touching enemy");
-                    return true;
-                }
-            }
-        }
-        return false;
+        //     // Check if any of the overlapping colliders have the "Enemy" tag
+        //     foreach (Collider2D hit in hits)
+        //     {
+        //         if (hit.CompareTag("Enemy"))
+        //         {
+        //             Debug.Log("bota q bota");
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return true;
     }
 
     void setSprite()
@@ -71,7 +92,7 @@ public class HandController : Entity
                     {
                         float attackSpeed = attackItem.attackSpeed;
                         rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees
-                        Debug.Log("Attack speed: " + attackSpeed);
+                                                            // Debug.Log("Attack speed: " + attackSpeed);
                     }
                     break;
 
@@ -89,13 +110,14 @@ public class HandController : Entity
 
     void Update()
     {
+        isTouchingEnemy();
+
         if (equippedItem != null && equippedItem.itemPrefab != null)
         {
             itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
         }
         else itemHitbox = null;
 
-        isTouchingEnemy();
         setSprite();
         getInfoFromEquippedItem();
 

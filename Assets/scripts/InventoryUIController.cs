@@ -28,7 +28,7 @@ public class InventoryUIController : MonoBehaviour
         {
             if (Input.GetKeyDown(i.ToString()))
             {
-                Debug.Log("Key " + i + " pressed");
+               // Debug.Log("Key " + i + " pressed");
                 inventoryController.UseItem(i);
                 SelectSlot(i);
             }
@@ -37,7 +37,7 @@ public class InventoryUIController : MonoBehaviour
 
     public void SelectSlot(int index)
     {
-          Debug.Log("test");
+        //  Debug.Log("test");
         inventoryController.UseItem(index);
 
 
@@ -64,7 +64,7 @@ public class InventoryUIController : MonoBehaviour
     public void updateInventoryHUD(Item item, bool isNewItem)
     {
         // Debug.Log("Updating inventory HUD");
-        Debug.Log("nome do item: " + item.name);
+      //  Debug.Log("nome do item: " + item.name);
 
         if (isNewItem)
         {

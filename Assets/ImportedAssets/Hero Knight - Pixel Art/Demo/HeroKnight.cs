@@ -75,8 +75,8 @@ public class HeroKnight : Entity
     // Use this for initialization
     void Start()
     {
-        if (handAnimator == null) Debug.Log("handAnimator is null");
-        else Debug.Log("handAnimator is not null");
+       // if (handAnimator == null) Debug.Log("handAnimator is null");
+       // else Debug.Log("handAnimator is not null");
 
         // health = maxHealth;
         lifeManager = GetComponent<LifeManager>();
@@ -104,7 +104,7 @@ public class HeroKnight : Entity
     public void EquipItem(Item item)
     {
         equippedItem = item;
-        Debug.Log("you equipped " + item.name);
+      //  Debug.Log("you equipped " + item.name);
 
         // Update the player's sprite or model to show the equipped item
         // This will depend on how your sprites or models are set up
@@ -133,7 +133,7 @@ public class HeroKnight : Entity
         if (other.gameObject.CompareTag("Item"))
         {
             Debug.ClearDeveloperConsole();
-            Debug.Log("AOOOOBA");
+           // Debug.Log("AOOOOBA");
             ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
 
             if (itemInstance != null && itemInstance.item != null)
@@ -210,8 +210,8 @@ public class HeroKnight : Entity
 
     int fallDamageCalc()
     {
-        int minimumFallSpeed = -8; //using nevative value because when falling in the Y axxis, the unity uses negative values
-        int damageMultiplier = 25;
+        int minimumFallSpeed = -7; //using nevative value because when falling in the Y axxis, the unity uses negative values
+        int damageMultiplier = 12;
 
         if (m_body2d.velocity.y < minimumFallSpeed)
         {
@@ -273,7 +273,7 @@ public class HeroKnight : Entity
                 attackSpeed = attackItem.attackSpeed;
                 // Debug.Log("Damage: " + damage);
             }
-            else Debug.Log("sexo");
+         //   else Debug.Log("sexo");
         }
         else
         {
@@ -345,8 +345,9 @@ public class HeroKnight : Entity
 
         else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling && attackSpeed != 0)
         {
-            m_animator.SetTrigger("Attack" + m_currentAttack);
-            handAnimator.SetTrigger("Attack");
+         //   m_animator.SetTrigger("Attack" + m_currentAttack);
+          //  handAnimator.SetTrigger("Attack");
+           // Debug.Log(isTouchingEnemy);
 
             if (m_facingDirection > 0 && isTouchingEnemy) base.DealDamage(damage, true, false);
 
