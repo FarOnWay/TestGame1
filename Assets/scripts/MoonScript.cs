@@ -36,7 +36,7 @@ public class MoonScript : MonoBehaviour
 
         else
         {
-            Debug.Log("lua normal");
+          //  Debug.Log("lua normal");
             int spriteIndex = activeCount % moonPhasesSprites.Length;
             if (spriteIndex == 8)
             {

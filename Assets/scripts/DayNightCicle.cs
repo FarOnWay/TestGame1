@@ -36,7 +36,7 @@ public class DayNightCycle : MonoBehaviour
                 moon.SetActive(true);
                 moon.GetComponent<MoonScript>().RiseMoon();
                 // MoonScript.activeCount++;
-                Debug.Log("A lua apareceu: " + MoonScript.activeCount);
+              //  Debug.Log("A lua apareceu: " + MoonScript.activeCount);
             }
         }
         else if (fraction < 7f / 24f)
