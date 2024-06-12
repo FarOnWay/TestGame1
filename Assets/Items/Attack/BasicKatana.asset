@@ -17,6 +17,7 @@ MonoBehaviour:
   itemScript: {fileID: 0}
   icon: {fileID: 1841707910964957788, guid: 26219afe650eca349a89f642aec6aaf2, type: 3}
   itemPrefab: {fileID: 848452796576055807, guid: 4552387f3f57f37c582c8b7e7557e630, type: 3}
+  itemCollision: {fileID: -3437202838215743541, guid: 4552387f3f57f37c582c8b7e7557e630, type: 3}
   damage: 10
   attackSpeed: 1
   criticalChance: 10

@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour
 
     public virtual void DealDamage(int damage, bool isPlayer, bool isLookLeft)
     {
-        Debug.Log("DealDamage");
+       // Debug.Log("DealDamage");
         Vector2 hitboxSize = new Vector2(1.5f, 1.5f); // Hitbox size is constant
         Vector2 hitboxCenter;
 
@@ -51,6 +51,7 @@ public class Entity : MonoBehaviour
             {
                 if (collider.CompareTag("Enemy"))
                 {
+                    Debug.Log("Enemy hit");
                     EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
                     if (enemy != null)
                     {

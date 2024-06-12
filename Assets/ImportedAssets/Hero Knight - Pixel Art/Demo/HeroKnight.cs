@@ -75,8 +75,8 @@ public class HeroKnight : Entity
     // Use this for initialization
     void Start()
     {
-       // if (handAnimator == null) Debug.Log("handAnimator is null");
-       // else Debug.Log("handAnimator is not null");
+        // if (handAnimator == null) Debug.Log("handAnimator is null");
+        // else Debug.Log("handAnimator is not null");
 
         // health = maxHealth;
         lifeManager = GetComponent<LifeManager>();
@@ -104,7 +104,7 @@ public class HeroKnight : Entity
     public void EquipItem(Item item)
     {
         equippedItem = item;
-      //  Debug.Log("you equipped " + item.name);
+        //  Debug.Log("you equipped " + item.name);
 
         // Update the player's sprite or model to show the equipped item
         // This will depend on how your sprites or models are set up
@@ -133,7 +133,7 @@ public class HeroKnight : Entity
         if (other.gameObject.CompareTag("Item"))
         {
             Debug.ClearDeveloperConsole();
-           // Debug.Log("AOOOOBA");
+            // Debug.Log("AOOOOBA");
             ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
 
             if (itemInstance != null && itemInstance.item != null)
@@ -259,6 +259,7 @@ public class HeroKnight : Entity
         fallDamageCalc();
         equippedItem = hand.GetComponent<HandController>().equippedItem;
         isTouchingEnemy = hand.GetComponent<HandController>().isTouchingEnemy();
+        //  Debug.Log("no hero knight: " + isTouchingEnemy);
 
 
         #region Item Usage
@@ -273,7 +274,7 @@ public class HeroKnight : Entity
                 attackSpeed = attackItem.attackSpeed;
                 // Debug.Log("Damage: " + damage);
             }
-         //   else Debug.Log("sexo");
+            //   else Debug.Log("sexo");
         }
         else
         {
@@ -345,13 +346,21 @@ public class HeroKnight : Entity
 
         else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling && attackSpeed != 0)
         {
-         //   m_animator.SetTrigger("Attack" + m_currentAttack);
-          //  handAnimator.SetTrigger("Attack");
-           // Debug.Log(isTouchingEnemy);
+            // m_animator.SetTrigger("Attack" + m_currentAttack);
+            //  handAnimator.SetTrigger("Attack");
+            // Debug.Log(isTouchingEnemy);
 
-            if (m_facingDirection > 0 && isTouchingEnemy) base.DealDamage(damage, true, false);
+            if (m_facingDirection > 0 && isTouchingEnemy)
+            {
+                //  Debug.Log("A");
+                base.DealDamage(damage, true, false);
 
-            else if (isTouchingEnemy) base.DealDamage(damage, true, true);
+            }
+            else if (isTouchingEnemy)
+            {
+                //  Debug.Log("B");
+                base.DealDamage(damage, true, true);
+            }
 
             m_currentAttack++;
 

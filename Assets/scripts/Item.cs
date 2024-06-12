@@ -26,6 +26,17 @@ public class Item : ScriptableObject
     public ItemRarity itemRarity;
     public MonoBehaviour itemScript;
     public Sprite icon;
-    public GameObject itemPrefab; 
+    public GameObject itemPrefab;
+    public ItemCollisionDetector itemCollision;
+
+    public bool IsTouchingEnemy()
+    {
+        if (itemCollision != null)
+        {
+            return itemCollision.isTouchingEnemy;
+        }
+        return false;
+
+    }
 
 }
