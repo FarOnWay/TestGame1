@@ -25,8 +25,10 @@ public class HandController : Entity
         if (other.CompareTag("Enemy"))
         {
             isHittingEnemy = true;
+            Debug.ClearDeveloperConsole();
+           // Debug.Log("isHittingEnemy: " + isHittingEnemy);
         }
-       // Debug.Log("AIAIA BEEBE TOMA AI PODE ESCOLHER");
+        // Debug.Log("AIAIA BEEBE TOMA AI PODE ESCOLHER");
 
     }
 
@@ -36,7 +38,7 @@ public class HandController : Entity
     }
     public bool isTouchingEnemy()
     {
-        Debug.Log("isHittingEnemy: " + isHittingEnemy);
+      //  Debug.Log("isHittingEnemy: " + isHittingEnemy);
         return isHittingEnemy;
         // if (itemHitbox != null)
         // {

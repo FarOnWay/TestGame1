@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlimeSpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 1f;
+    [SerializeField] public float spawnRate = 0.1f;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] public bool canSpawn = true;
 

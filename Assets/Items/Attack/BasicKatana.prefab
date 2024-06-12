@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -2918157623685931493}
   - component: {fileID: -5238863464733029171}
   - component: {fileID: -5228999633126370792}
+  - component: {fileID: -3437202838215743541}
   m_Layer: 0
   m_Name: BasicKatana
   m_TagString: Item
@@ -118,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021703899, y: 0.42263636}
+  m_Offset: {x: 0.2016305, y: -0.17928648}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7478508, y: 2.1601093}
+  m_Size: {x: 2.1077037, y: 3.363955}
   m_EdgeRadius: 0
 --- !u!114 &-5228999633126370792
 MonoBehaviour:
@@ -144,3 +145,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 4c2c4db134d6dd4ad9c3ec3f312405cb, type: 2}
+--- !u!114 &-3437202838215743541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848452796576055807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6a3fb42fc33bc228a04ff2ae5636b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTouchingEnemy: 0
