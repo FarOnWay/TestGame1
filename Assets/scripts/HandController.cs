@@ -8,14 +8,63 @@ public class HandController : Entity
     public Item equippedItem;
     public float rotationSpeed = 0;
     public Collider2D itemHitbox;
+    public Collider2D self_Collider;
     public bool isHittingEnemy = false;
 
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        self_Collider.enabled = true;
+        // self_Collider = this.GetComponent<Collider2D>();
         //  itemHitbox = GetComponent<Collider2D>();
     }
 
+    void Update()
+    {
+        //   Debug.Log(self_Collider + " self no começo do update");
+        isTouchingEnemy();
+        if (equippedItem != null && equippedItem.itemPrefab != null)
+        {
+            itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
+            itemHitbox.enabled = true;
+            self_Collider = itemHitbox;
+
+        }
+
+        else
+        {
+            itemHitbox = null;
+            if (self_Collider != null)
+            {
+                //   self_Collider.enabled = false;
+                self_Collider = null;
+            }
+        }
+
+        Debug.Log(itemHitbox);
+        //  Debug.Log(self_Collider + " self");
+
+
+
+        setSprite();
+        getInfoFromEquippedItem();
+
+        float inputX = Input.GetAxis("Horizontal");
+
+        if (inputX > 0)
+        {
+            sprite.flipX = false;
+        }
+        else if (inputX < 0)
+        {
+            sprite.flipX = true;
+        }
+
+        if (Input.GetButtonDown("Fire1") && !isAttacking)
+        {
+            StartCoroutine(Attack());
+        }
+    }
 
     // then call it in the player's script to check if the enemy is hit
     // if so, calls the dealDamage method +
@@ -25,8 +74,8 @@ public class HandController : Entity
         if (other.CompareTag("Enemy"))
         {
             isHittingEnemy = true;
-            Debug.ClearDeveloperConsole();
-           // Debug.Log("isHittingEnemy: " + isHittingEnemy);
+            Debug.Log("VAI TOMA " + isHittingEnemy);
+            // Debug.Log("isHittingEnemy: " + isHittingEnemy);
         }
         // Debug.Log("AIAIA BEEBE TOMA AI PODE ESCOLHER");
 
@@ -38,7 +87,7 @@ public class HandController : Entity
     }
     public bool isTouchingEnemy()
     {
-      //  Debug.Log("isHittingEnemy: " + isHittingEnemy);
+        //  Debug.Log("isHittingEnemy: " + isHittingEnemy);
         return isHittingEnemy;
         // if (itemHitbox != null)
         // {
@@ -110,35 +159,7 @@ public class HandController : Entity
     }
     private bool isAttacking = false;
 
-    void Update()
-    {
-        isTouchingEnemy();
 
-        if (equippedItem != null && equippedItem.itemPrefab != null)
-        {
-            itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
-        }
-        else itemHitbox = null;
-
-        setSprite();
-        getInfoFromEquippedItem();
-
-        float inputX = Input.GetAxis("Horizontal");
-
-        if (inputX > 0)
-        {
-            sprite.flipX = false;
-        }
-        else if (inputX < 0)
-        {
-            sprite.flipX = true;
-        }
-
-        if (Input.GetButtonDown("Fire1") && !isAttacking)
-        {
-            StartCoroutine(Attack());
-        }
-    }
     IEnumerator Attack()
     {
         isAttacking = true;
