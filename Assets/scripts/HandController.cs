@@ -31,6 +31,11 @@ public class HandController : Entity
 
         }
 
+        // if(equippedItem  == null)
+        // {
+        //     self_Collider.enabled = false;
+        // }
+
         else
         {
             itemHitbox = null;
@@ -41,7 +46,7 @@ public class HandController : Entity
             }
         }
 
-        Debug.Log(itemHitbox);
+        //  Debug.Log(itemHitbox);
         //  Debug.Log(self_Collider + " self");
 
 
@@ -74,7 +79,7 @@ public class HandController : Entity
         if (other.CompareTag("Enemy"))
         {
             isHittingEnemy = true;
-            Debug.Log("VAI TOMA " + isHittingEnemy);
+            Debug.Log("hittando um inimigo nessa porra ");
             // Debug.Log("isHittingEnemy: " + isHittingEnemy);
         }
         // Debug.Log("AIAIA BEEBE TOMA AI PODE ESCOLHER");
@@ -83,10 +88,12 @@ public class HandController : Entity
 
     void OnTriggerExit2D(Collider2D other)
     {
-        isHittingEnemy = false;
+        //  Debug.Log("AOIUCA DZRIKUYVSIURSTHGNBDIRUYN");
+        // isHittingEnemy = false;
     }
     public bool isTouchingEnemy()
     {
+        //  Debug.Log("isHittingEnemy: " + isHittingEnemy);
         //  Debug.Log("isHittingEnemy: " + isHittingEnemy);
         return isHittingEnemy;
         // if (itemHitbox != null)
