@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Ground
   - Item
+  - Hand
   layers:
   - Default
   - TransparentFX
