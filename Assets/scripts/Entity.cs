@@ -52,12 +52,10 @@ public class Entity : MonoBehaviour
                 if (collider.CompareTag("Enemy"))
                 {
                    // Debug.Log("Enemy hit");
-                    EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
-                    if (enemy != null)
+                    if (collider.gameObject.TryGetComponent<EnemyController>(out var enemy))
                     {
                         enemy.TakeDamage(damage);
-                        Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
-                        if (enemyRb != null)
+                        if (collider.gameObject.TryGetComponent<Rigidbody2D>(out var enemyRb))
                         {
                             Vector2 knockbackDirection = (enemyRb.transform.position - transform.position).normalized;
                             knockbackDirection = (knockbackDirection + new Vector2(0, 1f)).normalized;
