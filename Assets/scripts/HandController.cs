@@ -79,9 +79,12 @@ public class HandController : Entity
         if (other.CompareTag("Enemy"))
         {
             isHittingEnemy = true;
-            Debug.Log("hittando um inimigo nessa porra ");
+           // Debug.Log("hittando um inimigo nessa porra ");
             // Debug.Log("isHittingEnemy: " + isHittingEnemy);
         }
+        else isHittingEnemy = false;
+
+
         // Debug.Log("AIAIA BEEBE TOMA AI PODE ESCOLHER");
 
     }
