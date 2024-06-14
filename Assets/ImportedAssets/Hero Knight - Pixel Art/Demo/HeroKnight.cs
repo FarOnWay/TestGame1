@@ -251,16 +251,14 @@ public class HeroKnight : Entity
         // }
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
         fallDamageCalc();
         equippedItem = hand.GetComponent<HandController>().equippedItem;
-        isTouchingEnemy = hand.GetComponent<HandController>().isTouchingEnemy();
-       // Debug.Log("no hero knight: " + isTouchingEnemy);
-
+        isTouchingEnemy = hand.GetComponent<HandController>().isHittingEnemy;
+        Debug.Log("TOCANDO INIMGO? " + isTouchingEnemy);
+        // Debug.Log("no hero knight: " + isTouchingEnemy);
 
         #region Item Usage
 
@@ -346,20 +344,23 @@ public class HeroKnight : Entity
 
         else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling && attackSpeed != 0)
         {
-          //  Debug.Log("ATTACKING");
+            //  Debug.Log("ATTACKING");
             // m_animator.SetTrigger("Attack" + m_currentAttack);
             //  handAnimator.SetTrigger("Attack");
             // Debug.Log(isTouchingEnemy);
-
             if (m_facingDirection > 0 && isTouchingEnemy)
             {
-               // Debug.Log("A");
+                // Debug.Log("A");
+               // Debug.Log("APE APE APE");
+
                 base.DealDamage(damage, true, false);
 
             }
             else if (isTouchingEnemy)
             {
-              // Debug.Log("B");
+                // Debug.Log("B");
+               // Debug.Log("APE APE APE");
+
                 base.DealDamage(damage, true, true);
             }
 

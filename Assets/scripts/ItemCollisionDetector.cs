@@ -6,12 +6,12 @@ public class ItemCollisionDetector : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("TESTANDO ALO");
+      //  Debug.Log("TESTANDO ALO");
     }
 
     void Update()
     {
-        Debug.Log("TESTANDO ALO");
+      //  Debug.Log("TESTANDO ALO");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

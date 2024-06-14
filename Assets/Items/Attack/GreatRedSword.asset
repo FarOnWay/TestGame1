@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: BasicKatana
+  m_Name: GreatRedSword
   m_EditorClassIdentifier: Assembly-CSharp::Attack/AttackItem
   itemType: 1
-  itemRarity: 1
+  itemRarity: 4
   itemScript: {fileID: 0}
-  icon: {fileID: 1841707910964957788, guid: 26219afe650eca349a89f642aec6aaf2, type: 3}
-  itemPrefab: {fileID: 848452796576055807, guid: 4552387f3f57f37c582c8b7e7557e630, type: 3}
-  itemCollision: {fileID: -3437202838215743541, guid: 4552387f3f57f37c582c8b7e7557e630, type: 3}
-  damage: 100
-  attackSpeed: 2
-  criticalChance: 10
-  knockbackForce: 2
+  icon: {fileID: 21300000, guid: b08b8fb90dd87984d8f4ea524f1876ec, type: 3}
+  itemPrefab: {fileID: 3076748505624361991, guid: 6c3b64f39762376a9a631c9c57fd5009, type: 3}
+  itemCollision: {fileID: 0}
+  damage: 200
+  attackSpeed: 0.5
+  criticalChance: 20
+  knockbackForce: 10
