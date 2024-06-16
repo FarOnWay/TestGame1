@@ -66,7 +66,7 @@ public class InventoryUIController : MonoBehaviour
         // Debug.Log("Updating inventory HUD");
       //  Debug.Log("nome do item: " + item.name);
 
-        if (isNewItem)
+        if (isNewItem && currentSlotIndex < INVENTORY_SIZE - 1)
         {
             currentSlotIndex++;
         }
