@@ -8,31 +8,20 @@ using Unity.VisualScripting;
 
 public class HeroKnight : Entity
 {
-
     [SerializeField] float m_speed = 4.0f;
-
     public ItemNameDisplay itemNameDisplay;
-
     public Item equippedItem;
-
     bool isTouchingEnemy;
-
     public InventoryController inventory;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] float m_rollForce = 6.0f;
     [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
-
     RespawnController respawn;
-
     private Animator m_animator;
-
     public GameObject hand;
-
     private Animator handAnimator;
-
     // public GameObject hand;
-
     private Rigidbody2D m_body2d;
     private Sensor_HeroKnight m_groundSensor;
     private Sensor_HeroKnight m_wallSensorR1;
@@ -49,35 +38,23 @@ public class HeroKnight : Entity
     private float m_rollDuration = 8.0f / 14.0f;
     private float m_rollCurrentTime;
     bool isShildUpNow = false;
-
     public float attackSpeed = 0f;
-
+    LifeManager lifeManager;
+    int fallDamage = 0;
+    public int damage = 0;
+    Vector2 startPos;
     // public lifeBar lifeBar;
-
     // public CoinManager cm;
     // public Text lifeUI;
-    int velocity;
     // public int maxHealth = 100;
     // public float knockbackForce = 2f;
-
-    LifeManager lifeManager;
-
-    int fallDamage = 0;
-
-    public int damage = 0;
-
-    Vector2 startPos;
-
     // public int coinAmoint;
-
     // public enemy enemy;
-
     // Use this for initialization
     void Start()
     {
         // if (handAnimator == null) Debug.Log("handAnimator is null");
         // else Debug.Log("handAnimator is not null");
-
         // health = maxHealth;
         lifeManager = GetComponent<LifeManager>();
         inventory = GetComponent<InventoryController>();
@@ -88,10 +65,7 @@ public class HeroKnight : Entity
         // m_animator.ResetTrigger("Attack1");
         // m_animator.ResetTrigger("Attack2");
         // m_animator.ResetTrigger("Attack3");
-
-
         // lifeBar.SetMaxHealth(maxHealth);
-
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
@@ -99,17 +73,6 @@ public class HeroKnight : Entity
         m_wallSensorR2 = transform.Find("WallSensor_R2").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL1 = transform.Find("WallSensor_L1").GetComponent<Sensor_HeroKnight>();
         m_wallSensorL2 = transform.Find("WallSensor_L2").GetComponent<Sensor_HeroKnight>();
-    }
-
-    public void EquipItem(Item item)
-    {
-        equippedItem = item;
-        //  Debug.Log("you equipped " + item.name);
-
-        // Update the player's sprite or model to show the equipped item
-        // This will depend on how your sprites or models are set up
-        // For example, if you have a separate sprite for each item, you could do something like this:
-        //  spriteRenderer.sprite = item.sprite;
     }
 
     bool ShieldUp(bool isShildUpNow)
@@ -342,16 +305,19 @@ public class HeroKnight : Entity
 
         #region Attack
 
-        else if (Input.GetMouseButton(0) && m_timeSinceAttack > attackSpeed && !m_rolling && attackSpeed != 0)
+        else if (Input.GetMouseButton(0) && !m_rolling && attackSpeed != 0)
         {
+            Debug.Log("SDISDFIJFUHFUGDUFHDUS SFUDUFHWDUFHUDFH  WSFDUWUFW " + isTouchingEnemy);
+            isTouchingEnemy = true;
             //  Debug.Log("ATTACKING");
             // m_animator.SetTrigger("Attack" + m_currentAttack);
             //  handAnimator.SetTrigger("Attack");
             // Debug.Log(isTouchingEnemy);
-            if (m_facingDirection > 0 && isTouchingEnemy)
+            if (m_facingDirection >= 0 && isTouchingEnemy)
             {
                 // Debug.Log("A");
-               // Debug.Log("APE APE APE");
+                // Debug.Log("APE APE APE");
+                Debug.Log("DAMAGING ENEMY");
 
                 base.DealDamage(damage, true, false);
 
@@ -359,7 +325,7 @@ public class HeroKnight : Entity
             else if (isTouchingEnemy)
             {
                 // Debug.Log("B");
-               // Debug.Log("APE APE APE");
+                // Debug.Log("APE APE APE");
 
                 base.DealDamage(damage, true, true);
             }

@@ -13,7 +13,6 @@ public class LifeUI : MonoBehaviour
     void Start()
     {
         manager = player.GetComponent<LifeManager>();
-
     }
     
     void Update()
