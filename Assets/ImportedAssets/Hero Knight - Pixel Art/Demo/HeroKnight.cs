@@ -95,7 +95,7 @@ public class HeroKnight : Entity
 
         if (other.gameObject.CompareTag("Item"))
         {
-            Debug.ClearDeveloperConsole();
+            if (inventory.isInventorFull == true) return;
             // Debug.Log("AOOOOBA");
             ItemInstance itemInstance = other.gameObject.GetComponent<ItemInstance>();
 

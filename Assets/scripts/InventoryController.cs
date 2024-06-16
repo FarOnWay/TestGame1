@@ -12,6 +12,7 @@ public class InventoryController : MonoBehaviour
     public GameObject playerHand;
     // public ItemController[] Slots = new ItemController[10];
     public static Dictionary<Item, int> Inventory = new();
+    public bool isInventorFull = false;
 
     public GameObject extendedInventory;
     // has_many items
@@ -42,14 +43,39 @@ public class InventoryController : MonoBehaviour
 
     public void CollectItem(Item item)
     {
-        // Debug.Log("CollectItem called with item " + item.Name);
-        if (Inventory.ContainsKey(item)) Inventory[item]++;
-        
-         else Inventory.Add(item, 1);
+        int maxInventorySize = 4; // Define your maximum inventory size here
 
-        inventoryUIController.updateInventoryHUD(item, Inventory.ContainsKey(item));
-        // Debug.Log("Inventory count after collecting item: " + Inventory.Count);
+        // Calculate the total number of items in the inventory
+        int totalItemCount = Inventory.Values.Sum();
+
+        // Check if the inventory is full
+        if (totalItemCount >= maxInventorySize)
+        {
+            Debug.Log("INVENTORY IS FULL");
+            isInventorFull = true;
+            return;
+        }
+
+        else
+        {
+            Debug.Log("QUERO MINHA EX DE VOLTA");
+            if (Inventory.ContainsKey(item))
+            {
+                Inventory[item]++;
+            }
+            else
+            {
+                Inventory.Add(item, 1);
+            }
+
+            inventoryUIController.updateInventoryHUD(item, Inventory.ContainsKey(item));
+        }
+        //  Debug.Log("INVENTORY COUNT " + totalItemCount);
+
+        // Collect the item
+
     }
+
     public void UseItem(int index)
     {
         List<Item> items = new(Inventory.Keys);
@@ -60,10 +86,10 @@ public class InventoryController : MonoBehaviour
 
             if (item != null && item.icon != null) playerHand.GetComponent<HandController>().equippedItem = item;
 
-             else playerHand.GetComponent<HandController>().equippedItem = null;
+            else playerHand.GetComponent<HandController>().equippedItem = null;
         }
 
-         else playerHand.GetComponent<HandController>().equippedItem = null;
+        else playerHand.GetComponent<HandController>().equippedItem = null;
     }
 
     public void SeeInventory()
