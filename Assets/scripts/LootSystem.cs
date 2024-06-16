@@ -12,6 +12,7 @@ public class LootSystem : MonoBehaviour
         // Instantiate the item prefabs at the current position
         foreach (Item item in itemsToDrop)
         {
+           // Debug.Log("Dropping " + item.itemPrefab.name);
             Instantiate(item.itemPrefab, transform.position, Quaternion.identity);
         }
     }

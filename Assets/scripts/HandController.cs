@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class HandController : Entity
+public class HandController : MonoBehaviour
 {
     public SpriteRenderer sprite;
     public Transform player;
@@ -29,8 +29,8 @@ public class HandController : Entity
         {
             itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
             itemHitbox.enabled = true;
-            Debug.Log("HITBOX DO ITEM  " + itemHitbox);
-            Debug.Log("self_Collider  " + self_Collider);
+           // Debug.Log("HITBOX DO ITEM  bounds" + itemHitbox.bounds);
+           // Debug.Log("self_Collider bounds" + self_Collider.bounds);
             self_Collider = itemHitbox;
 
         }

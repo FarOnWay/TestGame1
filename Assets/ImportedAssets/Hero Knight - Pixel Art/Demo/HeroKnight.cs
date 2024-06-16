@@ -305,10 +305,11 @@ public class HeroKnight : Entity
 
         #region Attack
 
-        else if (Input.GetMouseButton(0) && !m_rolling && attackSpeed != 0)
+        else if (Input.GetMouseButton(0) && !m_rolling)
         {
-            Debug.Log("SDISDFIJFUHFUGDUFHDUS SFUDUFHWDUFHUDFH  WSFDUWUFW " + isTouchingEnemy);
             isTouchingEnemy = true;
+
+            Debug.Log("SDISDFIJFUHFUGDUFHDUS SFUDUFHWDUFHUDFH  WSFDUWUFW " + isTouchingEnemy);
             //  Debug.Log("ATTACKING");
             // m_animator.SetTrigger("Attack" + m_currentAttack);
             //  handAnimator.SetTrigger("Attack");
