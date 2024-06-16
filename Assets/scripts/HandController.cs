@@ -10,6 +10,8 @@ public class HandController : Entity
     public Collider2D itemHitbox;
     public Collider2D self_Collider;
     public bool isHittingEnemy = false;
+    public InGameMessages inGameMessages;
+    int counter = 0;
 
     void Start()
     {
@@ -27,10 +29,11 @@ public class HandController : Entity
         {
             itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
             itemHitbox.enabled = true;
+            Debug.Log("HITBOX DO ITEM  " + itemHitbox);
+            Debug.Log("self_Collider  " + self_Collider);
             self_Collider = itemHitbox;
 
         }
-
         // if(equippedItem  == null)
         // {
         //     self_Collider.enabled = false;
@@ -45,11 +48,8 @@ public class HandController : Entity
                 self_Collider = null;
             }
         }
-
         //  Debug.Log(itemHitbox);
         //  Debug.Log(self_Collider + " self");
-
-
 
         setSprite();
         getInfoFromEquippedItem();
@@ -65,7 +65,7 @@ public class HandController : Entity
             sprite.flipX = true;
         }
 
-        if (Input.GetButtonDown("Fire1") && !isAttacking)
+        if (Input.GetButton("Fire1") && !isAttacking)
         {
             StartCoroutine(Attack());
         }
@@ -78,6 +78,8 @@ public class HandController : Entity
     {
         if (other.CompareTag("Enemy"))
         {
+            counter++;
+            inGameMessages.PrintMessage("HITTING ENEMY " + counter, Color.red);
             isHittingEnemy = true;
            // Debug.Log("hittando um inimigo nessa porra ");
             // Debug.Log("isHittingEnemy: " + isHittingEnemy);
@@ -91,6 +93,7 @@ public class HandController : Entity
 
     void OnTriggerExit2D(Collider2D other)
     {
+        counter = 0;
         //  Debug.Log("AOIUCA DZRIKUYVSIURSTHGNBDIRUYN");
         // isHittingEnemy = false;
     }
