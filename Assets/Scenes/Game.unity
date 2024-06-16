@@ -81754,13 +81754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1020c975338ed100bd0fb6d9ef54610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  loot: {fileID: 0}
-  lifeManager: {fileID: 0}
-  hero: {fileID: 0}
-  Item: {fileID: 0}
-  knockbackForce: 0
-  rb: {fileID: 0}
   sprite: {fileID: 0}
   player: {fileID: 1693460341}
   equippedItem: {fileID: 0}
