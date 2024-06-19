@@ -17,6 +17,10 @@ public class ProjectScript : MonoBehaviour
         {
             player.TakeDamage(10);
         }
+        if(other.CompareTag("Enemy"))
+        {
+            
+        }
         Destroy(gameObject);
     }
 }
