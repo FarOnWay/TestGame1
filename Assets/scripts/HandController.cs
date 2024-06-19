@@ -11,6 +11,9 @@ public class HandController : MonoBehaviour
     public Collider2D self_Collider;
     public bool isHittingEnemy = false;
     public InGameMessages inGameMessages;
+    public bool rangedItem = false;
+    public GameObject projectilePrefab;
+
     int counter = 0;
 
     void Start()
@@ -29,8 +32,8 @@ public class HandController : MonoBehaviour
         {
             itemHitbox = equippedItem.itemPrefab.GetComponent<BoxCollider2D>();
             itemHitbox.enabled = true;
-           // Debug.Log("HITBOX DO ITEM  bounds" + itemHitbox.bounds);
-           // Debug.Log("self_Collider bounds" + self_Collider.bounds);
+            // Debug.Log("HITBOX DO ITEM  bounds" + itemHitbox.bounds);
+            // Debug.Log("self_Collider bounds" + self_Collider.bounds);
             self_Collider = itemHitbox;
 
         }
@@ -65,9 +68,14 @@ public class HandController : MonoBehaviour
             sprite.flipX = true;
         }
 
-        if (Input.GetButton("Fire1") && !isAttacking)
+        if (Input.GetButton("Fire1") && !isAttacking && rangedItem == false)
         {
             StartCoroutine(Attack());
+        }
+
+        else if (Input.GetButtonDown("Fire1") && !isAttacking && rangedItem == true)
+        {
+            StartCoroutine(RangedAttack());
         }
     }
 
@@ -81,7 +89,7 @@ public class HandController : MonoBehaviour
             counter++;
             inGameMessages.PrintMessage("HITTING ENEMY " + counter, Color.red);
             isHittingEnemy = true;
-           // Debug.Log("hittando um inimigo nessa porra ");
+            // Debug.Log("hittando um inimigo nessa porra ");
             // Debug.Log("isHittingEnemy: " + isHittingEnemy);
         }
         else isHittingEnemy = false;
@@ -154,6 +162,8 @@ public class HandController : MonoBehaviour
                     Attack.AttackItem attackItem = equippedItem as Attack.AttackItem;
                     if (attackItem != null)
                     {
+                        rangedItem = false;
+
                         float attackSpeed = attackItem.attackSpeed;
                         rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees
                                                             // Debug.Log("Attack speed: " + attackSpeed);
@@ -166,6 +176,16 @@ public class HandController : MonoBehaviour
 
                 case ItemType.Material:
                     Debug.Log("Equipped item is a material.");
+                    break;
+
+                case ItemType.Ranged:
+                    Debug.Log("Equipped item is a ranged weapon.");
+                    rangedItem = true;
+                    break;
+
+                default:
+                    rangedItem = false;
+                    equippedItem = null;
                     break;
             }
         }
@@ -197,4 +217,26 @@ public class HandController : MonoBehaviour
 
         isAttacking = false;
     }
+
+    public float projectileSpeed = 10f;
+
+    IEnumerator RangedAttack()
+    {
+        // Instantiate the projectile at the player's position
+        GameObject projectile = Instantiate(projectilePrefab, player.position, Quaternion.identity);
+
+        // Calculate the direction to launch the projectile
+        Vector3 launchDirection = sprite.flipX ? Vector3.left : Vector3.right;
+
+        // Add force to the projectile
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.AddForce(launchDirection * projectileSpeed, ForceMode2D.Impulse);
+        }
+
+        yield return null;
+    }
+
+
 }

@@ -6,6 +6,7 @@ public enum ItemType
     Attack,
     Defense,
     Material,
+    Ranged,
 
 }
 
