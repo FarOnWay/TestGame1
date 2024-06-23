@@ -58,7 +58,7 @@ public class InventoryController : MonoBehaviour
 
         else
         {
-            Debug.Log("QUERO MINHA EX DE VOLTA");
+           // Debug.Log("QUERO MINHA EX DE VOLTA");
             if (Inventory.ContainsKey(item))
             {
                 Inventory[item]++;
