@@ -1708,7 +1708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5756,7 +5756,7 @@ GameObject:
   - component: {fileID: 711275781}
   m_Layer: 0
   m_Name: Cat-2-Run_0
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67528,17 +67528,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1173703369058084995, guid: 8e15c0d0e3051b03abada58777432c74, type: 3}
   m_PrefabInstance: {fileID: 1958514583}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &728889729 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3998296552199192656, guid: c41e9f71df4f78e11aad40677b8e2eed, type: 3}
-  m_PrefabInstance: {fileID: 2631679983846386040}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4470e98a21a791b60ae82b3a6125cff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &728937715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67553,7 +67542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2018365450437254144, guid: 1509360826d6bb34587310ad4949fdd5, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2018365450437254146, guid: 1509360826d6bb34587310ad4949fdd5, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -69054,7 +69043,7 @@ GameObject:
   - component: {fileID: 910375174}
   m_Layer: 0
   m_Name: Flight_0
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69141,7 +69130,7 @@ Transform:
   m_GameObject: {fileID: 910375167}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.87, y: 1.69, z: 0}
+  m_LocalPosition: {x: -23.3, y: -1.29, z: 0}
   m_LocalScale: {x: 2.9229684, y: 2.0942347, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75789,7 +75778,7 @@ GameObject:
   - component: {fileID: 1535936633}
   m_Layer: 0
   m_Name: Idle_0
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75876,7 +75865,7 @@ Transform:
   m_GameObject: {fileID: 1535936625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.17, y: -4.51, z: 0}
+  m_LocalPosition: {x: -33.86, y: -0.58, z: 0}
   m_LocalScale: {x: 4.9392815, y: 2.6222727, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78509,7 +78498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1463392086428580, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4588935210562790, guid: 3248535f6a2562c489a1223a75951ef2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -81999,7 +81988,7 @@ MonoBehaviour:
   inGameMessages: {fileID: 1774162031}
   rangedItem: 0
   projectilePrefab: {fileID: 453747096}
-  projectileSpeed: 20
+  projectileSpeed: 30
 --- !u!1 &1937200358
 GameObject:
   m_ObjectHideFlags: 0
@@ -84461,6 +84450,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4728374359019456090, guid: c41e9f71df4f78e11aad40677b8e2eed, type: 3}
+      propertyPath: maxLife
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 5635428246758154179, guid: c41e9f71df4f78e11aad40677b8e2eed, type: 3}
       propertyPath: Item
       value: 
@@ -84479,7 +84472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5635428246758154179, guid: c41e9f71df4f78e11aad40677b8e2eed, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5635428246758154179, guid: c41e9f71df4f78e11aad40677b8e2eed, type: 3}
       propertyPath: jumpCoodown
@@ -85213,7 +85206,7 @@ PrefabInstance:
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 728889729}
+      objectReference: {fileID: 0}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: inventory
       value: 
