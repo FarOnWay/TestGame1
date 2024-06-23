@@ -1,26 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectScript : MonoBehaviour
 {
     public float speed = 10f;
     public GameObject owner;
-    Rigidbody2D rb;
+    public GameObject playerGameObject;
+    private HeroKnight player;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        HeroKnight player = other.GetComponent<HeroKnight>();
-        if (other.gameObject == owner) return;
+        player = playerGameObject.GetComponent<HeroKnight>();
+    }
 
-        if (player != null)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == owner)
         {
-            player.TakeDamage(10);
+            return;
         }
-        if(other.CompareTag("Enemy"))
+
+        // if (player != null)
+        // {
+        //     player.TakeDamage(10);
+        // }
+
+        if (other.CompareTag("Enemy"))
         {
+            if (other.GetComponent<EnemyController>() == null)
+            {
+                other.GetComponent<TargetDummy>().TakeDamage(20);
+            }
             
+            else other.GetComponent<EnemyController>().TakeDamage(20);
+
+
+
+
+
+            Debug.Log("bóris");
+            Destroy(gameObject);
+            //    base.DealDamage(20, false, false);
         }
-        Destroy(gameObject);
     }
 }

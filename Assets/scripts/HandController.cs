@@ -63,6 +63,7 @@ public class HandController : MonoBehaviour
         {
             sprite.flipX = false;
         }
+        
         else if (inputX < 0)
         {
             sprite.flipX = true;
@@ -222,11 +223,16 @@ public class HandController : MonoBehaviour
 
     IEnumerator RangedAttack()
     {
-        // Instantiate the projectile at the player's position
-        GameObject projectile = Instantiate(projectilePrefab, player.position, Quaternion.identity);
-
         // Calculate the direction to launch the projectile
-        Vector3 launchDirection = sprite.flipX ? Vector3.left : Vector3.right;
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 launchDirection = (mousePosition - transform.position).normalized;
+
+        // Calculate the rotation angle
+        float rotationAngle = Mathf.Atan2(launchDirection.y, launchDirection.x) * Mathf.Rad2Deg;
+
+        // Instantiate the projectile at the player's position with the calculated rotation
+        Quaternion rotation = Quaternion.Euler(0, 0, rotationAngle);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, rotation);
 
         // Add force to the projectile
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
@@ -237,6 +243,5 @@ public class HandController : MonoBehaviour
 
         yield return null;
     }
-
 
 }

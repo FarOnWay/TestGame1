@@ -220,7 +220,7 @@ public class HeroKnight : Entity
         fallDamageCalc();
         equippedItem = hand.GetComponent<HandController>().equippedItem;
         isTouchingEnemy = hand.GetComponent<HandController>().isHittingEnemy;
-        Debug.Log("TOCANDO INIMGO? " + isTouchingEnemy);
+      //  Debug.Log("TOCANDO INIMGO? " + isTouchingEnemy);
         // Debug.Log("no hero knight: " + isTouchingEnemy);
 
         #region Item Usage
@@ -309,7 +309,7 @@ public class HeroKnight : Entity
         {
             isTouchingEnemy = true;
 
-            Debug.Log("SDISDFIJFUHFUGDUFHDUS SFUDUFHWDUFHUDFH  WSFDUWUFW " + isTouchingEnemy);
+           // Debug.Log("SDISDFIJFUHFUGDUFHDUS SFUDUFHWDUFHUDFH  WSFDUWUFW " + isTouchingEnemy);
             //  Debug.Log("ATTACKING");
             // m_animator.SetTrigger("Attack" + m_currentAttack);
             //  handAnimator.SetTrigger("Attack");
@@ -318,11 +318,10 @@ public class HeroKnight : Entity
             {
                 // Debug.Log("A");
                 // Debug.Log("APE APE APE");
-                Debug.Log("DAMAGING ENEMY");
-
+              //  Debug.Log("DAMAGING ENEMY");
                 base.DealDamage(damage, true, false);
-
             }
+
             else if (isTouchingEnemy)
             {
                 // Debug.Log("B");
