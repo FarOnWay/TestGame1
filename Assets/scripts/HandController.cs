@@ -22,6 +22,8 @@ public class HandController : MonoBehaviour
     private bool isAttacking = false;
     public AudioClip shootSound;
     private AudioSource audioSource;
+    private bool isShooting = false;
+
 
 
     private void Awake()
@@ -227,10 +229,6 @@ public class HandController : MonoBehaviour
         isAttacking = false;
     }
 
-
-
-    private bool isShooting = false;
-
     IEnumerator RangedAttack()
     {
         if (isShooting || !CanShoot()) yield break;
@@ -264,7 +262,7 @@ public class HandController : MonoBehaviour
 
         lastShootTime = Time.time;
 
-        yield return new WaitForSeconds(1); // Wait for 1 second
+        yield return new WaitForSeconds(1); 
 
         isShooting = false;
     }

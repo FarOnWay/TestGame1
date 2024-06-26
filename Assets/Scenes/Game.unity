@@ -68898,6 +68898,10 @@ PrefabInstance:
       propertyPath: playerGameObject
       value: 
       objectReference: {fileID: 1693460327}
+    - target: {fileID: 2790508966147534911, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: projectileDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4396647636029386708, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
       propertyPath: m_Name
       value: Arrow
