@@ -6,6 +6,7 @@ public class ProjectScript : MonoBehaviour
     public GameObject owner;
     public GameObject playerGameObject;
     private HeroKnight player;
+    public int projectileDamage;
 
     private void Start()
     {
@@ -28,10 +29,10 @@ public class ProjectScript : MonoBehaviour
         {
             if (other.GetComponent<EnemyController>() == null)
             {
-                other.GetComponent<TargetDummy>().TakeDamage(20);
+                other.GetComponent<TargetDummy>().TakeDamage(projectileDamage);
             }
             
-            else other.GetComponent<EnemyController>().TakeDamage(20);
+            else other.GetComponent<EnemyController>().TakeDamage(projectileDamage);
 
             Debug.Log("bóris");
             Destroy(gameObject);
