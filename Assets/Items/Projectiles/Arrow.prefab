@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2790508966147534911}
   - component: {fileID: 4801481277940625351}
   - component: {fileID: -1068001148141363050}
+  - component: {fileID: -694732526238036303}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -99,15 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74c82a5685d7c520bd9bd9713baaebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  loot: {fileID: 0}
-  lifeManager: {fileID: 0}
-  hero: {fileID: 0}
-  Item: {fileID: 0}
-  knockbackForce: 0
-  rb: {fileID: 0}
   speed: 10
   owner: {fileID: 4396647636029386708}
+  playerGameObject: {fileID: 0}
 --- !u!61 &4801481277940625351
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,3 +175,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-694732526238036303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396647636029386708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fea1b5c3bb21acf58e5a500ec097ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

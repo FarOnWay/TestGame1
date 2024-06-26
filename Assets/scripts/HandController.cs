@@ -13,6 +13,13 @@ public class HandController : MonoBehaviour
     public InGameMessages inGameMessages;
     public bool rangedItem = false;
     public GameObject projectilePrefab;
+    public float bowDelay = 1 * Time.deltaTime;
+    public float projectileSpeed;
+    public float shootCooldown = 1f; // Time in seconds between shots
+    private float lastShootTime;
+    public float initialImpulse = 2f; // The initial impulse applied to the projectile
+
+
 
     int counter = 0;
 
@@ -138,12 +145,10 @@ public class HandController : MonoBehaviour
 
     void setSprite()
     {
-        if (equippedItem == null)
-            sprite.sprite = null;
-        else if (isAttacking == true)
-        {
-            sprite.sprite = equippedItem.icon;
-        }
+        if (equippedItem == null) sprite.sprite = null;
+
+        else if (isAttacking == true) sprite.sprite = equippedItem.icon;
+
         else sprite.sprite = null;
     }
 
@@ -158,6 +163,7 @@ public class HandController : MonoBehaviour
                 case ItemType.Consumable:
                     Debug.Log("Equipped item is a consumable.");
                     break;
+
                 case ItemType.Attack:
                     // cast the equipped item to an AttackItem
                     Attack.AttackItem attackItem = equippedItem as Attack.AttackItem;
@@ -166,8 +172,7 @@ public class HandController : MonoBehaviour
                         rangedItem = false;
 
                         float attackSpeed = attackItem.attackSpeed;
-                        rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees
-                                                            // Debug.Log("Attack speed: " + attackSpeed);
+                        rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees                                                          // Debug.Log("Attack speed: " + attackSpeed);
                     }
                     break;
 
@@ -192,7 +197,6 @@ public class HandController : MonoBehaviour
         }
     }
     private bool isAttacking = false;
-
 
     IEnumerator Attack()
     {
@@ -219,36 +223,38 @@ public class HandController : MonoBehaviour
         isAttacking = false;
     }
 
-    public float projectileSpeed = 10f;
+
 
     IEnumerator RangedAttack()
     {
-        isAttacking = true;
+        if (!CanShoot()) yield break;
 
-        while (isAttacking)
+        // Calculate the direction to launch the projectile
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 launchDirection = (mousePosition - transform.position).normalized;
+
+        // Calculate the rotation angle
+        float rotationAngle = Mathf.Atan2(launchDirection.y, launchDirection.x) * Mathf.Rad2Deg;
+
+        // Instantiate the projectile at the player's position with the calculated rotation
+        Quaternion rotation = Quaternion.Euler(0, 0, rotationAngle);
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, rotation);
+
+        // Add force to the projectile
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            // Calculate the direction to launch the projectile
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 launchDirection = (mousePosition - transform.position).normalized;
-
-            // Calculate the rotation angle
-            float rotationAngle = Mathf.Atan2(launchDirection.y, launchDirection.x) * Mathf.Rad2Deg;
-
-            // Instantiate the projectile at the player's position with the calculated rotation
-            Quaternion rotation = Quaternion.Euler(0, 0, rotationAngle);
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, rotation);
-
-            // Add force to the projectile
-            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.AddForce(launchDirection * projectileSpeed, ForceMode2D.Impulse);
-            }
-            yield return null;
+            rb.AddForce(launchDirection * projectileSpeed, ForceMode2D.Impulse);
+            rb.AddForce(launchDirection * initialImpulse, ForceMode2D.Impulse);
         }
 
-        isAttacking = false;
+        lastShootTime = Time.time;
+
+        yield return null;
     }
 
-
+    private bool CanShoot()
+    {
+        return Time.time >= lastShootTime + shootCooldown;
+    }
 }

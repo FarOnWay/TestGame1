@@ -3642,6 +3642,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4396647636029386708, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
   m_PrefabInstance: {fileID: 896122903}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &453747102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453747096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fea1b5c3bb21acf58e5a500ec097ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &457200527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68826,13 +68838,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1068001148141363050, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: m_Mass
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690538659002900531, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.19268127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690538659002900531, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.014809
+      objectReference: {fileID: 0}
     - target: {fileID: 1690538659002900531, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65.61
+      value: -65.721
       objectReference: {fileID: 0}
     - target: {fileID: 1690538659002900531, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.29
+      value: 5.2815
       objectReference: {fileID: 0}
     - target: {fileID: 1690538659002900531, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
       propertyPath: m_LocalPosition.z
@@ -68867,6 +68891,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2790508966147534911, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790508966147534911, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
       propertyPath: playerGameObject
       value: 
       objectReference: {fileID: 1693460327}
@@ -68874,10 +68902,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 5831549190499197992, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831549190499197992, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831549190499197992, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4396647636029386708, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 453747102}
   m_SourcePrefab: {fileID: 100100000, guid: 34b0e32a22e416276817cea7a1caf792, type: 3}
 --- !u!1 &898209714
 GameObject:
@@ -72174,7 +72217,7 @@ Transform:
   m_GameObject: {fileID: 1242587713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -1.196, z: 0}
+  m_LocalPosition: {x: -0.08, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72218,9 +72261,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1560986505
-  m_SortingLayer: -1
-  m_SortingOrder: -1
+  m_SortingLayerID: 1846159563
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9804d6fbb5ed8ec4ebae3126de261bdd, type: 3}
   m_Color: {r: 0.42846102, g: 0.42846102, b: 0.42846102, a: 1}
   m_FlipX: 0
@@ -81988,7 +82031,10 @@ MonoBehaviour:
   inGameMessages: {fileID: 1774162031}
   rangedItem: 0
   projectilePrefab: {fileID: 453747096}
-  projectileSpeed: 30
+  bowDelay: 1
+  projectileSpeed: 4
+  shootCooldown: 0
+  initialImpulse: 5
 --- !u!1 &1937200358
 GameObject:
   m_ObjectHideFlags: 0
