@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectScript : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed;
     public GameObject owner;
     public GameObject playerGameObject;
     private HeroKnight player;
@@ -32,10 +32,6 @@ public class ProjectScript : MonoBehaviour
             }
             
             else other.GetComponent<EnemyController>().TakeDamage(20);
-
-
-
-
 
             Debug.Log("bóris");
             Destroy(gameObject);
