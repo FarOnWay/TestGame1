@@ -15,13 +15,19 @@ public class HandController : MonoBehaviour
     public GameObject projectilePrefab;
     public float bowDelay = 1 * Time.deltaTime;
     public float projectileSpeed;
-    public float shootCooldown = 1f; // Time in seconds between shots
+    public float shootCooldown = 1f * Time.deltaTime;
     private float lastShootTime;
-    public float initialImpulse = 2f; // The initial impulse applied to the projectile
-
-
-
+    public float initialImpulse = 2f;
     int counter = 0;
+    private bool isAttacking = false;
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -42,7 +48,6 @@ public class HandController : MonoBehaviour
             // Debug.Log("HITBOX DO ITEM  bounds" + itemHitbox.bounds);
             // Debug.Log("self_Collider bounds" + self_Collider.bounds);
             self_Collider = itemHitbox;
-
         }
         // if(equippedItem  == null)
         // {
@@ -196,7 +201,6 @@ public class HandController : MonoBehaviour
             }
         }
     }
-    private bool isAttacking = false;
 
     IEnumerator Attack()
     {
@@ -225,9 +229,13 @@ public class HandController : MonoBehaviour
 
 
 
+    private bool isShooting = false;
+
     IEnumerator RangedAttack()
     {
-        if (!CanShoot()) yield break;
+        if (isShooting || !CanShoot()) yield break;
+
+        isShooting = true;
 
         // Calculate the direction to launch the projectile
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -235,6 +243,12 @@ public class HandController : MonoBehaviour
 
         // Calculate the rotation angle
         float rotationAngle = Mathf.Atan2(launchDirection.y, launchDirection.x) * Mathf.Rad2Deg;
+
+        // Play the shoot sound
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
 
         // Instantiate the projectile at the player's position with the calculated rotation
         Quaternion rotation = Quaternion.Euler(0, 0, rotationAngle);
@@ -250,7 +264,9 @@ public class HandController : MonoBehaviour
 
         lastShootTime = Time.time;
 
-        yield return null;
+        yield return new WaitForSeconds(1); // Wait for 1 second
+
+        isShooting = false;
     }
 
     private bool CanShoot()
