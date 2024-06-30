@@ -4,13 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class EnemyController : Entity 
+public class EnemyController : Entity
 {
     public Transform playerTransform;
     public float knockbackDistance;
     HeroKnight hero;
     public float knockbackDuration;
     public int speed;
+    public float jumpForce = 5f;
+    public LayerMask obstacleLayers;
 
     public virtual void Update()
     {
@@ -63,6 +65,23 @@ public class EnemyController : Entity
             elapsedTime += Time.deltaTime;
 
             yield return null;
+        }
+    }
+
+   public virtual void AvoidCollisionWithNonPlayer()
+    {
+        // Cast a ray forward from the enemy's position
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 1f, obstacleLayers);
+
+        // If the ray hits an obstacle
+        if (hit.collider != null)
+        {
+            // Make the enemy jump
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
 
