@@ -5,11 +5,12 @@ using UnityEngine;
 public class Slime : EnemyController
 {
     public int jumpForce = 0, jumpCoodown = 0;
+    public bool canJump = false;
 
     // randomizing the jumpCoodown 
     int randJumpCoolDown()
     {
-        jumpCoodown = Random.Range(2, 5);
+        jumpCoodown = Random.Range(3, 5);
         return jumpCoodown;
     }
 
@@ -22,24 +23,58 @@ public class Slime : EnemyController
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        switch (other.gameObject.tag)
         {
-            StartCoroutine(JumpCooldown(randJumpCoolDown()));
+            // can only jump if it's on the ground
+            case "Ground":
+                Debug.Log("no chao");
+                canJump = true;
+                //  Debug.Log("POSSO PULAR, TO NO CHAO CARAI");
+                StartCoroutine(JumpCooldown(randJumpCoolDown(), canJump));
+                break;
+            case "Player":
+                Debug.Log("batendo no Player");
+                canJump = false;
+                base.DealDamage(10, false, true);
+                // Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+                // //  Debug.Log(knockbackDirection);
+                // StartCoroutine(KnockbackCoroutine(knockbackDirection));
+                break;
+            default:
+                Debug.Log("???");
+                canJump = false;
+                break;
         }
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-            base.DealDamage(10, false, true);
-            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-            //  Debug.Log(knockbackDirection);
-            StartCoroutine(KnockbackCoroutine(knockbackDirection));
-        }
+
+        // if (other.gameObject.CompareTag("Ground"))
+        // {
+        //     canJump = true;
+        //     Debug.Log("POSSO PULAR, TO NO CHAO CARAI");
+        //     StartCoroutine(JumpCooldown(randJumpCoolDown(), canJump));
+        // }
+
+        // else
+        // {
+        //     canJump = false;
+        // }
+        // //StartCoroutine(JumpCooldown(randJumpCoolDown(), canJump));
+
+        // if (other.gameObject.CompareTag("Player"))
+        // {
+        //     base.DealDamage(10, false, true);
+        //     Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+        //     //  Debug.Log(knockbackDirection);
+        //     StartCoroutine(KnockbackCoroutine(knockbackDirection));
+        // }
     }
 
     void Jump()
     {
-      //  Debug.Log("items to drop " + Item.itemsToDrop[0]);
+        Debug.Log("pulando");
+        //  Debug.Log("items to drop " + Item.itemsToDrop[0]);
         rb.velocity = new Vector2(rb.velocity.y, jumpForce);
+        canJump = false;
     }
 
     override public void Update()
@@ -61,8 +96,13 @@ public class Slime : EnemyController
         }
     }
 
-    IEnumerator JumpCooldown(float timer)
+    IEnumerator JumpCooldown(float timer, bool canJump)
     {
+        if (!canJump)
+        {
+            yield break;
+        }
+
         yield return new WaitForSecondsRealtime(timer);
         Jump();
         Move();

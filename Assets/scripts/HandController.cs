@@ -192,7 +192,7 @@ public class HandController : MonoBehaviour
                     break;
 
                 case ItemType.Ranged:
-                    Debug.Log("Equipped item is a ranged weapon.");
+                  //  Debug.Log("Equipped item is a ranged weapon.");
                     rangedItem = true;
                     break;
 

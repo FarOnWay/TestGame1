@@ -34,7 +34,7 @@ public class ProjectScript : MonoBehaviour
             
             else other.GetComponent<EnemyController>().TakeDamage(projectileDamage);
 
-            Debug.Log("bóris");
+          //  Debug.Log("bóris");
             Destroy(gameObject);
             //    base.DealDamage(20, false, false);
         }
