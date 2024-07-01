@@ -2159,11 +2159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6528832850441964107, guid: 6c3b64f39762376a9a631c9c57fd5009, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -69.57886
+      value: -69.43
       objectReference: {fileID: 0}
     - target: {fileID: 6528832850441964107, guid: 6c3b64f39762376a9a631c9c57fd5009, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.7230344
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 6528832850441964107, guid: 6c3b64f39762376a9a631c9c57fd5009, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69242,19 +69242,16 @@ MonoBehaviour:
   playerTransform: {fileID: 1693460341}
   knockbackDistance: 2
   knockbackDuration: 2
-  speed: 4
+  speed: 2
   jumpForce: 5
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  moveSpeed: 5
+  moveSpeed: 2
   damage: 20
   minY: -1
   maxY: 1.5
   avoidForce: 5
-  obstacleLayers:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &910703942
 GameObject:
   m_ObjectHideFlags: 0
@@ -76971,11 +76968,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 496295390446938913, guid: 4aaa90416b37b2668ad3c9be90f76ac4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -68.760445
+      value: -68.3
       objectReference: {fileID: 0}
     - target: {fileID: 496295390446938913, guid: 4aaa90416b37b2668ad3c9be90f76ac4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.810225
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 496295390446938913, guid: 4aaa90416b37b2668ad3c9be90f76ac4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85571,7 +85568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6425449312882012341, guid: 2d67b18e22b431a4c95984e761b94d07, type: 3}
       propertyPath: maxLife
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6425449312882012341, guid: 2d67b18e22b431a4c95984e761b94d07, type: 3}
       propertyPath: lifeCount
@@ -85795,6 +85792,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1934307134}
     - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: knockbackForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765821279336324513, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: itemNameDisplay
       value: 
       objectReference: {fileID: 1872918601}
@@ -85823,8 +85824,16 @@ PrefabInstance:
       value: 2.6158695
       objectReference: {fileID: 0}
     - target: {fileID: 4984665447546505253, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4984665447546505253, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_Offset.x
       value: 0.90495586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4984665447546505253, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5619468204089095560, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_FlipX
