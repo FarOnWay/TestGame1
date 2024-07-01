@@ -24,8 +24,6 @@ public class HandController : MonoBehaviour
     private AudioSource audioSource;
     private bool isShooting = false;
 
-
-
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -179,8 +177,10 @@ public class HandController : MonoBehaviour
                         rangedItem = false;
 
                         float attackSpeed = attackItem.attackSpeed;
-                        rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees                                                          // Debug.Log("Attack speed: " + attackSpeed);
+                        rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees   
+                                                                               // Debug.Log("Attack speed: " + attackSpeed);
                     }
+
                     break;
 
                 case ItemType.Defense:

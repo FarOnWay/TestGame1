@@ -40,11 +40,11 @@ public class Entity : MonoBehaviour
         {
             if (isLookLeft)
             {
-                hitboxCenter = transform.position + new Vector3(-0.5f, 0, 0);
+                hitboxCenter = transform.position + new Vector3(-1f, 0, 0);
             }
             else
             {
-                hitboxCenter = transform.position + new Vector3(0.5f, 0, 0);
+                hitboxCenter = transform.position + new Vector3(1f, 0, 0);
             }
 
             Collider2D[] colliders = Physics2D.OverlapBoxAll(hitboxCenter, hitboxSize, 0);
