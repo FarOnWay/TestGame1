@@ -13,8 +13,8 @@ public class InventoryController : MonoBehaviour
     // public ItemController[] Slots = new ItemController[10];
     public static Dictionary<Item, int> Inventory = new();
     public bool isInventorFull = false;
-
     public GameObject extendedInventory;
+    Item item;
     // has_many items
     // belongs_to player
     // enemys can ONLY dropItems
@@ -58,7 +58,7 @@ public class InventoryController : MonoBehaviour
 
         else
         {
-           // Debug.Log("QUERO MINHA EX DE VOLTA");
+            // Debug.Log("QUERO MINHA EX DE VOLTA");
             if (Inventory.ContainsKey(item))
             {
                 Inventory[item]++;
@@ -78,18 +78,39 @@ public class InventoryController : MonoBehaviour
 
     public void UseItem(int index)
     {
-        List<Item> items = new(Inventory.Keys);
+        List<Item> items = new List<Item>(Inventory.Keys);
 
         if (index >= 0 && index < items.Count)
         {
-            Item item = items[index];
+            item = items[index];
 
-            if (item != null && item.icon != null) playerHand.GetComponent<HandController>().equippedItem = item;
+            if (item.itemType == ItemType.Projectile)
+            {
+                Debug.Log("You have a projectile in your hand and you have " + Inventory[item] + " of this projectile");
 
-            else playerHand.GetComponent<HandController>().equippedItem = null;
+                if (Inventory.ContainsKey(item) && Inventory[item] > 0)
+                {
+                    Inventory[item]--;
+
+                    if (Inventory[item] == 0)
+                    {
+                        Inventory.Remove(item);
+                    }
+                }
+            }
+            else if (item != null && item.icon != null)
+            {
+                playerHand.GetComponent<HandController>().equippedItem = item;
+            }
+            else
+            {
+                playerHand.GetComponent<HandController>().equippedItem = null;
+            }
         }
-
-        else playerHand.GetComponent<HandController>().equippedItem = null;
+        else
+        {
+            playerHand.GetComponent<HandController>().equippedItem = null;
+        }
     }
 
     public void SeeInventory()
@@ -97,7 +118,41 @@ public class InventoryController : MonoBehaviour
         foreach (KeyValuePair<Item, int> entry in Inventory)
         {
             Debug.Log(entry.Key.ItemName + ": " + entry.Value);
+            Debug.Log(entry.Key.itemType + ": " + entry.Value);
+            Debug.Log(entry.Key.itemPrefab + ": " + entry.Value);
         }
+        Debug.Log(ShootProjectile());
+
     }
+
+    public static bool ShootProjectile()
+    {
+        foreach (KeyValuePair<Item, int> entry in Inventory)
+        {
+            if (entry.Key.itemType == ItemType.Projectile && Inventory[entry.Key] > 0)
+            {
+                Inventory[entry.Key]--;
+                //  RetrieveProjectile(entry.Key);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static GameObject GetProjectilePrefab()
+    {
+        foreach (KeyValuePair<Item, int> entry in Inventory)
+        {
+            if (entry.Key.itemType == ItemType.Projectile && Inventory[entry.Key] > 0)
+            {
+                Debug.Log(" s sign");
+                Debug.Log("aqui no inventário o negocio é " + entry.Key.itemPrefab);
+                return entry.Key.itemPrefab;
+            }
+        }
+        return null;
+    }
+
 }
 

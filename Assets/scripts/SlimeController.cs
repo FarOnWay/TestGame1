@@ -27,13 +27,13 @@ public class Slime : EnemyController
         {
             // can only jump if it's on the ground
             case "Ground":
-                Debug.Log("no chao");
+              //  Debug.Log("no chao");
                 canJump = true;
                 //  Debug.Log("POSSO PULAR, TO NO CHAO CARAI");
                 StartCoroutine(JumpCooldown(randJumpCoolDown(), canJump));
                 break;
             case "Player":
-                Debug.Log("batendo no Player");
+               // Debug.Log("batendo no Player");
                 canJump = false;
                 base.DealDamage(10, false, true);
                 // Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
@@ -41,7 +41,7 @@ public class Slime : EnemyController
                 // StartCoroutine(KnockbackCoroutine(knockbackDirection));
                 break;
             default:
-                Debug.Log("???");
+               // Debug.Log("???");
                 canJump = false;
                 break;
         }
