@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
+using Unity.VisualScripting;
+//using System.Diagnostics;
 
 public class HandController : MonoBehaviour
 {
@@ -23,6 +26,9 @@ public class HandController : MonoBehaviour
     public AudioClip shootSound;
     private AudioSource audioSource;
     private bool isShooting = false;
+    public BowController bowController;
+    public InventoryController inventoryController;
+
 
     private void Awake()
     {
@@ -33,12 +39,16 @@ public class HandController : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         self_Collider.enabled = true;
+
         // self_Collider = this.GetComponent<Collider2D>();
         //  itemHitbox = GetComponent<Collider2D>();
     }
 
     void Update()
     {
+        setSprite();
+        getInfoFromEquippedItem();
+
         //   Debug.Log(self_Collider + " self no começo do update");
         isTouchingEnemy();
         if (equippedItem != null && equippedItem.itemPrefab != null)
@@ -66,9 +76,6 @@ public class HandController : MonoBehaviour
         //  Debug.Log(itemHitbox);
         //  Debug.Log(self_Collider + " self");
 
-        setSprite();
-        getInfoFromEquippedItem();
-
         float inputX = Input.GetAxis("Horizontal");
 
         if (inputX > 0)
@@ -84,12 +91,19 @@ public class HandController : MonoBehaviour
         if (Input.GetButton("Fire1") && !isAttacking && rangedItem == false)
         {
             StartCoroutine(Attack());
+            // Debug.Log("FINALLLLLLLLLL FLAHSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
         }
 
-        else if (Input.GetButtonDown("Fire1") && !isAttacking && rangedItem == true)
+        else if (Input.GetButtonDown("Fire1") && !isAttacking && rangedItem == true && InventoryController.ShootProjectile() == false)
         {
+            // Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
             StartCoroutine(RangedAttack());
         }
+
+        // else if (Input.GetButtonDown("Fire1")) return;
+
+        // else return;
     }
 
     // then call it in the player's script to check if the enemy is hit
@@ -161,7 +175,9 @@ public class HandController : MonoBehaviour
     {
         if (equippedItem != null)
         {
+
             ItemType itemType = equippedItem.itemType;
+            //  Debug.Log("celular");
 
             switch (itemType)
             {
@@ -175,12 +191,14 @@ public class HandController : MonoBehaviour
                     if (attackItem != null)
                     {
                         rangedItem = false;
-
+                        // this is not working properly. Its does not perform a full rotation if 
+                        // the attack speed is too low, ir performs 2 rotations if the atack speed is too high
+                        // this has to perform 1 full rotation per click, independent of the attack speed
                         float attackSpeed = attackItem.attackSpeed;
                         rotationSpeed = attackSpeed * 360f; // times 360 to convert to degrees   
-                                                                               // Debug.Log("Attack speed: " + attackSpeed);
-                    }
+                                                            // Debug.Log("Attack speed: " + attackSpeed);
 
+                    }
                     break;
 
                 case ItemType.Defense:
@@ -192,9 +210,23 @@ public class HandController : MonoBehaviour
                     break;
 
                 case ItemType.Ranged:
-                  //  Debug.Log("Equipped item is a ranged weapon.");
+                    //  Debug.Log("Equipped item is a ranged weapon.");
                     rangedItem = true;
+                    Attack.AttackItem atkRangedItem = equippedItem as Attack.AttackItem;
+                    if (atkRangedItem != null)
+                    {
+                        float shootSpeed = atkRangedItem.attackSpeed;
+
+                        // 
+                    }
                     break;
+
+                case ItemType.Projectile:
+                    isHittingEnemy = false;
+                    rangedItem = false;
+                    // Debug.Log("delicia de buceta");
+                    break;
+
 
                 default:
                     rangedItem = false;
@@ -202,6 +234,8 @@ public class HandController : MonoBehaviour
                     break;
             }
         }
+
+        // else Debug.Log("algaritmis romanos");
     }
 
     IEnumerator Attack()
@@ -233,6 +267,7 @@ public class HandController : MonoBehaviour
     {
         if (isShooting || !CanShoot()) yield break;
 
+
         isShooting = true;
 
         // Calculate the direction to launch the projectile
@@ -248,7 +283,11 @@ public class HandController : MonoBehaviour
             audioSource.PlayOneShot(shootSound);
         }
 
-        // Instantiate the projectile at the player's position with the calculated rotation
+
+        Debug.Log(InventoryController.GetProjectilePrefab());
+        projectilePrefab = InventoryController.GetProjectilePrefab();
+        Debug.Log(projectilePrefab);
+
         Quaternion rotation = Quaternion.Euler(0, 0, rotationAngle);
         GameObject projectile = Instantiate(projectilePrefab, transform.position, rotation);
 
@@ -262,7 +301,7 @@ public class HandController : MonoBehaviour
 
         lastShootTime = Time.time;
 
-        yield return new WaitForSeconds(1); 
+        yield return new WaitForSeconds(1);
 
         isShooting = false;
     }

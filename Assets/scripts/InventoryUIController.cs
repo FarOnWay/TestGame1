@@ -28,6 +28,7 @@ public class InventoryUIController : MonoBehaviour
         {
             if (Input.GetKeyDown(i.ToString()))
             {
+              //  Debug.Log("DFIUHHHH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + i);
                // Debug.Log("Key " + i + " pressed");
                 inventoryController.UseItem(i);
                 SelectSlot(i);

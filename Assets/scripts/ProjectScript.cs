@@ -10,7 +10,7 @@ public class ProjectScript : MonoBehaviour
 
     private void Start()
     {
-        player = playerGameObject.GetComponent<HeroKnight>();
+     //   player = playerGameObject.GetComponent<HeroKnight>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -23,7 +23,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Start()
     {
-        Debug.Log("DISDJISD DIUHDUS I DREAM WITH A DREAM");
+       // Debug.Log("DISDJISD DIUHDUS I DREAM WITH A DREAM");
         lifeManager = GetComponent<LifeManager>();
         rb = GetComponent<Rigidbody2D>();
         healthBar.UpdateHealthBar(lifeManager.lifeCount, lifeManager.maxLife);

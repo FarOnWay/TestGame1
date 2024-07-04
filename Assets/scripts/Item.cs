@@ -7,7 +7,7 @@ public enum ItemType
     Defense,
     Material,
     Ranged,
-
+    Projectile,
 }
 
 public enum ItemRarity
