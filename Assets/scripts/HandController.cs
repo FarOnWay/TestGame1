@@ -286,6 +286,9 @@ public class HandController : MonoBehaviour
 
         Debug.Log(InventoryController.GetProjectilePrefab());
         projectilePrefab = InventoryController.GetProjectilePrefab();
+
+        if (projectilePrefab == null) yield break;
+
         Debug.Log(projectilePrefab);
 
         Quaternion rotation = Quaternion.Euler(0, 0, rotationAngle);

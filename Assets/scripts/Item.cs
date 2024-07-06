@@ -40,4 +40,9 @@ public class Item : ScriptableObject
 
     }
 
+    public string GetDetails()
+    {
+        return $"Name: {ItemName}\nType: {itemType}\nRarity: {itemRarity}";
+    }
+
 }
