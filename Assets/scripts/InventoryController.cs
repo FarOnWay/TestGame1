@@ -14,6 +14,8 @@ public class InventoryController : MonoBehaviour
     public static Dictionary<Item, int> Inventory = new();
     public bool isInventorFull = false;
     public GameObject extendedInventory;
+    const int MAX_INVENTORY_SIZE = 4;
+
     Item item;
     // has_many items
     // belongs_to player
@@ -43,13 +45,10 @@ public class InventoryController : MonoBehaviour
 
     public void CollectItem(Item item)
     {
-        int maxInventorySize = 4; // Define your maximum inventory size here
 
-        // Calculate the total number of items in the inventory
         int totalItemCount = Inventory.Values.Sum();
 
-        // Check if the inventory is full
-        if (totalItemCount >= maxInventorySize)
+        if (totalItemCount >= MAX_INVENTORY_SIZE)
         {
             Debug.Log("INVENTORY IS FULL");
             isInventorFull = true;
@@ -73,7 +72,11 @@ public class InventoryController : MonoBehaviour
         //  Debug.Log("INVENTORY COUNT " + totalItemCount);
 
         // Collect the item
-
+    }
+     
+    public Item RetriveInfoAboutSelectedItem(Item item)
+    {
+        return item;
     }
 
     public void UseItem(int index)
