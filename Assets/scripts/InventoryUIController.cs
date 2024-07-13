@@ -9,7 +9,9 @@ public class InventoryUIController : MonoBehaviour
     public GameObject inventorySlotPrefab;
     public GameObject tooltip;
     public Text itemNameText;
-    public Text itemDetailsText;
+    public Text itemRarityText;
+    public Text itemTypeText;
+
     public bool showTooltip = false;
     public Item itemGot;
     // the index of the current slot where the next item should be added
@@ -68,14 +70,12 @@ public class InventoryUIController : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Show the tooltip
         ShowTooltip(itemGot);
         Debug.Log("OnPointerEnter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // Hide the tooltip
         HideTooltip();
     }
 
@@ -127,7 +127,8 @@ public class InventoryUIController : MonoBehaviour
         if (item == null) return;
 
         itemNameText.text = item.ItemName;
-        itemDetailsText.text = $"Type: {item.itemType}\nRarity: {item.itemRarity}";
+        itemTypeText.text = $"{item.itemType}";
+        itemRarityText.text = $"{item.itemRarity}";
     }
 
 }

@@ -8,7 +8,8 @@ public class InventorySlotController : MonoBehaviour, IPointerEnterHandler, IPoi
     public Text itemAmount;
     public GameObject tooltip;
     public Text itemNameText;
-    public Text itemDetailsText;
+    public Text itemRarityText;
+    public Text itemTypeText;
     public InventoryUIController inventoryUIController;
     public Item items;
 
@@ -50,5 +51,7 @@ public class InventorySlotController : MonoBehaviour, IPointerEnterHandler, IPoi
         // Hide the tooltip
         inventoryUIController.HideTooltip();
     }
+
+    //needs to write a method to get the item info from a determinet slot whn the mouse pass over it
 }
 
