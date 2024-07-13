@@ -520,7 +520,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1409138822}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &66225720 stripped
@@ -879,7 +880,8 @@ MonoBehaviour:
   itemAmount: {fileID: 888720205}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &120974978 stripped
@@ -919,7 +921,8 @@ MonoBehaviour:
   itemAmount: {fileID: 2110108282}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &122246961 stripped
@@ -1063,7 +1066,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1688357292}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &178685384 stripped
@@ -2228,12 +2232,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 58b647c5b2ec4184e9a07a561cdf0644, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3087,7 +3091,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1702471440}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &376564930 stripped
@@ -3211,7 +3216,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1866809069}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &390458038 stripped
@@ -3335,7 +3341,8 @@ MonoBehaviour:
   itemAmount: {fileID: 984968892}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &400927577 stripped
@@ -4116,7 +4123,8 @@ MonoBehaviour:
   itemAmount: {fileID: 3235005}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &496629041 stripped
@@ -4624,7 +4632,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1813584293}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &548459117 stripped
@@ -5211,7 +5220,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1575769765}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &611501667 stripped
@@ -5251,7 +5261,8 @@ MonoBehaviour:
   itemAmount: {fileID: 399867873}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &611798517 stripped
@@ -67966,7 +67977,8 @@ MonoBehaviour:
   itemAmount: {fileID: 373556315}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &756676404 stripped
@@ -68436,7 +68448,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1619187409}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &826159158 stripped
@@ -69744,7 +69757,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1473417184}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &936230097 stripped
@@ -70079,7 +70093,8 @@ MonoBehaviour:
   itemAmount: {fileID: 133938922}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &999929631 stripped
@@ -70119,7 +70134,8 @@ MonoBehaviour:
   itemAmount: {fileID: 430653811}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1005207871 stripped
@@ -70293,7 +70309,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1426684474}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1030107235 stripped
@@ -70333,7 +70350,8 @@ MonoBehaviour:
   itemAmount: {fileID: 664554186}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1034392819 stripped
@@ -70558,7 +70576,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1043729229}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1060044651 stripped
@@ -70981,7 +71000,8 @@ MonoBehaviour:
   itemAmount: {fileID: 588121572}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1108666714 stripped
@@ -71021,7 +71041,8 @@ MonoBehaviour:
   itemAmount: {fileID: 2114141642}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1125199108 stripped
@@ -71563,7 +71584,8 @@ MonoBehaviour:
   itemAmount: {fileID: 48558531}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1184557274 stripped
@@ -73125,7 +73147,8 @@ MonoBehaviour:
   itemAmount: {fileID: 635001041}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1301800672 stripped
@@ -73170,7 +73193,8 @@ MonoBehaviour:
   itemAmount: {fileID: 199709942}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1326756575 stripped
@@ -73321,7 +73345,8 @@ MonoBehaviour:
   itemAmount: {fileID: 777162060}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1355626106 stripped
@@ -73361,7 +73386,8 @@ MonoBehaviour:
   itemAmount: {fileID: 389658565}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1363244611 stripped
@@ -73401,7 +73427,8 @@ MonoBehaviour:
   itemAmount: {fileID: 0}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1364548903 stripped
@@ -74449,7 +74476,8 @@ MonoBehaviour:
   itemAmount: {fileID: 2031730758}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1414197032 stripped
@@ -76283,6 +76311,85 @@ MonoBehaviour:
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!1 &1538556401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1538556402}
+  - component: {fileID: 1538556404}
+  - component: {fileID: 1538556403}
+  m_Layer: 5
+  m_Name: ItemRarity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1538556402
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538556401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1580404321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -29.6}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1538556403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538556401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 58b647c5b2ec4184e9a07a561cdf0644, type: 3}
+    m_FontSize: 25
+    m_FontStyle: 2
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1538556404
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538556401}
+  m_CullTransparentMesh: 1
 --- !u!1 &1546362713
 GameObject:
   m_ObjectHideFlags: 0
@@ -76595,7 +76702,8 @@ MonoBehaviour:
   itemAmount: {fileID: 98663630}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1566896114 stripped
@@ -76799,6 +76907,7 @@ RectTransform:
   m_Children:
   - {fileID: 315498066}
   - {fileID: 1632066961}
+  - {fileID: 1538556402}
   m_Father: {fileID: 5902841998135871693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -77432,12 +77541,12 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 58b647c5b2ec4184e9a07a561cdf0644, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -77468,7 +77577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -24}
+  m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1640867846
@@ -80417,7 +80526,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1937200360}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1818954727 stripped
@@ -80874,7 +80984,8 @@ MonoBehaviour:
   itemAmount: {fileID: 267101357}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1838369775 stripped
@@ -81048,7 +81159,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1768215476}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1842884109 stripped
@@ -81088,7 +81200,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1575168375}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1857275690 stripped
@@ -81305,7 +81418,8 @@ MonoBehaviour:
   itemAmount: {fileID: 0}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!1 &1886390296
@@ -82724,7 +82838,8 @@ MonoBehaviour:
   inventorySlotPrefab: {fileID: 5286843691504041823}
   tooltip: {fileID: 1580404320}
   itemNameText: {fileID: 315498068}
-  itemDetailsText: {fileID: 1632066959}
+  itemRarityText: {fileID: 1538556403}
+  itemTypeText: {fileID: 1632066959}
   showTooltip: 0
   itemGot: {fileID: 0}
 --- !u!1 &1934307133 stripped
@@ -83376,7 +83491,8 @@ MonoBehaviour:
   itemAmount: {fileID: 355571805}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1972872750 stripped
@@ -83416,7 +83532,8 @@ MonoBehaviour:
   itemAmount: {fileID: 741061503}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &1978786417 stripped
@@ -83724,7 +83841,8 @@ MonoBehaviour:
   itemAmount: {fileID: 321625140}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &2012502882 stripped
@@ -84083,7 +84201,8 @@ MonoBehaviour:
   itemAmount: {fileID: 334815683}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &2053640564 stripped
@@ -84956,7 +85075,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1910725381}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &2118877363 stripped
@@ -85231,7 +85351,8 @@ MonoBehaviour:
   itemAmount: {fileID: 1277325202}
   tooltip: {fileID: 0}
   itemNameText: {fileID: 0}
-  itemDetailsText: {fileID: 0}
+  itemRarityText: {fileID: 0}
+  itemTypeText: {fileID: 0}
   inventoryUIController: {fileID: 0}
   items: {fileID: 0}
 --- !u!114 &2140671764 stripped
@@ -86080,6 +86201,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 315498068}
     - target: {fileID: 2968718209714347058, guid: ecbfe764ec1d36645bc86c9c3aba47c5, type: 3}
+      propertyPath: itemTypeText
+      value: 
+      objectReference: {fileID: 1632066959}
+    - target: {fileID: 2968718209714347058, guid: ecbfe764ec1d36645bc86c9c3aba47c5, type: 3}
+      propertyPath: itemRarityText
+      value: 
+      objectReference: {fileID: 1538556403}
+    - target: {fileID: 2968718209714347058, guid: ecbfe764ec1d36645bc86c9c3aba47c5, type: 3}
       propertyPath: itemDetailsText
       value: 
       objectReference: {fileID: 1632066959}
@@ -86346,11 +86475,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -70.94
+      value: -67.95
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.78
+      value: 6.53
       objectReference: {fileID: 0}
     - target: {fileID: 1279545715493388896, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
       propertyPath: m_LocalPosition.z
