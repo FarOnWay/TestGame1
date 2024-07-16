@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class NpcController : Entity
 {
-
     // general script for every NPC
     public float moveSpeed = 2f;
     public float minX, maxX, minY, maxY;
@@ -22,19 +21,53 @@ public class NpcController : Entity
     private SpriteRenderer spriteRenderer;
     Text dialogText;
     Text dialogButton;
+    Button closeBtn;
+    Image border;
+    GameObject otherNPC;
+    Image speechBubble;
+    Transform position;
 
 
-    void Start()
+    public override void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         dialogText = DialogBox.GetComponentInChildren<Text>();
-       // dialogButton = DialogBox.GetComponentInChildren<Button>();
-     //  dialogButton =  dialogButton.GetComponentInChildren<Text>();
-       dialogButton = DialogBox.GetComponentInChildren<Button>().GetComponentInChildren<Text>();
+        // dialogButton = DialogBox.GetComponentInChildren<Button>();
+        //  dialogButton =  dialogButton.GetComponentInChildren<Text>();
+        dialogButton = DialogBox.GetComponentInChildren<Button>().GetComponentInChildren<Text>();
+        position = GetComponent<Transform>();
+
+        Transform childTransform = DialogBox.transform.Find("SpeechBubble");
+        if (childTransform != null)
+        {
+            // Debug.Log("Found SpeechBubble");
+            speechBubble = childTransform.GetComponent<Image>();
+        }
+
+
+        //   border = DialogBox.GetComponentInChildren<Image>();
+        closeBtn = DialogBox.GetComponentInChildren<Button>();
+        closeBtn.onClick.AddListener(() =>
+         {
+             DialogBox.enabled = false;
+             dialogText.enabled = false;
+             dialogButton.enabled = false;
+             speechBubble.enabled = false;
+             //     border.enabled = false;
+             isDialoging = false;
+         });
 
         // Walk();
+    }
+
+    void Update()
+    {
+        PlayerInteract();
+        Walk();
+        DetectNearbyNPCs();
+
     }
 
     void Walk()
@@ -57,6 +90,19 @@ public class NpcController : Entity
 
     }
 
+    void DetectNearbyNPCs()
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject != gameObject && hitCollider.CompareTag("NPC"))
+            {
+                // Another NPC is within the detection radius
+                Debug.Log("Detected NPC: " + hitCollider.gameObject.name);
+                // Handle logic for detected NPC here
+            }
+        }
+    }
     void Inventory()
     {
 
@@ -69,15 +115,12 @@ public class NpcController : Entity
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        PlayerInteract();
-        Walk();
-    }
+
 
     // if player interacts with NPC
     void PlayerInteract()
     {
+
         if (Input.GetMouseButtonDown(1) && isDialoging == false)
         {
             Debug.Log("A");
@@ -99,9 +142,12 @@ public class NpcController : Entity
                 }
                 Debug.Log("Right-clicked on " + gameObject.name);
                 DialogBox.enabled = true;
-              //  DialogBox.GetComponentInChildren<Text>().text = "Hello, I'm " + gameObject.name + ". How can I help you?";
+                //  DialogBox.GetComponentInChildren<Text>().text = "Hello, I'm " + gameObject.name + ". How can I help you?";
                 dialogText.enabled = true;
                 dialogButton.enabled = true;
+                speechBubble.rectTransform.position = position.position;
+                speechBubble.enabled = true;
+                //   border.enabled = true;
                 isDialoging = true;
                 return;
             }
@@ -120,12 +166,13 @@ public class NpcController : Entity
             DialogBox.enabled = false;
             dialogText.enabled = false;
             dialogButton.enabled = false;
+            //  border.enabled = false;
             isDialoging = false;
-
 
             return;
         }
 
         Debug.Log("C");
     }
+
 }
