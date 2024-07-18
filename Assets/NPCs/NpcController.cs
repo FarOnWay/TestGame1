@@ -7,10 +7,8 @@ public class NpcController : Entity
     // general script for every NPC
     public float moveSpeed = 2f;
     public float minX, maxX, minY, maxY;
-
     private new Rigidbody2D rb;
     private Animator anim;
-
     private Vector2 targetPosition;
     public Image DialogBox;
     private bool isDialoging = false;
@@ -23,12 +21,11 @@ public class NpcController : Entity
     private readonly GameObject otherNPC;
     private Image speechBubble;
     private Transform position;
-    public int? willingToChat = null; // this defines if a NPC wants to chat with another NPC when one approach the other
+
+    // this defines if a NPC wants to chat with another NPC when one approach the other
+    public int? willingToChat = null;
     private int direction; // 0 = left, 1 = right
     public float directionChangeInterval = 4f;
-
-
-
 
 
     public override void Start()
@@ -42,7 +39,6 @@ public class NpcController : Entity
         //  dialogButton =  dialogButton.GetComponentInChildren<Text>();
         dialogButton = DialogBox.GetComponentInChildren<Button>().GetComponentInChildren<Text>();
         position = GetComponent<Transform>();
-
         Transform childTransform = DialogBox.transform.Find("SpeechBubble");
         childTransform = DialogBox.GetComponentInChildren<Transform>().Find("SpeechBubble");
 
@@ -56,7 +52,6 @@ public class NpcController : Entity
         {
             Debug.Log("did not found speechj");
         }
-
 
         //   border = DialogBox.GetComponentInChildren<Image>();
         closeBtn = DialogBox.GetComponentInChildren<Button>();
@@ -73,7 +68,7 @@ public class NpcController : Entity
         // Walk();
     }
 
-    private void Update()
+    void Update()
     {
         PlayerInteract();
         Walk();
@@ -95,7 +90,7 @@ public class NpcController : Entity
         }
     }
 
-    private void Walk()
+   protected void Walk()
     {
         if (isDialoging)
         {
@@ -107,25 +102,29 @@ public class NpcController : Entity
         {
             case 0: // left
                 rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-
+                spriteRenderer.flipX = true;
                 break;
+
             case 1: // right
                 rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-
+                spriteRenderer.flipX = false;
                 break;
+
             case 2: // stopped
                 Idle();
                 break;
+
             default:
                 break;
         }
     }
 
-    private void TalkToAnotherNpc()
+    private void TalkToAnotherNpc(GameObject otherNPC)
     {
         // talks to another NPC if willing to chat
         willingToChat = Random.Range(0, 10);
         StartCoroutine(Chat());
+        spriteRenderer.flipX = otherNPC.transform.position.x < transform.position.x;
 
         IEnumerator Chat()
         {
@@ -140,6 +139,7 @@ public class NpcController : Entity
                         yield return new WaitForSecondsRealtime(10);
                         speechBubble.enabled = false;
                         break;
+
                     case > 5: // wants to chat for a while, 5s
                         Debug.Log("I want to chat for a while");
                         // speechBubble.enabled = true;
@@ -147,12 +147,14 @@ public class NpcController : Entity
                         yield return new WaitForSecondsRealtime(5);
                         speechBubble.enabled = false;
                         break;
+
                     case > 3: // dont want to chat
                         Debug.Log("I don't want to chat");
                         speechBubble.enabled = false;
                         Idle();
                         yield return new WaitForSecondsRealtime(3);
                         break;
+
                     default:
                         yield return null;
                         break;
@@ -169,14 +171,9 @@ public class NpcController : Entity
             if (hitCollider.gameObject != gameObject && hitCollider.CompareTag("NPC"))
             {
                 // Debug.Log("Detected NPC: " + hitCollider.gameObject.name);
-                TalkToAnotherNpc();
+                TalkToAnotherNpc(hitCollider.gameObject);
             }
         }
-    }
-
-    private void Inventory()
-    {
-
     }
 
     private void Idle()
@@ -192,14 +189,9 @@ public class NpcController : Entity
         Debug.Log(position.position);
     }
 
-    // Update is called once per frame
-
-
     // if player interacts with NPC
     private void PlayerInteract()
     {
-        
-
         if (Input.GetMouseButtonDown(1) && isDialoging == false &&
          Vector2.Distance(player.transform.position, transform.position) < 4) // 4 is the distance to interact with NPC
         {
@@ -214,7 +206,6 @@ public class NpcController : Entity
                 spriteRenderer.flipX = player.transform.position.x < transform.position.x;
                 Debug.Log("Right-clicked on " + gameObject.name);
                 DialogBox.enabled = true;
-                //  DialogBox.GetComponentInChildren<Text>().text = "Hello, I'm " + gameObject.name + ". How can I help you?";
                 dialogText.enabled = true;
                 dialogButton.enabled = true;
                 setSpeechBubble();
@@ -232,7 +223,6 @@ public class NpcController : Entity
             Debug.Log("andando addsds");
         }
 
-
         if (Input.GetMouseButtonDown(1) && isDialoging)
         {
             Debug.Log("B");
@@ -244,8 +234,5 @@ public class NpcController : Entity
 
             return;
         }
-
-        Debug.Log("C");
     }
-
 }
