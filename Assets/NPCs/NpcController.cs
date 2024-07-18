@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +8,7 @@ public class NpcController : Entity
     public float moveSpeed = 2f;
     public float minX, maxX, minY, maxY;
 
-    private Rigidbody2D rb;
+    private new Rigidbody2D rb;
     private Animator anim;
 
     private Vector2 targetPosition;
@@ -19,17 +16,24 @@ public class NpcController : Entity
     private bool isDialoging = false;
     public HeroKnight player;
     private SpriteRenderer spriteRenderer;
-    Text dialogText;
-    Text dialogButton;
-    Button closeBtn;
-    Image border;
-    GameObject otherNPC;
-    Image speechBubble;
-    Transform position;
+    private Text dialogText;
+    private Text dialogButton;
+    private Button closeBtn;
+    private readonly Image border;
+    private readonly GameObject otherNPC;
+    private Image speechBubble;
+    private Transform position;
+    public int? willingToChat = null; // this defines if a NPC wants to chat with another NPC when one approach the other
+    private int direction; // 0 = left, 1 = right
+    public float directionChangeInterval = 4f;
+
+
+
 
 
     public override void Start()
     {
+        StartCoroutine(ChangeDirection());
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -40,10 +44,17 @@ public class NpcController : Entity
         position = GetComponent<Transform>();
 
         Transform childTransform = DialogBox.transform.Find("SpeechBubble");
+        childTransform = DialogBox.GetComponentInChildren<Transform>().Find("SpeechBubble");
+
         if (childTransform != null)
         {
-            // Debug.Log("Found SpeechBubble");
+            Debug.Log($"Found SpeechBubble in {gameObject.name}");
             speechBubble = childTransform.GetComponent<Image>();
+        }
+
+        else
+        {
+            Debug.Log("did not found speechj");
         }
 
 
@@ -62,7 +73,7 @@ public class NpcController : Entity
         // Walk();
     }
 
-    void Update()
+    private void Update()
     {
         PlayerInteract();
         Walk();
@@ -70,82 +81,144 @@ public class NpcController : Entity
 
     }
 
-    void Walk()
+    IEnumerator ChangeDirection()
     {
-        // transform.position = Vector2.MoveTowards(transform.position, transform.position + new Vector3(10, 5), 10f);  
-        if (isDialoging == true)
+        while (true)
         {
-            //  Debug.Log("era pra parar");
+            yield return new WaitForSeconds(directionChangeInterval);
+            direction = Random.Range(0, 3); // 0 = left, 1 = right, 2 = stopped
+
+            rb.velocity = new Vector2(0, rb.velocity.y);
+
+            // wait for the delay before starting to walk again
+            yield return new WaitForSeconds(5);
+        }
+    }
+
+    private void Walk()
+    {
+        if (isDialoging)
+        {
             Idle();
             return;
         }
 
-        rb.velocity = new Vector2(moveSpeed, 0);
-        // anim.SetFloat("Speed", moveSpeed);
-        //anim.
-    }
-
-    void TalkToAnotherNpc()
-    {
-
-    }
-
-    void DetectNearbyNPCs()
-    {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1.5f);
-        foreach (var hitCollider in hitColliders)
+        switch (direction)
         {
-            if (hitCollider.gameObject != gameObject && hitCollider.CompareTag("NPC"))
+            case 0: // left
+                rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+
+                break;
+            case 1: // right
+                rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+
+                break;
+            case 2: // stopped
+                Idle();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void TalkToAnotherNpc()
+    {
+        // talks to another NPC if willing to chat
+        willingToChat = Random.Range(0, 10);
+        StartCoroutine(Chat());
+
+        IEnumerator Chat()
+        {
+            while (true)
             {
-                // Another NPC is within the detection radius
-                Debug.Log("Detected NPC: " + hitCollider.gameObject.name);
-                // Handle logic for detected NPC here
+                switch (willingToChat)
+                {
+                    case > 7: // wants to chat longer, 10s
+                        Debug.Log("I'm willing to chat");
+                        //  speechBubble.enabled = true;
+                        Idle();
+                        yield return new WaitForSecondsRealtime(10);
+                        speechBubble.enabled = false;
+                        break;
+                    case > 5: // wants to chat for a while, 5s
+                        Debug.Log("I want to chat for a while");
+                        // speechBubble.enabled = true;
+                        Idle();
+                        yield return new WaitForSecondsRealtime(5);
+                        speechBubble.enabled = false;
+                        break;
+                    case > 3: // dont want to chat
+                        Debug.Log("I don't want to chat");
+                        speechBubble.enabled = false;
+                        Idle();
+                        yield return new WaitForSecondsRealtime(3);
+                        break;
+                    default:
+                        yield return null;
+                        break;
+                }
             }
         }
     }
-    void Inventory()
+
+    private void DetectNearbyNPCs()
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject != gameObject && hitCollider.CompareTag("NPC"))
+            {
+                // Debug.Log("Detected NPC: " + hitCollider.gameObject.name);
+                TalkToAnotherNpc();
+            }
+        }
+    }
+
+    private void Inventory()
     {
 
     }
 
-    void Idle()
+    private void Idle()
     {
         rb.velocity = new Vector2(0, 0);
         // set anim idle
+    }
+
+    private void setSpeechBubble()
+    {
+        speechBubble.rectTransform.position = position.position + new Vector3(0, 1.5f, 0);
+        Debug.Log(speechBubble.rectTransform.position);
+        Debug.Log(position.position);
     }
 
     // Update is called once per frame
 
 
     // if player interacts with NPC
-    void PlayerInteract()
+    private void PlayerInteract()
     {
+        
 
-        if (Input.GetMouseButtonDown(1) && isDialoging == false)
+        if (Input.GetMouseButtonDown(1) && isDialoging == false &&
+         Vector2.Distance(player.transform.position, transform.position) < 4) // 4 is the distance to interact with NPC
         {
             Debug.Log("A");
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            Vector2 mousePos2D = new(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
-                if (player.transform.position.x < transform.position.x)
-                {
-                    spriteRenderer.flipX = true;
-                }
-
-                else
-                {
-                    spriteRenderer.flipX = false;
-                }
+                spriteRenderer.flipX = player.transform.position.x < transform.position.x;
                 Debug.Log("Right-clicked on " + gameObject.name);
                 DialogBox.enabled = true;
                 //  DialogBox.GetComponentInChildren<Text>().text = "Hello, I'm " + gameObject.name + ". How can I help you?";
                 dialogText.enabled = true;
                 dialogButton.enabled = true;
-                speechBubble.rectTransform.position = position.position;
+                setSpeechBubble();
+                //  speechBubble.rectTransform.position = position.position;
                 speechBubble.enabled = true;
                 //   border.enabled = true;
                 isDialoging = true;
@@ -160,7 +233,7 @@ public class NpcController : Entity
         }
 
 
-        if (Input.GetMouseButtonDown(1) && isDialoging == true)
+        if (Input.GetMouseButtonDown(1) && isDialoging)
         {
             Debug.Log("B");
             DialogBox.enabled = false;
