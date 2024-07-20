@@ -26,6 +26,9 @@ public class NpcController : Entity
     public int? willingToChat = null;
     private int direction; // 0 = left, 1 = right
     public float directionChangeInterval = 4f;
+    public const int ATTACK_DAMAGE = 50; // default damage for NPCs
+    private float attackInterval = 3f;
+    private float nextAttackTime = 0f; 
 
 
     public override void Start()
@@ -44,13 +47,13 @@ public class NpcController : Entity
 
         if (childTransform != null)
         {
-            Debug.Log($"Found SpeechBubble in {gameObject.name}");
+            // Debug.Log($"Found SpeechBubble in {gameObject.name}");
             speechBubble = childTransform.GetComponent<Image>();
         }
 
         else
         {
-            Debug.Log("did not found speechj");
+            //  Debug.Log("did not found speechj");
         }
 
         //   border = DialogBox.GetComponentInChildren<Image>();
@@ -73,7 +76,30 @@ public class NpcController : Entity
         PlayerInteract();
         Walk();
         DetectNearbyNPCs();
+        Attack();
 
+    }
+
+    // default MELEE attack, NPCs with more complex attack must inherit this method and update as needed
+
+
+    public virtual void Attack()
+    {
+        if (Time.time >= nextAttackTime)
+        {
+            Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, 2f);
+
+            foreach (Collider2D collider in collidersInRange)
+            {
+                if (collider.gameObject.CompareTag("Enemy"))
+                {
+                    Debug.Log("Attacked " + collider.gameObject.name);
+                    base.DealDamage(20, true, false);
+                }
+            }
+
+            nextAttackTime = Time.time + attackInterval;
+        }
     }
 
     IEnumerator ChangeDirection()
@@ -90,7 +116,7 @@ public class NpcController : Entity
         }
     }
 
-   protected void Walk()
+    protected void Walk()
     {
         if (isDialoging)
         {
@@ -133,23 +159,23 @@ public class NpcController : Entity
                 switch (willingToChat)
                 {
                     case > 7: // wants to chat longer, 10s
-                        Debug.Log("I'm willing to chat");
-                        //  speechBubble.enabled = true;
+                              // Debug.Log("I'm willing to chat");
+                              //  speechBubble.enabled = true;
                         Idle();
                         yield return new WaitForSecondsRealtime(10);
                         speechBubble.enabled = false;
                         break;
 
                     case > 5: // wants to chat for a while, 5s
-                        Debug.Log("I want to chat for a while");
-                        // speechBubble.enabled = true;
+                              // Debug.Log("I want to chat for a while");
+                              // speechBubble.enabled = true;
                         Idle();
                         yield return new WaitForSecondsRealtime(5);
                         speechBubble.enabled = false;
                         break;
 
                     case > 3: // dont want to chat
-                        Debug.Log("I don't want to chat");
+                              // Debug.Log("I don't want to chat");
                         speechBubble.enabled = false;
                         Idle();
                         yield return new WaitForSecondsRealtime(3);
