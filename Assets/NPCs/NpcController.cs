@@ -64,6 +64,7 @@ public class NpcController : Entity
 
     public virtual void Attack()
     {
+
         if (Time.time >= nextAttackTime)
         {
             Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, 2f);
@@ -72,7 +73,13 @@ public class NpcController : Entity
             {
                 if (collider.gameObject.CompareTag("Enemy"))
                 {
-                    anim.SetTrigger("Attack"); // Trigger attack animation
+                    //  anim.SetTrigger("Attack");
+                    // stoping all other animations to avoid bugs
+                    anim.SetBool("Idle", false);
+                    anim.SetBool("Run", false);
+                    anim.SetBool("Jump", false);
+
+                    anim.SetTrigger("Attack");
 
                     if (collider.gameObject.transform.position.x < transform.position.x)
                     {
@@ -119,19 +126,19 @@ public class NpcController : Entity
             case 0: // left
                 rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
                 spriteRenderer.flipX = true;
-                anim.SetBool("Run", true); // Trigger run animation
+                anim.SetBool("Run", true);
                 break;
 
             case 1: // right
                 rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
                 spriteRenderer.flipX = false;
-                anim.SetBool("Run", true); // Trigger run animation
+                anim.SetBool("Run", true);
                 break;
 
             case 2: // stopped
                 Idle();
-                anim.SetBool("Run", false); // Trigger run animation
-                anim.SetBool("Idle", true); // Trigger run animation
+                anim.SetBool("Run", false);
+                anim.SetBool("Idle", true);
                 break;
 
             default:
@@ -170,6 +177,7 @@ public class NpcController : Entity
                         break;
 
                     default:
+                        Idle();
                         yield return null;
                         break;
                 }
@@ -193,6 +201,7 @@ public class NpcController : Entity
     {
         rb.velocity = new Vector2(0, 0);
         anim.SetBool("Run", false); // Trigger idle animation
+        anim.SetBool("Idle", true);
     }
 
     private void setSpeechBubble()
