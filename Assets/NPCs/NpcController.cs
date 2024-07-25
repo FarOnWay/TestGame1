@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class NpcController : Entity
 {
-    public float moveSpeed = 2f;
+    [SerializeField]
+    float moveSpeed;
     public float minX, maxX, minY, maxY;
-    private new Rigidbody2D rb;
+    private new Rigidbody2D rb; // new keyword to hide the base class field
     private Animator anim;
     private Vector2 targetPosition;
     public Image DialogBox;
@@ -113,8 +114,13 @@ public class NpcController : Entity
         }
     }
 
+
+    // makes a improvment in this method to not walk for static 5 seconds, like its now
+    // makes the NCP walks for random time between 2 to 5 seconds, then stops for randonly seconds
+    // can also make a logic to randomize even more this walk, like make some stops during the walk
     protected void Walk()
     {
+        moveSpeed = 2f;
         if (isDialoging)
         {
             Idle();
@@ -170,7 +176,7 @@ public class NpcController : Entity
                         speechBubble.enabled = false;
                         break;
 
-                    case > 3: // don't want to chat
+                    case > 3: // dont want to chat
                         speechBubble.enabled = false;
                         Idle();
                         yield return new WaitForSecondsRealtime(3);
@@ -192,7 +198,7 @@ public class NpcController : Entity
         {
             if (hitCollider.gameObject != gameObject && hitCollider.CompareTag("NPC"))
             {
-                TalkToAnotherNpc(hitCollider.gameObject);
+                // TalkToAnotherNpc(hitCollider.gameObject);
             }
         }
     }
@@ -200,7 +206,8 @@ public class NpcController : Entity
     private void Idle()
     {
         rb.velocity = new Vector2(0, 0);
-        anim.SetBool("Run", false); // Trigger idle animation
+        moveSpeed = 0;
+        anim.SetBool("Run", false);
         anim.SetBool("Idle", true);
     }
 
@@ -213,27 +220,30 @@ public class NpcController : Entity
 
     private void PlayerInteract()
     {
-        if (Input.GetMouseButtonDown(1) && isDialoging == false &&
-         Vector2.Distance(player.transform.position, transform.position) < 4)
+        if (Input.GetMouseButtonDown(1) && isDialoging == false)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new(mousePos.x, mousePos.y);
-
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            while (Vector2.Distance(player.transform.position, transform.position) < 4)
             {
-                spriteRenderer.flipX = player.transform.position.x < transform.position.x;
-                DialogBox.enabled = true;
-                dialogText.enabled = true;
-                dialogButton.enabled = true;
-                setSpeechBubble();
-                speechBubble.enabled = true;
-                isDialoging = true;
-                Idle(); // Ensure the NPC is idling while interacting
-                return;
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new(mousePos.x, mousePos.y);
+
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+                if (hit.collider != null && hit.collider.gameObject == gameObject)
+                {
+                    spriteRenderer.flipX = player.transform.position.x < transform.position.x;
+                    DialogBox.enabled = true;
+                    dialogText.enabled = true;
+                    dialogButton.enabled = true;
+                    setSpeechBubble();
+                    speechBubble.enabled = true;
+                    isDialoging = true;
+                    Idle();
+                    return;
+                }
             }
         }
+
         else if (Input.GetMouseButtonDown(1) && isDialoging)
         {
             DialogBox.enabled = false;
