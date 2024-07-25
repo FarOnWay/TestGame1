@@ -120,7 +120,6 @@ public class NpcController : Entity
     // can also make a logic to randomize even more this walk, like make some stops during the walk
     protected void Walk()
     {
-        moveSpeed = 2f;
         if (isDialoging)
         {
             Idle();
