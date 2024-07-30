@@ -11,6 +11,7 @@ public class CatController : MonoBehaviour
     Animator anim;
     public string Name; // name of the cat to be displayed 
     public Behaviors CurrentBehavior { get; private set; }
+    public float fleeRange = 5f; // the range at which the cat starts to run away from the player
 
     #region Personality
 
@@ -34,6 +35,7 @@ public class CatController : MonoBehaviour
 
     /// <summary>
     /// how friendly the cat is, higher numbers means the cat follows the player more
+    /// lower values means the cat runs away from the player more
     /// </summary>
     public float Friendly;
 
@@ -52,7 +54,8 @@ public class CatController : MonoBehaviour
 
     #region Behaviors
     /// <summary>
-    /// i want the cats to have several behaviors, such as:
+    /// the actions a cat can do
+    /// @Idle @Wander @Flee @Sleep @Eat @Play @Hunt @Groom @Follow @Sit
     /// </summary>
     public enum Behaviors
     {
@@ -67,19 +70,71 @@ public class CatController : MonoBehaviour
         Follow, // follows the player (sometimes)
         Sit, // sits randomly
     }
-    #endregion
 
     void setBehavior()
     {
         CurrentBehavior = (Behaviors)UnityEngine.Random.Range(0, 9);
+        Debug.Log("Current Behavior: " + CurrentBehavior);
+        switch (CurrentBehavior)
+        {
+            case Behaviors.Idle:
+                Idle();
+                break;
+            case Behaviors.Wander:
+                Wander();
+                break;
+            case Behaviors.Flee:
+                Flee();
+                break;
+            case Behaviors.Sleep:
+                Sleep();
+                break;
+            case Behaviors.Eat:
+                Eat();
+                break;
+            case Behaviors.Play:
+                Play();
+                break;
+            case Behaviors.Hunt:
+                Hunt();
+                break;
+            case Behaviors.Groom:
+                Groom();
+                break;
+            case Behaviors.Follow:
+                Follow();
+                break;
+            case Behaviors.Sit:
+                Sit();
+                break;
+        }
     }
+    #endregion
 
+    IEnumerator Timer()
+    {
+        while (true)
+        {
+            setBehavior();
+            yield return new WaitForSeconds(5);
+        }
+    }
 
     void Start()
     {
+        StartCoroutine(Timer());
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+
+    void Update()
+    {
+
+        //  Debug.Log("test " + CurrentBehavior);
+        Flee();
+    }
+
+
 
     void Idle()
     {
@@ -91,68 +146,71 @@ public class CatController : MonoBehaviour
     {
         // move in a random direction
         // if the cat hits a wall, turn around
-        throw new NotImplementedException();
-
-
+        CurrentBehavior = Behaviors.Wander;
+        rb.velocity = new Vector2(speed, rb.velocity.y);
     }
+
 
     void Flee()
     {
-        // run away from the player
-        throw new NotImplementedException();
+        Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, fleeRange);
 
+        foreach (Collider2D collider in collidersInRange)
+        {
+            if (collider.gameObject.CompareTag("Player"))
+            {
+                CurrentBehavior = Behaviors.Flee;
+
+                Vector2 fleeDirection = transform.position - collider.transform.position;
+
+                rb.velocity = fleeDirection.normalized * speed;
+            }
+        }
     }
-
     void Play()
     {
         // plays
-        throw new NotImplementedException();
-
+      //  
     }
 
     void Sleep()
     {
         // sleeps
-        throw new NotImplementedException();
-
+        /*
+          when a cat starts to sleep, we dont want that another behavior be called, we want the cat to sleep
+          so, we need to stop the behavior change and set up a random timer for the cat to sleep
+          example: we can generate betwen 1 and 5 minutes for the cat to sleep
+        */
+      //  
     }
 
     void Eat()
     {
         // eats
-        throw new NotImplementedException();
-
+        
     }
 
     void Hunt()
     {
         // hunts
-        throw new NotImplementedException();
-
+        
     }
 
     void Follow()
     {
         // follows the player
-        throw new NotImplementedException();
-
+        
     }
 
     void Sit()
     {
         // sits
-        throw new NotImplementedException();
-
+        
     }
 
     void Groom()
     {
         // grooms
-        throw new NotImplementedException();
-    }
-
-    void Update()
-    {
-
+        
     }
 }
