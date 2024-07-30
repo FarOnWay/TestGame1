@@ -77188,6 +77188,75 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1272325620701207903, guid: 4d2acbaab25ab8e5ba48f263a20e8781, type: 3}
   m_PrefabInstance: {fileID: 6590891908230414897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1319463438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4135927985715458422, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+  m_PrefabInstance: {fileID: 1357575259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1319463444
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319463438}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0064840317, y: -0.002127938}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.200634, y: 0.14447714}
+  m_EdgeRadius: 0
+--- !u!114 &1319463445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319463438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db05a70cb4e59d07a9dcbde588a1cd75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  Name: Jurema
+  fleeRange: 5
+  Active: 0
+  Friendly: 0
+  Hunter: 0
+  Lazy: 0
 --- !u!1 &1326756571 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2999287445096291197, guid: 671bf5d9ac9875b7bb0c99280cce375a, type: 3}
@@ -77381,6 +77450,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1357575259
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4135927985715458422, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_Name
+      value: Jurema (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -48.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878590079285858636, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241435079003539040, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4135927985715458422, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1319463444}
+    - targetCorrespondingSourceObject: {fileID: 4135927985715458422, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1319463445}
+  m_SourcePrefab: {fileID: 100100000, guid: 7ea4a3713ea23b17fb764723bf7cec8e, type: 3}
 --- !u!1 &1363244607 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2999287445096291197, guid: 671bf5d9ac9875b7bb0c99280cce375a, type: 3}
@@ -93244,3 +93380,4 @@ SceneRoots:
   - {fileID: 269237907}
   - {fileID: 827504795}
   - {fileID: 490865880}
+  - {fileID: 1357575259}
