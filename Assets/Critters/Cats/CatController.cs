@@ -148,6 +148,13 @@ public class CatController : MonoBehaviour
         // if the cat hits a wall, turn around
         CurrentBehavior = Behaviors.Wander;
         rb.velocity = new Vector2(speed, rb.velocity.y);
+        anim.SetTrigger("Walk");
+    }
+
+    void Meow()
+    {
+        // meows
+        anim.SetTrigger("Meow");
     }
 
 
@@ -160,6 +167,7 @@ public class CatController : MonoBehaviour
             if (collider.gameObject.CompareTag("Player"))
             {
                 CurrentBehavior = Behaviors.Flee;
+                anim.SetTrigger("Run");
 
                 Vector2 fleeDirection = transform.position - collider.transform.position;
 
@@ -170,47 +178,51 @@ public class CatController : MonoBehaviour
     void Play()
     {
         // plays
-      //  
+        //  
     }
 
     void Sleep()
     {
+        anim.SetTrigger("Sleep");
         // sleeps
         /*
           when a cat starts to sleep, we dont want that another behavior be called, we want the cat to sleep
           so, we need to stop the behavior change and set up a random timer for the cat to sleep
           example: we can generate betwen 1 and 5 minutes for the cat to sleep
         */
-      //  
+        //  
     }
 
     void Eat()
     {
         // eats
-        
+
     }
 
     void Hunt()
     {
         // hunts
-        
+
     }
 
     void Follow()
     {
         // follows the player
-        
+        anim.SetTrigger("Walk");
+
     }
 
     void Sit()
     {
         // sits
-        
+        anim.SetTrigger("Sit");
+
     }
 
     void Groom()
     {
         // grooms
-        
+
+
     }
 }
