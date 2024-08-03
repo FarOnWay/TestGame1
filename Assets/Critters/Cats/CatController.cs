@@ -9,12 +9,21 @@ public class CatController : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     public string Name; // name of the cat to be displayed 
-    public Behaviors CurrentBehavior { get; private set; }
+    [SerializeField]
+    private Behaviors currentBehavior;
+    public Behaviors CurrentBehavior
+    {
+        get { return currentBehavior; }
+        set { currentBehavior = value; }
+    }
     public float fleeRange = 5f; // the range at which the cat starts to run away from the player
     Transform prayPos;
     bool isHunting = false;
-    GameObject mouth;
+    public SpriteRenderer mouth;
     private bool hasLayAnimationPlayed = false;
+    bool justHunted = false;
+    bool sleeping = false;
+    int wannaFollowOrFlee1or0 = 0;
 
 
     #region Personality
@@ -75,20 +84,10 @@ public class CatController : MonoBehaviour
         Sit, // sits randomly
         Lay, // lays down randomly
     }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Bug"))
-        {
-            Debug.Log("encstando em um inseto");
-            mouth = other.gameObject;
-            Destroy(other.gameObject);
-        }
-    }
-
+    int n = 0;
     private void setBehavior()
     {
-        CurrentBehavior = (Behaviors)UnityEngine.Random.Range(0, 9);
+        CurrentBehavior = (Behaviors)3;
         // Debug.Log("Current Behavior: " + CurrentBehavior);
         switch (CurrentBehavior)
         {
@@ -102,7 +101,11 @@ public class CatController : MonoBehaviour
                 Flee();
                 break;
             case Behaviors.Sleep:
+                // Debug.Log("before the sleep method");
                 Sleep();
+                // Debug.Log("after the sleep method");
+                n++;
+                //  Debug.Log(n);
                 break;
             case Behaviors.Eat:
                 Eat();
@@ -111,7 +114,7 @@ public class CatController : MonoBehaviour
                 Play();
                 break;
             case Behaviors.Hunt:
-                Hunt();
+                Hunt(justHunted);
                 break;
             case Behaviors.Groom:
                 Groom();
@@ -131,30 +134,81 @@ public class CatController : MonoBehaviour
     }
     #endregion
 
-    private IEnumerator Timer()
-    {
-        while (true)
-        {
-            setBehavior();
-            yield return new WaitForSeconds(5);
-        }
-    }
-
     private void Start()
     {
         _ = StartCoroutine(Timer());
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        CurrentBehavior = Behaviors.Sleep;
+      //  _ = StartCoroutine(WannaFollowOrFleeFromThePlayer());
+
+        //  mouth = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        // Sleep();
         //  Debug.Log("test " + CurrentBehavior);
-        Flee();
+        IsPlayerNearby();
         if (IsPreyNearby())
         {
-            Hunt();
+            Hunt(justHunted);
+        }
+    }
+
+    /// <summary>
+    ///  returns either if the cat wants to follow or flee from the player
+    /// cats are impredictable, so they can either follow or flee from the anytime
+    /// </summary>
+    /// <returns></returns>
+
+    private IEnumerator  WannaFollowOrFleeFromThePlayer()
+    {
+        while (sleeping == false)
+        {
+
+            wannaFollowOrFlee1or0 = Random.Range(0, 2);
+            Debug.Log("TESTANDO ESSA BOSTA " + wannaFollowOrFlee1or0);
+         //   setBehavior();
+            //  Debug.Log("setting behavior" + CurrentBehavior);
+            yield return new WaitForSecondsRealtime(5);
+        }
+    }
+
+    void FollowOrFlee()
+    {
+          StartCoroutine(WannaFollowOrFleeFromThePlayer());
+        //   Debug.Log("enumarator follow or flee SSDSDIH");
+        if (wannaFollowOrFlee1or0 == 1)
+        {
+            Debug.Log("follow");
+            Follow();
+        }
+        else
+        {
+            Debug.Log("flee");
+            Flee();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bug"))
+        {
+            Debug.Log("encstando em um inseto");
+            mouth.sprite = other.gameObject.GetComponent<SpriteRenderer>().sprite;
+            Destroy(other.gameObject);
+        }
+    }
+
+    private IEnumerator Timer()
+    {
+        while (sleeping == false)
+        {
+            setBehavior();
+            //  Debug.Log("setting behavior" + CurrentBehavior);
+            yield return new WaitForSeconds(5);
         }
     }
 
@@ -179,20 +233,36 @@ public class CatController : MonoBehaviour
 
     private void Flee()
     {
+
+    }
+
+    Collider2D IsPlayerNearby()
+    {
         Collider2D[] collidersInRange = Physics2D.OverlapCircleAll(transform.position, fleeRange);
 
         foreach (Collider2D collider in collidersInRange)
         {
             if (collider.gameObject.CompareTag("Player"))
             {
-                CurrentBehavior = Behaviors.Flee;
-                anim.SetTrigger("Run");
+                Debug.Log("player nearby");
+                // FollowOrFlee();
+                FollowOrFlee();
+                // CurrentBehavior = Behaviors.Flee;
+                // anim.SetTrigger("Run");
 
-                Vector2 fleeDirection = transform.position - collider.transform.position;
+                // Vector2 fleeDirection = transform.position - collider.transform.position;
 
-                rb.velocity = fleeDirection.normalized * speed;
+                // rb.velocity = fleeDirection.normalized * speed;
+                return collider;
             }
         }
+        return null;
+    }
+
+    private void Follow()
+    {
+        // follows the player
+        anim.SetTrigger("Walk");
     }
 
     private void Play()
@@ -203,21 +273,33 @@ public class CatController : MonoBehaviour
 
     private void Sleep()
     {
-        anim.SetTrigger("Sleep");
-        // sleeps
-        /*
-          when a cat starts to sleep, we dont want that another behavior be called, we want the cat to sleep
-          so, we need to stop the behavior change and set up a random timer for the cat to sleep
-          example: we can generate betwen 1 to 5 minutes for the cat to sleep
-        */
-        //  
+        // Debug.Log("qadjksdjn ohhh god");
+        // sleeping = true;
+        // anim.SetTrigger("Lay");
+        // justHunted = false;
+        // StartCoroutine(SleepTimer());
+
+        // // sleeps
+        // /*
+        //   when a cat starts to sleep, we dont want that another behavior be called, we want the cat to sleep
+        //   so, we need to stop the behavior change and set up a random timer for the cat to sleep
+        //   example: we can generate betwen 1 to 5 minutes for the cat to sleep
+        // */
+        // //  
+    }
+
+    IEnumerator SleepTimer()
+    {
+
+        yield return new WaitForSeconds(Random.Range(60, 300));
+        sleeping = false;
     }
 
     private void Eat()
     {
         // eats
+        mouth.sprite = null;
     }
-
 
     /// <summary>
     /// checks if there is a prey nearby a cat so it can hunts
@@ -235,11 +317,11 @@ public class CatController : MonoBehaviour
             // perharps i will change these tags into one single tag, like catPrey, something'
             if (collider.gameObject.CompareTag("Bug"))
             {
+                //  Debug.Log("encontrou uma presa por perto");
                 prayPos = collider.transform;
                 return true;
             }
         }
-
         return false;
     }
 
@@ -251,9 +333,11 @@ public class CatController : MonoBehaviour
     /// in case of failure, the prey will run away and the cat will return to its previous behavior
     /// </summary>
 
-    private void Hunt()
+    private void Hunt(bool canHunt)
     {
+        if (canHunt == true) return;
         isHunting = true;
+        justHunted = true;
 
         if (prayPos.position.x < transform.position.x)
         {
@@ -273,7 +357,7 @@ public class CatController : MonoBehaviour
         {
             hasLayAnimationPlayed = true;
 
-            Debug.Log("suauuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+            // Debug.Log("suauuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
             anim.SetTrigger("Lay");
 
             while (anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
@@ -302,12 +386,6 @@ public class CatController : MonoBehaviour
         // jumps
         //  rb.velocity = new Vector2(rb.velocity.x, speed);
         rb.AddForce(Vector2.up * (speed + 5), ForceMode2D.Impulse);
-    }
-
-    private void Follow()
-    {
-        // follows the player
-        anim.SetTrigger("Walk");
     }
 
     private void Sit()
