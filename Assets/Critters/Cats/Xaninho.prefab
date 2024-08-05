@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: -6432090832574201017}
   - component: {fileID: 6241435079003539040}
   - component: {fileID: -2906542773857564851}
-  - component: {fileID: -8100981235311650678}
+  - component: {fileID: -2486888956627647159}
+  - component: {fileID: 5559486492746331578}
   m_Layer: 13
-  m_Name: Jurema
+  m_Name: Xaninho
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 1846159563
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 29325209, guid: c8f0e7e1d76fe1c409039ade1ac6c99c, type: 3}
+  m_Sprite: {fileID: -792567532, guid: ce95cc2f5b9c966458d789eb4b4b2654, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 4135927985715458422}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f78ad2f923b39a6ef87215117018f15d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cb01e5a0ea5176b9fd0e95a56aba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &-8100981235311650678
+--- !u!61 &-2486888956627647159
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,3 +194,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &5559486492746331578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135927985715458422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db05a70cb4e59d07a9dcbde588a1cd75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  Name: Xaninho
+  currentBehavior: 0
+  fleeRange: 5
+  mouth: {fileID: 0}
+  Active: 0
+  Friendly: 0
+  Hunter: 0
+  Lazy: 0
