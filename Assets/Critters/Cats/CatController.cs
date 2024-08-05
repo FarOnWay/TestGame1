@@ -25,6 +25,8 @@ public class CatController : MonoBehaviour
     bool sleeping = false;
     int wannaFollowOrFlee1or0 = 0;
     Transform playerTransform;
+    private bool isPlayerNearby = false;
+
 
 
     #region Personality
@@ -173,19 +175,20 @@ public class CatController : MonoBehaviour
     }
 
     /// <summary>
-    ///  returns either if the cat wants to follow or flee from the player
-    /// cats are impredictable, so they can either follow or flee from the anytime
+    ///  returns either if the cat wants to follow or flee from the player.
+    /// Cats are impredictable, so they can either follow or flee from the anytime
     /// </summary>
     /// <returns></returns>
-
-    private bool isPlayerNearby = false;
 
     private IEnumerator WannaFollowOrFleeFromThePlayer()
     {
         while (isPlayerNearby && !sleeping)
         {
-            wannaFollowOrFlee1or0 = Random.Range(0, 2);
-            Debug.Log("TESTANDO ESSA BOSTA " + wannaFollowOrFlee1or0);
+            // follow, flee or ignore the player
+            // as cats like to stay on their own, 0 means follow, 1 means flee and the rest means ignore
+            // so, in the most part, the cats will just ignore the player
+            wannaFollowOrFlee1or0 = Random.Range(0, 5);
+            //  Debug.Log("TESTANDO ESSA BOSTA " + wannaFollowOrFlee1or0);
             FollowOrFlee();
             yield return new WaitForSecondsRealtime(5);
         }
@@ -193,15 +196,19 @@ public class CatController : MonoBehaviour
 
     void FollowOrFlee()
     {
-        if (wannaFollowOrFlee1or0 == 1)
+        switch (wannaFollowOrFlee1or0)
         {
-            Debug.Log("follow");
-            Follow();
-        }
-        else
-        {
-            Debug.Log("flee");
-            Flee();
+            case 0:
+                Follow();
+                break;
+
+            case 1:
+                Flee();
+                break;
+
+            default:
+                break;
+
         }
     }
 
@@ -246,9 +253,10 @@ public class CatController : MonoBehaviour
 
     void Flee()
     {
+        speed += 1; // increase the speed of the cat when it is fleeing 
         if (playerTransform != null)
         {
-            anim.SetTrigger("Walk");
+            anim.SetTrigger("Run");
             Vector2 direction = (transform.position - playerTransform.position).normalized;
             transform.position = Vector2.MoveTowards(transform.position, transform.position + (Vector3)direction, speed * Time.deltaTime);
             Debug.Log("Fleeing from the player");
@@ -263,6 +271,7 @@ public class CatController : MonoBehaviour
             }
 
         }
+        speed -= 1; // after fleeing, the cat returns to its normal speed
     }
 
     Collider2D IsPlayerNearby()
@@ -284,7 +293,7 @@ public class CatController : MonoBehaviour
 
     void Follow()
     {
-        if (playerTransform != null)
+        if (playerTransform != null && Vector2.Distance(playerTransform.position, transform.position) > 1.5f)
         {
             anim.SetTrigger("Walk");
             Vector2 direction = (playerTransform.position - transform.position).normalized;
@@ -300,6 +309,11 @@ public class CatController : MonoBehaviour
             }
 
             Debug.Log("Following the player");
+        }
+
+        else
+        {
+            anim.SetTrigger("Idle");
         }
     }
 
