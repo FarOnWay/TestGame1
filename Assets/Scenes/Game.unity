@@ -77522,7 +77522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db05a70cb4e59d07a9dcbde588a1cd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 0.5
   Name: Jurema
   currentBehavior: 0
   fleeRange: 5

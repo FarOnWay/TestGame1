@@ -24,6 +24,7 @@ public class CatController : MonoBehaviour
     bool justHunted = false;
     bool sleeping = false;
     int wannaFollowOrFlee1or0 = 0;
+    Transform playerTransform;
 
 
     #region Personality
@@ -141,7 +142,7 @@ public class CatController : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         CurrentBehavior = Behaviors.Sleep;
-      //  _ = StartCoroutine(WannaFollowOrFleeFromThePlayer());
+        //  _ = StartCoroutine(WannaFollowOrFleeFromThePlayer());
 
         //  mouth = GetComponent<SpriteRenderer>();
     }
@@ -155,6 +156,20 @@ public class CatController : MonoBehaviour
         {
             Hunt(justHunted);
         }
+
+        Collider2D player = IsPlayerNearby();
+        if (player != null)
+        {
+            if (!isPlayerNearby)
+            {
+                isPlayerNearby = true;
+                StartCoroutine(WannaFollowOrFleeFromThePlayer());
+            }
+        }
+        else
+        {
+            isPlayerNearby = false;
+        }
     }
 
     /// <summary>
@@ -163,23 +178,21 @@ public class CatController : MonoBehaviour
     /// </summary>
     /// <returns></returns>
 
-    private IEnumerator  WannaFollowOrFleeFromThePlayer()
-    {
-        while (sleeping == false)
-        {
+    private bool isPlayerNearby = false;
 
+    private IEnumerator WannaFollowOrFleeFromThePlayer()
+    {
+        while (isPlayerNearby && !sleeping)
+        {
             wannaFollowOrFlee1or0 = Random.Range(0, 2);
             Debug.Log("TESTANDO ESSA BOSTA " + wannaFollowOrFlee1or0);
-         //   setBehavior();
-            //  Debug.Log("setting behavior" + CurrentBehavior);
+            FollowOrFlee();
             yield return new WaitForSecondsRealtime(5);
         }
     }
 
     void FollowOrFlee()
     {
-          StartCoroutine(WannaFollowOrFleeFromThePlayer());
-        //   Debug.Log("enumarator follow or flee SSDSDIH");
         if (wannaFollowOrFlee1or0 == 1)
         {
             Debug.Log("follow");
@@ -231,9 +244,25 @@ public class CatController : MonoBehaviour
 
     }
 
-    private void Flee()
+    void Flee()
     {
+        if (playerTransform != null)
+        {
+            anim.SetTrigger("Walk");
+            Vector2 direction = (transform.position - playerTransform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, transform.position + (Vector3)direction, speed * Time.deltaTime);
+            Debug.Log("Fleeing from the player");
 
+            if (playerTransform.position.x > transform.position.x)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
+        }
     }
 
     Collider2D IsPlayerNearby()
@@ -245,24 +274,33 @@ public class CatController : MonoBehaviour
             if (collider.gameObject.CompareTag("Player"))
             {
                 Debug.Log("player nearby");
-                // FollowOrFlee();
                 FollowOrFlee();
-                // CurrentBehavior = Behaviors.Flee;
-                // anim.SetTrigger("Run");
-
-                // Vector2 fleeDirection = transform.position - collider.transform.position;
-
-                // rb.velocity = fleeDirection.normalized * speed;
+                playerTransform = collider.transform;
                 return collider;
             }
         }
         return null;
     }
 
-    private void Follow()
+    void Follow()
     {
-        // follows the player
-        anim.SetTrigger("Walk");
+        if (playerTransform != null)
+        {
+            anim.SetTrigger("Walk");
+            Vector2 direction = (playerTransform.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+
+            if (playerTransform.position.x < transform.position.x)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+
+            Debug.Log("Following the player");
+        }
     }
 
     private void Play()
