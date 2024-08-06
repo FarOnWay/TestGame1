@@ -86,8 +86,9 @@ public class CatController : MonoBehaviour
         Follow, // follows the player (sometimes)
         Sit, // sits randomly
         Lay, // lays down randomly
+        Stretch, // stretches
     }
-    int n = 0;
+
     private void setBehavior()
     {
         CurrentBehavior = (Behaviors)3;
@@ -105,9 +106,9 @@ public class CatController : MonoBehaviour
                 break;
             case Behaviors.Sleep:
                 // Debug.Log("before the sleep method");
-                Sleep();
+                Debug.Log("setting to sleep");
+                StartCoroutine(Sleep());
                 // Debug.Log("after the sleep method");
-                n++;
                 //  Debug.Log(n);
                 break;
             case Behaviors.Eat:
@@ -130,6 +131,9 @@ public class CatController : MonoBehaviour
                 break;
             case Behaviors.Lay:
                 Lay();
+                break;
+            case Behaviors.Stretch:
+                Stretch();
                 break;
             default:
                 break;
@@ -208,7 +212,6 @@ public class CatController : MonoBehaviour
 
             default:
                 break;
-
         }
     }
 
@@ -282,7 +285,7 @@ public class CatController : MonoBehaviour
         {
             if (collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("player nearby");
+                //  Debug.Log("player nearby");
                 FollowOrFlee();
                 playerTransform = collider.transform;
                 return collider;
@@ -308,7 +311,7 @@ public class CatController : MonoBehaviour
                 sprite.flipX = false;
             }
 
-            Debug.Log("Following the player");
+            //  Debug.Log("Following the player");
         }
 
         else
@@ -323,11 +326,13 @@ public class CatController : MonoBehaviour
         //  
     }
 
-    private void Sleep()
+    private IEnumerator Sleep()
     {
+        Debug.Log("sleeping");
         // Debug.Log("qadjksdjn ohhh god");
-        // sleeping = true;
-        // anim.SetTrigger("Lay");
+        sleeping = true;
+        anim.SetTrigger("Lay");
+        yield return new WaitForSecondsRealtime(Random.Range(60, 300));
         // justHunted = false;
         // StartCoroutine(SleepTimer());
 
@@ -384,7 +389,6 @@ public class CatController : MonoBehaviour
     /// into the ground with the prey in its mouth
     /// in case of failure, the prey will run away and the cat will return to its previous behavior
     /// </summary>
-
     private void Hunt(bool canHunt)
     {
         if (canHunt == true) return;
@@ -449,6 +453,12 @@ public class CatController : MonoBehaviour
     private void Groom()
     {
         // grooms
+    }
+
+    private void Stretch()
+    {
+        // stretches
+        anim.SetTrigger("Stretch");
     }
 
 }
