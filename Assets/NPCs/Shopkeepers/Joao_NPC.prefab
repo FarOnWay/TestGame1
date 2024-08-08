@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9132700821405053914}
   - component: {fileID: 574594402796244980}
   m_Layer: 12
-  m_Name: King_NPC
+  m_Name: Joao_NPC
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 4723107735738678597, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+  m_Sprite: {fileID: 21300176, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -215,8 +215,8 @@ BoxCollider2D:
   m_Offset: {x: 0.052548483, y: -0.22680673}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.11}
+    pivot: {x: 0.42857143, y: 0.5}
+    oldSize: {x: 0.21875, y: 0.5625}
     newSize: {x: 1.6, y: 1.11}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

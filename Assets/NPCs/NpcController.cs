@@ -6,20 +6,20 @@ public class NpcController : Entity
 {
     [SerializeField]
     float moveSpeed;
+    public readonly string npcName;
     public float minX, maxX, minY, maxY;
-    private new Rigidbody2D rb; // new keyword to hide the base class field
+    private new Rigidbody2D rb; 
     private Animator anim;
     private Vector2 targetPosition;
     public Image DialogBox;
     private bool isDialoging = false;
     public HeroKnight player;
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     private Text dialogText;
     private Text dialogButton;
     private Button closeBtn;
     private Image speechBubble;
     private Transform position;
-
     public int? willingToChat = null;
     private int direction; // 0 = left, 1 = right
     public float directionChangeInterval = 4f;
@@ -88,6 +88,7 @@ public class NpcController : Entity
                         base.DealDamage(20, true, true);
 
                     }
+
                     else
                     {
                         spriteRenderer.flipX = false;
@@ -95,7 +96,6 @@ public class NpcController : Entity
                     }
                 }
             }
-
             nextAttackTime = Time.time + attackInterval;
         }
     }
@@ -202,7 +202,7 @@ public class NpcController : Entity
         }
     }
 
-    private void Idle()
+    public void Idle()
     {
         rb.velocity = new Vector2(0, 0);
         moveSpeed = 0;
@@ -217,11 +217,11 @@ public class NpcController : Entity
         Debug.Log(position.position);
     }
 
-    private void PlayerInteract()
+    public virtual void PlayerInteract()
     {
         if (Input.GetMouseButtonDown(1) && isDialoging == false)
         {
-            while (Vector2.Distance(player.transform.position, transform.position) < 4)
+            if (Vector2.Distance(player.transform.position, transform.position) < 4)
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 mousePos2D = new(mousePos.x, mousePos.y);
@@ -234,8 +234,8 @@ public class NpcController : Entity
                     DialogBox.enabled = true;
                     dialogText.enabled = true;
                     dialogButton.enabled = true;
-                    setSpeechBubble();
-                    speechBubble.enabled = true;
+                   // setSpeechBubble();
+                   // speechBubble.enabled = true;
                     isDialoging = true;
                     Idle();
                     return;

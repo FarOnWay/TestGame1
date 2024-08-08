@@ -7,6 +7,7 @@ public class InventoryController : MonoBehaviour
 {
     // public ItemController item;
     public InventoryUIController inventoryUIController;
+    bool isInventoryOpen = false;
 
     public HeroKnight player;
     public GameObject playerHand;
@@ -73,7 +74,7 @@ public class InventoryController : MonoBehaviour
 
         // Collect the item
     }
-     
+
     public Item RetriveInfoAboutSelectedItem(Item item)
     {
         return item;
@@ -118,13 +119,25 @@ public class InventoryController : MonoBehaviour
 
     public void SeeInventory()
     {
+        if (isInventoryOpen)
+        {
+            extendedInventory.SetActive(false);
+            isInventoryOpen = false;
+        }
+        else
+        {
+            extendedInventory.SetActive(true);
+            isInventoryOpen = true;
+        }
+
+
         foreach (KeyValuePair<Item, int> entry in Inventory)
         {
             Debug.Log(entry.Key.ItemName + ": " + entry.Value);
             Debug.Log(entry.Key.itemType + ": " + entry.Value);
             Debug.Log(entry.Key.itemPrefab + ": " + entry.Value);
         }
-        Debug.Log(ShootProjectile());
+        // Debug.Log(ShootProjectile());
 
     }
 
