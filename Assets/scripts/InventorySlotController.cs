@@ -41,15 +41,14 @@ public class InventorySlotController : MonoBehaviour, IPointerEnterHandler, IPoi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // Show the tooltip
-        inventoryUIController.ShowTooltip(inventoryUIController.itemGot);
-        Debug.Log("OnPointerEnter");
+        // inventoryUIController.ShowTooltip(inventoryUIController.itemGot);
+        // Debug.Log("OnPointerEnter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         // Hide the tooltip
-        inventoryUIController.HideTooltip();
+       // inventoryUIController.HideTooltip();
     }
 
     //needs to write a method to get the item info from a determinet slot whn the mouse pass over it
